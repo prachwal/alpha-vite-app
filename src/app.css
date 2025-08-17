@@ -1,0 +1,12 @@
+/* Component-specific styles */
+.logo-hover-effect {
+  transition: filter 0.3s ease;
+}
+
+.logo-hover-effect:hover {
+  filter: drop-shadow(0 0 2em rgba(99, 102, 241, 0.7));
+}
+
+.preact-hover-effect:hover {
+  filter: drop-shadow(0 0 2em rgba(103, 58, 184, 0.7));
+}

@@ -1,0 +1,43 @@
+{
+  "name": "alpha-vite-app",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node api/index.js",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "vite build --outDir dist/client",
+    "build:server": "vite build --ssr src/entry-server.tsx --outDir dist/server",
+    "preview": "cross-env NODE_ENV=production node api/index.js",
+    "deploy": "vercel --prod",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest --run"
+  },
+  "dependencies": {
+    "@preact/signals": "^2.2.1",
+    "@tailwindcss/vite": "^4.1.12",
+    "compression": "^1.8.1",
+    "express": "^5.1.0",
+    "i18next": "^25.3.6",
+    "i18next-browser-languagedetector": "^8.2.0",
+    "preact": "^10.27.0",
+    "preact-iso": "^2.9.2",
+    "preact-render-to-string": "^6.5.13",
+    "sirv": "^3.0.1",
+    "tailwindcss": "^4.1.12"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.10.2",
+    "@testing-library/jest-dom": "^6.7.0",
+    "@testing-library/preact": "^3.2.4",
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.3.0",
+    "@vitest/ui": "^3.2.4",
+    "cross-env": "^10.0.0",
+    "jsdom": "^26.1.0",
+    "typescript": "~5.9.2",
+    "vite": "^7.0.6",
+    "vitest": "^3.2.4"
+  }
+}
