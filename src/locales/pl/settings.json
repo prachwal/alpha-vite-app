@@ -27,5 +27,19 @@
   "switchToPolish": "Przełącz na polski",
   "switchToEnglish": "Switch to English",
   "debugInformation": "Informacje debugowania",
-  "refreshDebugInfo": "Odśwież informacje debugowania"
+  "refreshDebugInfo": "Odśwież informacje debugowania",
+  "login": "Zaloguj się",
+  "logout": "Wyloguj się",
+  "welcome": "Witaj",
+  "guest": "Gość",
+  "authentication": "Uwierzytelnianie",
+  "loginRequired": "Wymagane logowanie",
+  "loginToAccess": "Zaloguj się, aby uzyskać dostęp do tej funkcji",
+  "loginAuth0": "Zaloguj przez Auth0",
+  "authError": "Błąd uwierzytelniania",
+  "dismiss": "Zamknij",
+  "loading": "Ładowanie...",
+  "authenticated": "Uwierzytelniony",
+  "notAuthenticated": "Nieuwierzytelniony",
+  "checkingAuth": "Sprawdzanie uwierzytelniania..."
 }

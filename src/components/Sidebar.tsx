@@ -7,47 +7,44 @@ import {
   updateCurrentPath,
 } from "./SidebarState";
 import { t } from "../services/i18n";
+import { AuthButton } from "./AuthProvider";
 
 export function Sidebar() {
   const isActiveRoute = (path: string) => {
     return currentPath.value === path;
   };
 
+  // Helper to check if sidebar is collapsed
+  const isCollapsed = () => {
+    return (
+      isHydrated.value &&
+      (currentBreakpoint.value === "tablet" ||
+        currentBreakpoint.value === "desktop") &&
+      !sidebarOpen.value
+    );
+  };
+
   // Dynamic classes for icons based on sidebar state
   const getIconClasses = () => {
-    const baseClasses = "w-10 h-10";
-
     if (typeof window === "undefined" || !isHydrated.value) {
-      return `${baseClasses} mr-3`;
+      return "w-6 h-6 mr-3";
     }
 
-    // In collapsed tablet mode - use even larger icons
-    if (currentBreakpoint.value === "tablet" && !sidebarOpen.value) {
-      return "w-12 h-12";
-    }
-
-    return `${baseClasses} mr-3`;
+    return isCollapsed() ? "w-8 h-8" : "w-6 h-6 mr-3";
   };
 
   // Dynamic classes for nav links based on sidebar state
   const getNavLinkClasses = (path: string) => {
     const baseClasses =
-      "flex items-center px-3 py-2 rounded-md transition-colors";
+      "flex items-center rounded-md transition-all duration-300";
     const activeClasses = "bg-bg-accent-soft text-text-accent";
     const inactiveClasses = "hover:bg-bg-surface text-text-muted";
 
     const stateClasses = isActiveRoute(path) ? activeClasses : inactiveClasses;
 
-    // In collapsed tablet mode - center content and adjust padding
-    if (
-      isHydrated.value &&
-      currentBreakpoint.value === "tablet" &&
-      !sidebarOpen.value
-    ) {
-      return `${baseClasses} ${stateClasses} justify-center px-2 py-2`;
-    }
-
-    return `${baseClasses} ${stateClasses}`;
+    return isCollapsed()
+      ? `${baseClasses} ${stateClasses} justify-center px-1 py-2`
+      : `${baseClasses} ${stateClasses} px-3 py-2`;
   };
 
   const handleNavigation = (e: Event, href: string) => {
@@ -64,7 +61,7 @@ export function Sidebar() {
 
   const getSidebarClasses = () => {
     const baseClasses =
-      "fixed top-0 left-0 h-screen bg-bg-surface shadow-lg border-r border-border-primary z-50 transition-transform duration-300 ease-in-out";
+      "fixed top-0 left-0 h-screen bg-bg-surface shadow-lg border-r border-border-primary z-50 transition-all duration-300 ease-in-out";
 
     // SSR - always render as desktop with sidebar open for consistency
     if (typeof window === "undefined") {
@@ -86,7 +83,10 @@ export function Sidebar() {
         sidebarOpen.value ? "w-64" : "w-16"
       } transform translate-x-0`;
     } else {
-      return `${baseClasses} w-64 transform translate-x-0`;
+      // Desktop - allow collapsing
+      return `${baseClasses} ${
+        sidebarOpen.value ? "w-64" : "w-16"
+      } transform translate-x-0`;
     }
   };
 
@@ -110,7 +110,7 @@ export function Sidebar() {
       <aside className={getSidebarClasses()}>
         <div className="h-full flex flex-col">
           {/* Sidebar Header */}
-          <div className="flex items-center justify-end p-4 border-b border-border-primary">
+          <div className="flex items-center px-4 py-3 border-b border-border-primary">
             <button
               onClick={toggleSidebar}
               className="p-2 rounded-md hover:bg-bg-primary flex-shrink-0"
@@ -160,10 +160,8 @@ export function Sidebar() {
                 <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
               </svg>
               <span
-                className={`transition-all duration-300 ease-in-out ${
-                  !sidebarOpen.value && currentBreakpoint.value === "tablet"
-                    ? "opacity-0 w-0 overflow-hidden"
-                    : "opacity-100 w-auto"
+                className={`nav-text transition-all duration-300 ease-in-out ${
+                  isCollapsed() ? "opacity-0 w-0" : "opacity-100 w-auto"
                 }`}
               >
                 {t("homePage")}
@@ -186,10 +184,8 @@ export function Sidebar() {
                 ></path>
               </svg>
               <span
-                className={`transition-all duration-300 ease-in-out ${
-                  !sidebarOpen.value && currentBreakpoint.value === "tablet"
-                    ? "opacity-0 w-0 overflow-hidden"
-                    : "opacity-100 w-auto"
+                className={`nav-text transition-all duration-300 ease-in-out ${
+                  isCollapsed() ? "opacity-0 w-0" : "opacity-100 w-auto"
                 }`}
               >
                 {t("aboutPage")}
@@ -212,16 +208,19 @@ export function Sidebar() {
                 ></path>
               </svg>
               <span
-                className={`transition-all duration-300 ease-in-out ${
-                  !sidebarOpen.value && currentBreakpoint.value === "tablet"
-                    ? "opacity-0 w-0 overflow-hidden"
-                    : "opacity-100 w-auto"
+                className={`nav-text transition-all duration-300 ease-in-out ${
+                  isCollapsed() ? "opacity-0 w-0" : "opacity-100 w-auto"
                 }`}
               >
                 {t("settingsPage")}
               </span>
             </a>
           </nav>
+
+          {/* Auth Section */}
+          <div className="px-4 py-4 border-t border-border-primary">
+            <AuthButton isCollapsed={isCollapsed()} />
+          </div>
         </div>
       </aside>
     </>

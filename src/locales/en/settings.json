@@ -27,5 +27,19 @@
   "switchToPolish": "Switch to Polish",
   "switchToEnglish": "Switch to English",
   "debugInformation": "Debug Information",
-  "refreshDebugInfo": "Refresh Debug Info"
+  "refreshDebugInfo": "Refresh Debug Info",
+  "login": "Login",
+  "logout": "Logout",
+  "welcome": "Welcome",
+  "guest": "Guest",
+  "authentication": "Authentication",
+  "loginRequired": "Login Required",
+  "loginToAccess": "Please login to access this feature",
+  "loginAuth0": "Login with Auth0",
+  "authError": "Authentication Error",
+  "dismiss": "Dismiss",
+  "loading": "Loading...",
+  "authenticated": "Authenticated",
+  "notAuthenticated": "Not Authenticated",
+  "checkingAuth": "Checking authentication..."
 }

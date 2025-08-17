@@ -5,6 +5,7 @@ import { App } from "./app";
 import { initializeTheme } from "./services/ThemeProvider";
 import { initializeSidebar } from "./components/SidebarState";
 import { initializeI18n } from "./services/i18n";
+import { initializeAuth0 } from "./services/Auth0Provider";
 
 // Initialize services on client side
 async function initializeServices() {
@@ -12,6 +13,9 @@ async function initializeServices() {
 
   // Initialize i18n first
   await initializeI18n();
+
+  // Initialize Auth0
+  await initializeAuth0();
 
   // Then initialize theme and sidebar
   initializeTheme();

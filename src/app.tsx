@@ -35,6 +35,10 @@ export function App() {
     if (currentBreakpoint.value === "tablet") {
       return sidebarOpen.value ? "ml-64" : "ml-16";
     }
+    // Desktop - obsługa zwijania
+    if (currentBreakpoint.value === "desktop") {
+      return sidebarOpen.value ? "ml-64" : "ml-16";
+    }
     return "lg:ml-64";
   };
 
@@ -59,7 +63,7 @@ export function App() {
         `}
       >
         {/* Header */}
-        <header className="bg-bg-surface shadow-sm border-b border-border-primary px-6 py-4">
+        <header className="bg-bg-surface shadow-sm border-b border-border-primary px-4 py-3">
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-semibold text-text-primary">
               {import.meta.env.VITE_APP_NAME || t("appName")}
