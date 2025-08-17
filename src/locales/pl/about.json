@@ -1,0 +1,18 @@
+{
+    "title": "O Alpha Vite App",
+    "description": "To jest nowoczesna aplikacja webowa zbudowana z najnowocześniejszych technologii, aby zademonstrować najlepsze praktyki w rozwoju full-stack.",
+    "frontendTech": "Technologie Frontend",
+    "featurePreact": "Preact z renderowaniem po stronie serwera",
+    "featureSignals": "Preact Signals do zarządzania stanem",
+    "featureTailwind": "Tailwind CSS 4 do stylizacji",
+    "featureTypeScript": "TypeScript dla bezpieczeństwa typów",
+    "featureVite": "Vite dla szybkiego rozwoju",
+    "featureVitest": "Vitest do testowania",
+    "backendTech": "Technologie Backend",
+    "featureNode": "Node.js z Express",
+    "featureREST": "Endpointy RESTful API",
+    "featureConfig": "Konfiguracja środowiska",
+    "featureSecurity": "Kompresja i bezpieczeństwo",
+    "featureError": "Obsługa błędów",
+    "featureDeploy": "Wdrożenie na Vercel"
+}

@@ -1,4 +1,23 @@
-@import 'tailwindcss';
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #3b82f6;
+  --color-secondary: #64748b;
+  --color-accent: #8b5cf6;
+  --color-bg-primary: #ffffff;
+  --color-bg-surface: #f8fafc;
+  --color-text-primary: #1e293b;
+  --color-text-muted: #64748b;
+  --color-border-primary: #e2e8f0;
+  --color-accent-soft: #dbeafe;
+  --color-text-accent: #1d4ed8;
+
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 0.75rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+}
 
 @layer base {
   :root {
@@ -10,33 +29,44 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+  }
 
-    /* Default spacing CSS variables */
-    --spacing-xs: 0.5rem;
-    --spacing-sm: 0.75rem;
-    --spacing-md: 1rem;
-    --spacing-lg: 1.5rem;
-    --spacing-xl: 2rem;
+  .dark {
+    --color-primary: #60a5fa;
+    --color-secondary: #94a3b8;
+    --color-accent: #a78bfa;
+    --color-bg-primary: #0f172a;
+    --color-bg-surface: #1e293b;
+    --color-text-primary: #f1f5f9;
+    --color-text-muted: #94a3b8;
+    --color-border-primary: #334155;
+    --color-accent-soft: #1e3a8a;
+    --color-text-accent: #93c5fd;
   }
 
   html {
-    @apply h-full;
+    height: 100%;
   }
 
   body {
-    @apply h-full m-0 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100;
+    height: 100%;
+    margin: 0;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
   }
 
   #app {
-    @apply h-full;
+    height: 100%;
   }
 
-  /* Ensure dark mode colors are properly applied */
-  .dark {
-    color-scheme: dark;
+  .font-sans {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   }
 
-  /* Spacing utilities */
+  .font-mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  }
+
   .spacing-compact {
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
@@ -59,5 +89,25 @@
     --spacing-md: 1.5rem;
     --spacing-lg: 2rem;
     --spacing-xl: 3rem;
+  }
+
+  .text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .text-lg {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+
+  .text-xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 }

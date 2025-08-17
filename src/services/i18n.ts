@@ -2,6 +2,14 @@ import i18n from "i18next";
 import LanguageDetector from "i18next-browser-languagedetector";
 import { signal } from "@preact/signals";
 
+// Import translation files
+import homeEN from "../locales/en/home.json";
+import homePL from "../locales/pl/home.json";
+import aboutEN from "../locales/en/about.json";
+import aboutPL from "../locales/pl/about.json";
+import settingsEN from "../locales/en/settings.json";
+import settingsPL from "../locales/pl/settings.json";
+
 // Language signal for reactive updates
 export const currentLanguage = signal("en");
 
@@ -14,19 +22,14 @@ const resources = {
       home: "Home",
       about: "About",
       settings: "Settings",
+      toggleSidebar: "Toggle sidebar",
+      homePage: "Home",
+      aboutPage: "About",
+      settingsPage: "Settings",
 
       // Header
       appName: "Alpha Vite App",
       toggleTheme: "Toggle theme",
-
-      // Home page
-      welcome: "Welcome to your modern SSR Preact application",
-      features: "Features",
-      featureSSR: "Server-Side Rendering (SSR)",
-      featureSignals: "Preact Signals for State Management",
-      featureTailwind: "Tailwind CSS 4 for Styling",
-      featureResponsive: "Responsive Design",
-      featureTheme: "Dark/Light Theme Support",
 
       // API Tester
       apiTester: "API Tester",
@@ -34,34 +37,15 @@ const resources = {
       testAPI: "Test API",
       response: "Response:",
 
-      // About page
-      aboutTitle: "About Alpha Vite App",
-      aboutDescription: "This is a modern web application built with:",
-      technology: "Technology",
-
-      // Settings page
-      settingsTitle: "Settings",
-      appearance: "Appearance",
-      theme: "Theme",
-      light: "Light",
-      dark: "Dark",
-      fontSize: "Font Size",
-      small: "Small",
-      normal: "Normal",
-      large: "Large",
-      extraLarge: "Extra Large",
-      fontFamily: "Font Family",
-      sansSerif: "Sans Serif",
-      monospace: "Monospace",
-      spacing: "Spacing",
-      compact: "Compact",
-      spacious: "Spacious",
-      language: "Language",
-      english: "English",
-      polish: "Polish",
-
       // Counter
       count: "Count: {{count}}",
+
+      // Page-specific translations
+      pages: {
+        home: homeEN,
+        about: aboutEN,
+        settings: settingsEN,
+      },
     },
   },
   pl: {
@@ -71,19 +55,14 @@ const resources = {
       home: "Strona główna",
       about: "O aplikacji",
       settings: "Ustawienia",
+      toggleSidebar: "Przełącz panel boczny",
+      homePage: "Strona główna",
+      aboutPage: "O aplikacji",
+      settingsPage: "Ustawienia",
 
       // Header
       appName: "Alpha Vite App",
       toggleTheme: "Przełącz motyw",
-
-      // Home page
-      welcome: "Witaj w Twojej nowoczesnej aplikacji SSR Preact",
-      features: "Funkcje",
-      featureSSR: "Renderowanie po stronie serwera (SSR)",
-      featureSignals: "Preact Signals do zarządzania stanem",
-      featureTailwind: "Tailwind CSS 4 do stylizacji",
-      featureResponsive: "Responsywny design",
-      featureTheme: "Obsługa motywów jasny/ciemny",
 
       // API Tester
       apiTester: "Tester API",
@@ -91,34 +70,15 @@ const resources = {
       testAPI: "Testuj API",
       response: "Odpowiedź:",
 
-      // About page
-      aboutTitle: "O Alpha Vite App",
-      aboutDescription: "To jest nowoczesna aplikacja webowa zbudowana z:",
-      technology: "Technologia",
-
-      // Settings page
-      settingsTitle: "Ustawienia",
-      appearance: "Wygląd",
-      theme: "Motyw",
-      light: "Jasny",
-      dark: "Ciemny",
-      fontSize: "Rozmiar czcionki",
-      small: "Mały",
-      normal: "Normalny",
-      large: "Duży",
-      extraLarge: "Bardzo duży",
-      fontFamily: "Rodzina czcionek",
-      sansSerif: "Sans Serif",
-      monospace: "Monospace",
-      spacing: "Odstępy",
-      compact: "Kompaktowe",
-      spacious: "Przestronne",
-      language: "Język",
-      english: "Angielski",
-      polish: "Polski",
-
       // Counter
       count: "Licznik: {{count}}",
+
+      // Page-specific translations
+      pages: {
+        home: homePL,
+        about: aboutPL,
+        settings: settingsPL,
+      },
     },
   },
 };
@@ -186,19 +146,44 @@ export const changeLanguage = (lng: string) => {
 export const t = (key: string, options?: any) => {
   if (typeof window === "undefined") {
     // SSR fallback - return the key or use English fallback
-    const enTranslation =
-      resources.en.translation[key as keyof typeof resources.en.translation];
-    return enTranslation || key;
+    const keys = key.split(".");
+    let result: any = resources.en.translation;
+
+    for (const k of keys) {
+      if (result && typeof result === "object" && result[k] !== undefined) {
+        result = result[k];
+      } else {
+        return key;
+      }
+    }
+
+    return typeof result === "string" ? result : key;
   }
 
   if (!i18n.isInitialized) {
     console.warn("[i18n] Translation requested before initialization:", key);
-    const enTranslation =
-      resources.en.translation[key as keyof typeof resources.en.translation];
-    return enTranslation || key;
+    const keys = key.split(".");
+    let result: any = resources.en.translation;
+
+    for (const k of keys) {
+      if (result && typeof result === "object" && result[k] !== undefined) {
+        result = result[k];
+      } else {
+        return key;
+      }
+    }
+
+    return typeof result === "string" ? result : key;
   }
 
   return i18n.t(key, options);
+};
+
+// Helper function for page-specific translations
+export const usePageTranslations = (page: string) => {
+  return (key: string, options?: any) => {
+    return t(`pages.${page}.${key}`, options);
+  };
 };
 
 export default i18n;

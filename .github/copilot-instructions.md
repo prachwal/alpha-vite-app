@@ -2,132 +2,123 @@
 
 ## Architecture Overview
 
-This is a **SSR Preact application** with dual server architecture:
+This is a **SSR Preact application** with a dual server architecture designed for development and production environments.
 
-- **Development**: Vite dev server with Express API (`npm run dev` → `node api/index.js`)
-- **Production**: Static build with Express serving both SSR and API routes
-- **State Management**: Preact Signals for reactive state across components
-- **Routing**: `preact-iso` for client-side navigation with SSR support
-- **Styling**: Tailwind CSS 4 with CSS custom properties for dynamic theming
+- **Development**: The `npm run dev` command starts a Vite dev server that uses an Express server (`api/index.js`) for API routing and middleware. This provides a hot-reloading development experience.
+- **Production**: `npm run build` creates a static client build (`dist/client`) and a server build (`dist/server`). The Express server then serves the static assets and handles SSR.
+- **State Management**: The application uses **Preact Signals** (`@preact/signals`) for reactive state management. State is centralized in service files (e.g., `src/services/ThemeProvider.ts`, `src/components/SidebarState.ts`) and imported into components.
+- **Routing**: Client-side routing is handled by `preact-iso`, which supports SSR.
+- **Styling**: The project uses **Tailwind CSS 4** with a CSS variable-based theming system for dynamic light/dark modes and spacing.
 
 ## Critical Developer Workflows
 
 ### Development Commands
 
 ```bash
-npm run dev          # Starts Express server with Vite middleware (port 5173)
-npm run build        # Builds both client (dist/client) and server (dist/server)
-npm test             # Vitest with jsdom environment
-npx vercel --prod    # Deploy to production
+# Start the development server with Vite and Express
+npm run dev
+
+# Create a production build for both client and server
+npm run build
+
+# Run the production server
+npm run preview
+
+# Run unit tests with Vitest
+npm test
 ```
 
-### SSR Hydration Pattern
+### SSR Hydration and Client-Side Initialization
 
-Components must handle SSR safely using `isHydrated` signal:
+The application uses SSR, so client-side logic must be handled carefully to avoid hydration mismatches.
 
-```typescript
-// src/components/SidebarState.ts - always check before DOM operations
-if (!isHydrated.value) {
-  return "safe-default-classes"; // SSR-safe fallback
-}
-```
-
-### Service Initialization
-
-All services require explicit client-side initialization in `entry-client.tsx`:
+1.  **Initialization Entry Point**: All client-side services are initialized in `src/entry-client.tsx`.
+2.  **Deferred Execution**: DOM-manipulating logic is deferred using `queueMicrotask` to ensure it runs _after_ Preact has hydrated the app. This is critical for preventing errors.
 
 ```typescript
-initializeTheme(); // src/services/ThemeProvider.ts
-initializeSidebar(); // src/components/SidebarState.ts
-// i18n auto-initializes via import
+// src/services/ThemeProvider.ts - Correct way to apply theme on client
+effect(() => {
+  if (typeof window === "undefined") return;
+  queueMicrotask(() => {
+    // DOM manipulation logic here
+    document.documentElement.classList.add("dark");
+  });
+});
+
+// src/entry-client.tsx - Initialization order
+initializeI18n();
+initializeTheme();
+initializeSidebar();
 ```
 
 ## Project-Specific Patterns
 
 ### Signal-Based State Management
 
-- **Theme**: `themeConfig` signal with localStorage persistence and CSS class application
-- **Sidebar**: `sidebarOpen`, `currentBreakpoint`, `isHydrated` signals for responsive behavior
-- **API**: `apiState` signal tracks loading/error states per endpoint
-- **i18n**: `currentLanguage` signal for reactive language switching
+State is managed globally using signals, which are imported directly into components.
 
-### Dynamic CSS with Custom Properties
+- **Theme**: `themeConfig` in `src/services/ThemeProvider.ts` controls the theme. It's persisted to `localStorage`.
+- **Sidebar**: `sidebarOpen` and `currentBreakpoint` in `src/components/SidebarState.ts` manage the sidebar's responsive state.
+- **API State**: `apiState` in `src/services/ApiClient.ts` tracks the loading, data, and error states for API requests.
 
-Spacing system uses CSS variables + Tailwind integration:
+### Dynamic Theming with CSS Variables
+
+The theme system is built on CSS variables defined in `src/index.css` and consumed by Tailwind.
+
+- **CSS Definitions**: Light mode variables are in `:root`, and dark mode overrides are in the `.dark` class.
+- **Tailwind Config**: `tailwind.config.js` is minimal. The theme is defined in CSS, not in the config file.
+- **Applying Themes**: The `ThemeProvider` service adds/removes the `.dark` class from the `<html>` element.
 
 ```css
 /* src/index.css */
-:root {
-  --spacing-xs: 0.5rem;
-}
-.spacing-compact {
-  --spacing-xs: 0.25rem;
+@theme {
+  --color-bg-primary: #ffffff;
+  /* ... other light theme variables */
 }
 
-/* tailwind.config.js */
-spacing: {
-  xs: "var(--spacing-xs)";
+.dark {
+  --color-bg-primary: #0f172a;
+  /* ... other dark theme variables */
 }
 ```
 
-Applied via `ThemeProvider` effect that adds classes to `document.documentElement`.
+### Active Navigation Links
 
-### Active Navigation Pattern
-
-`Sidebar.tsx` implements real-time active state detection:
+The `Sidebar.tsx` component determines the active route by directly comparing `window.location.pathname` with the link's `href`.
 
 ```typescript
-const getCurrentPath = () => window.location.pathname;
-const isActiveRoute = (path: string) => getCurrentPath() === path;
-```
+// src/components/SidebarState.ts
+export const currentPath = signal(window.location.pathname);
 
-Uses custom CSS classes for active/inactive states instead of router-based active links.
+// src/components/Sidebar.tsx
+const isActive = currentPath.value === href;
+```
 
 ## Integration Points
 
-### API Client Architecture
+### API Client
 
-- **Endpoint**: All API routes prefixed with `/api/` (Express routes in `api/routes.js`)
-- **State Management**: `ApiClient` class updates global `apiState` signal per request
-- **Error Handling**: HTTP errors stored in signal state, displayed in `ApiTester` component
+- **Location**: The Express API is defined in `api/index.js` and `api/routes.js`.
+- **Client**: The `ApiClient` class in `src/services/ApiClient.ts` provides methods for making requests and updates the global `apiState` signal.
 
-### Theme System Integration
+### Internationalization (i18n)
 
-- **CSS**: Dark mode via `documentElement.classList.toggle('dark')`
-- **Tailwind**: `dark:` prefix variants automatically work with theme classes
-- **Persistence**: Theme config object stored in localStorage, restored on initialization
-- **Components**: Access via `themeConfig.value.mode` signal
+- **Library**: `i18next` is used for translations.
+- **Initialization**: The service is initialized in `src/entry-client.tsx`.
+- **Usage**: The `t` function from `src/services/i18n.ts` is used in components.
 
-### i18n Integration
+## Testing
 
-- **Setup**: `i18next` with browser language detection, localStorage caching
-- **Usage**: `t()` function with fallback values for SSR safety
-- **Reactive**: `currentLanguage` signal updates when language changes
-- **Switching**: `changeLanguage()` function updates both i18next and signal
-
-## Testing Conventions
-
-### Component Testing
-
-- **Location**: `src/test/*.test.tsx`
-- **Pattern**: Mock i18n service with translation map for predictable test values
-- **SSR Testing**: Mock `window` object and `isHydrated` signal states
-- **API Testing**: Use `apiState` signal to verify loading/success/error states
-
-### Mock Patterns
-
-```typescript
-// Always mock i18n service with fallback translations
-vi.mock("../services/i18n", () => ({
-  t: vi.fn((key: string) => translations[key] || key),
-}));
-```
+- **Framework**: **Vitest** with a `jsdom` environment.
+- **Configuration**: `vitest.config.ts`.
+- **Setup**: `src/test/setup.ts` contains global setup for tests.
+- **Mocks**: Dependencies like `i18n` are typically mocked at the test file level.
 
 ## Key Files for Understanding
 
-- **`src/entry-client.tsx`** - Client hydration and service initialization
-- **`src/services/ThemeProvider.ts`** - Signal-based theme management with CSS integration
-- **`src/components/SidebarState.ts`** - Responsive sidebar state with SSR safety
-- **`api/index.js`** - Dual development/production server setup
-- **`src/index.css`** - CSS custom properties system for dynamic spacing
-- **`tailwind.config.js`** - Custom spacing integration with CSS variables
+- `src/entry-client.tsx`: The starting point for client-side initialization.
+- `src/services/ThemeProvider.ts`: The core of the signal-based theme management system.
+- `api/index.js`: The Express server setup for both development and production.
+- `src/index.css`: The definition of the application's theme using CSS variables.
+- `package.json`: Lists all dependencies and scripts.
+- `vite.config.ts`: Configuration for the Vite build tool.

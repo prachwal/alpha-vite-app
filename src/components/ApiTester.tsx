@@ -33,14 +33,20 @@ export function ApiTester() {
   };
 
   return (
-    <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
-      <h3 className="text-xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
+    <div
+      className="bg-bg-surface rounded-lg shadow-md"
+      style="padding: var(--spacing-lg)"
+    >
+      <h3
+        className="text-xl font-semibold text-text-primary"
+        style="margin-bottom: var(--spacing-lg)"
+      >
         API Tester
       </h3>
 
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+          <label className="block text-sm font-medium mb-2 text-text-muted">
             Select Endpoint:
           </label>
           <select
@@ -48,7 +54,7 @@ export function ApiTester() {
             onChange={(e) =>
               (selectedEndpoint.value = (e.target as HTMLSelectElement).value)
             }
-            className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+            className="w-full p-2 border border-border-primary rounded-md bg-bg-surface text-text-primary"
           >
             <option value="/api/health">Health Check</option>
             <option value="/api/hello">Hello</option>
@@ -59,7 +65,10 @@ export function ApiTester() {
 
         {selectedEndpoint.value === "/api/hello" && (
           <div>
-            <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">
+            <label
+              className="block text-sm font-medium text-text-muted"
+              style="margin-bottom: var(--spacing-sm)"
+            >
               Name (optional):
             </label>
             <input
@@ -68,7 +77,7 @@ export function ApiTester() {
               onInput={(e) =>
                 (customName.value = (e.target as HTMLInputElement).value)
               }
-              className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
+              className="w-full p-2 border border-border-primary rounded-md bg-bg-surface text-text-primary"
               placeholder="Enter name..."
             />
           </div>
@@ -77,7 +86,7 @@ export function ApiTester() {
         <button
           onClick={handleTest}
           disabled={currentState.loading}
-          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 disabled:bg-blue-400 text-white rounded-md transition-colors"
+          className="px-4 py-2 bg-primary hover:bg-primary-hover disabled:bg-primary-disabled text-white rounded-md transition-colors"
         >
           {currentState.loading ? "Testing..." : "Test API"}
         </button>

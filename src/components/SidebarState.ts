@@ -1,11 +1,23 @@
 import { signal } from "@preact/signals";
 
-// Initialize with SSR-safe defaults
-export const sidebarOpen = signal(false);
+// Initialize with SSR-safe defaults - sidebar always open on desktop during SSR
+export const sidebarOpen = signal(true);
 export const currentBreakpoint = signal<"mobile" | "tablet" | "desktop">(
   "desktop"
 );
 export const isHydrated = signal(false);
+
+// Signal for tracking current path for reactive navigation
+export const currentPath = signal(
+  typeof window !== "undefined" ? window.location.pathname : "/"
+);
+
+// Update current path for reactive navigation
+export const updateCurrentPath = () => {
+  if (typeof window !== "undefined") {
+    currentPath.value = window.location.pathname;
+  }
+};
 
 // Check screen size and update breakpoint
 const updateBreakpoint = () => {
@@ -27,9 +39,14 @@ const updateBreakpoint = () => {
 // Initialize on client side only
 export const initializeSidebar = () => {
   if (typeof window !== "undefined" && !isHydrated.value) {
-    updateBreakpoint();
-    window.addEventListener("resize", updateBreakpoint);
-    isHydrated.value = true;
+    // Defer client-side state updates until after the initial render has been hydrated
+    queueMicrotask(() => {
+      isHydrated.value = true;
+      updateBreakpoint();
+      updateCurrentPath();
+      window.addEventListener("resize", updateBreakpoint);
+      window.addEventListener("popstate", updateCurrentPath);
+    });
   }
 };
 

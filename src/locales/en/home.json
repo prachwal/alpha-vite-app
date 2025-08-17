@@ -1,0 +1,11 @@
+{
+    "welcome": "Welcome to your modern SSR Preact application",
+    "features": "Features",
+    "featureSSR": "Server-Side Rendering (SSR)",
+    "featureSignals": "Preact Signals for State Management",
+    "featureTailwind": "Tailwind CSS 4 for Styling",
+    "featureResponsive": "Responsive Design",
+    "featureTheme": "Dark/Light Theme Support",
+    "apiTesting": "API Testing",
+    "apiDescription": "Test the API endpoints and see real-time responses:"
+}

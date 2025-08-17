@@ -3,6 +3,7 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/preact";
 import { Sidebar } from "../components/Sidebar";
 import { SettingsPage } from "../pages/SettingsPage";
+import { currentPath } from "../components/SidebarState";
 
 // Mock i18n service - use consistent format with setup.ts
 vi.mock("../services/i18n", () => ({
@@ -49,6 +50,7 @@ describe("Sidebar Navigation Tests", () => {
 
   it("should highlight active navigation item correctly", () => {
     window.location.pathname = "/";
+    currentPath.value = "/";
 
     render(<Sidebar />);
 
@@ -63,6 +65,7 @@ describe("Sidebar Navigation Tests", () => {
 
   it("should highlight settings page when on settings", () => {
     window.location.pathname = "/settings";
+    currentPath.value = "/settings";
 
     render(<Sidebar />);
 
@@ -77,6 +80,7 @@ describe("Sidebar Navigation Tests", () => {
 
   it("should show default styling for non-active items", () => {
     window.location.pathname = "/";
+    currentPath.value = "/";
 
     render(<Sidebar />);
 

@@ -4,9 +4,14 @@ import {
   toggleDarkMode,
   updateTheme,
 } from "../services/ThemeProvider";
-import { currentLanguage, changeLanguage, t } from "../services/i18n";
+import {
+  currentLanguage,
+  changeLanguage,
+  usePageTranslations,
+} from "../services/i18n";
 
 export function SettingsPage() {
+  const t = usePageTranslations("settings");
   const [debugInfo, setDebugInfo] = useState<string[]>([]);
 
   // Reaktywne debugowanie - aktualizuj przy każdej zmianie
@@ -53,50 +58,139 @@ export function SettingsPage() {
     setDebugInfo(debug);
   };
 
+  const handleFontSizeChange = (fontSize: "sm" | "base" | "lg" | "xl") => {
+    updateTheme({ fontSize });
+    const debug = [
+      `Theme mode: ${themeConfig.value.mode}`,
+      `Font size: ${fontSize}`,
+      `Font family: ${themeConfig.value.fontFamily}`,
+      `Spacing: ${themeConfig.value.spacing}`,
+      `Language: ${currentLanguage.value}`,
+      `Timestamp: ${new Date().toLocaleString()}`,
+    ];
+    setDebugInfo(debug);
+  };
+
+  const handleFontFamilyChange = (fontFamily: "sans" | "mono") => {
+    updateTheme({ fontFamily });
+    const debug = [
+      `Theme mode: ${themeConfig.value.mode}`,
+      `Font size: ${themeConfig.value.fontSize}`,
+      `Font family: ${fontFamily}`,
+      `Spacing: ${themeConfig.value.spacing}`,
+      `Language: ${currentLanguage.value}`,
+      `Timestamp: ${new Date().toLocaleString()}`,
+    ];
+    setDebugInfo(debug);
+  };
+
   return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white">
-        {t("settings", "Settings")}
+    <div className="max-w-4xl mx-auto" style="padding: var(--spacing-lg)">
+      <h1
+        className="text-3xl font-bold text-text-primary"
+        style="margin-bottom: var(--spacing-xl)"
+      >
+        {t("title")}
       </h1>
 
       {/* Theme Settings */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
-        <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
-          {t("themeSettings", "Theme Settings")}
+      <div
+        className="bg-bg-surface rounded-lg shadow-md"
+        style="padding: var(--spacing-lg); margin-bottom: var(--spacing-lg)"
+      >
+        <h2
+          className="text-xl font-semibold text-text-primary"
+          style="margin-bottom: var(--spacing-md)"
+        >
+          {t("themeSettings")}
         </h2>
 
         <div className="space-y-4">
           <div className="flex items-center justify-between">
-            <span className="text-gray-700 dark:text-gray-300">
+            <span className="text-text-muted">
               Current theme: {themeConfig.value.mode}
             </span>
             <button
               onClick={handleThemeToggle}
-              className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors flex items-center gap-2"
+              className="bg-primary text-white rounded hover:bg-primary-hover transition-colors flex items-center"
+              style="padding: var(--spacing-sm) var(--spacing-md); gap: var(--spacing-xs)"
             >
               {themeConfig.value.mode === "dark" ? (
                 <span>☀️</span>
               ) : (
                 <span>🌙</span>
               )}
-              {t("toggleTheme", "Toggle Theme")}
+              {t("toggleTheme")}
             </button>
+          </div>
+
+          {/* Font Family Controls */}
+          <div className="mt-4">
+            <h3
+              className="text-lg font-medium text-text-primary"
+              style="margin-bottom: var(--spacing-sm)"
+            >
+              Font Family
+            </h3>
+            <div className="flex" style="gap: var(--spacing-xs)">
+              {(["sans", "mono"] as const).map((fontFamily) => (
+                <button
+                  key={fontFamily}
+                  onClick={() => handleFontFamilyChange(fontFamily)}
+                  className={`px-3 py-2 rounded transition-colors ${
+                    themeConfig.value.fontFamily === fontFamily
+                      ? "bg-primary text-white"
+                      : "bg-bg-muted text-text-muted hover:bg-bg-muted-hover"
+                  }`}
+                >
+                  {fontFamily === "sans" ? "Sans Serif" : "Monospace"}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Font Size Controls */}
+          <div className="mt-4">
+            <h3
+              className="text-lg font-medium text-text-primary"
+              style="margin-bottom: var(--spacing-sm)"
+            >
+              Font Size
+            </h3>
+            <div className="flex" style="gap: var(--spacing-xs)">
+              {(["sm", "base", "lg", "xl"] as const).map((fontSize) => (
+                <button
+                  key={fontSize}
+                  onClick={() => handleFontSizeChange(fontSize)}
+                  className={`px-3 py-2 rounded transition-colors ${
+                    themeConfig.value.fontSize === fontSize
+                      ? "bg-primary text-white"
+                      : "bg-bg-muted text-text-muted hover:bg-bg-muted-hover"
+                  }`}
+                >
+                  {fontSize}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Spacing Controls */}
           <div className="mt-4">
-            <h3 className="text-lg font-medium mb-3 text-gray-800 dark:text-gray-200">
+            <h3
+              className="text-lg font-medium text-text-primary"
+              style="margin-bottom: var(--spacing-sm)"
+            >
               Spacing Controls
             </h3>
-            <div className="flex gap-2">
+            <div className="flex" style="gap: var(--spacing-xs)">
               {(["compact", "normal", "spacious"] as const).map((spacing) => (
                 <button
                   key={spacing}
                   onClick={() => handleSpacingChange(spacing)}
                   className={`px-3 py-2 rounded transition-colors ${
                     themeConfig.value.spacing === spacing
-                      ? "bg-blue-500 text-white"
-                      : "bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600"
+                      ? "bg-primary text-white"
+                      : "bg-bg-muted text-text-muted hover:bg-bg-muted-hover"
                   }`}
                 >
                   {spacing}
@@ -108,19 +202,26 @@ export function SettingsPage() {
       </div>
 
       {/* Language Settings */}
-      <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-6">
-        <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
-          {t("languageSettings", "Language Settings")}
+      <div
+        className="bg-bg-surface rounded-lg shadow-md"
+        style="padding: var(--spacing-lg); margin-bottom: var(--spacing-lg)"
+      >
+        <h2
+          className="text-xl font-semibold text-text-primary"
+          style="margin-bottom: var(--spacing-md)"
+        >
+          {t("languageSettings")}
         </h2>
 
         <div className="flex items-center justify-between">
-          <span className="text-gray-700 dark:text-gray-300">
+          <span className="text-text-muted">
             Current language:{" "}
             {currentLanguage.value === "en" ? "English" : "Polski"}
           </span>
           <button
             onClick={handleLanguageToggle}
-            className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition-colors flex items-center gap-2"
+            className="bg-secondary text-white rounded hover:bg-secondary-hover transition-colors flex items-center"
+            style="padding: var(--spacing-sm) var(--spacing-md); gap: var(--spacing-xs)"
           >
             {currentLanguage.value === "en" ? <span>🇵🇱</span> : <span>🇺🇸</span>}
             {currentLanguage.value === "en"
@@ -131,8 +232,14 @@ export function SettingsPage() {
       </div>
 
       {/* Debug Information */}
-      <div className="bg-gray-50 dark:bg-gray-900 rounded-lg p-6">
-        <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
+      <div
+        className="bg-bg-muted rounded-lg"
+        style="padding: var(--spacing-lg)"
+      >
+        <h2
+          className="text-xl font-semibold text-text-primary"
+          style="margin-bottom: var(--spacing-md)"
+        >
           Debug Information
         </h2>
 
@@ -140,7 +247,7 @@ export function SettingsPage() {
           {debugInfo.map((info, index) => (
             <div
               key={`debug-${info}-${index}`}
-              className="text-sm text-gray-600 dark:text-gray-400 font-mono"
+              className="text-sm text-text-muted font-mono"
             >
               {info}
             </div>
@@ -160,7 +267,8 @@ export function SettingsPage() {
             ];
             setDebugInfo(debug);
           }}
-          className="mt-4 px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
+          className="bg-bg-subtle text-white rounded hover:bg-bg-subtle-hover transition-colors"
+          style="margin-top: var(--spacing-md); padding: var(--spacing-sm) var(--spacing-md)"
         >
           Refresh Debug Info
         </button>

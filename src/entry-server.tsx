@@ -27,6 +27,12 @@ export function renderToString(url: string) {
     port: parsedUrl.port,
   } as any;
 
+  // Mock window for SSR to ensure consistent rendering
+  const originalWindow = (global as any).window;
+  (global as any).window = {
+    innerWidth: 1200, // Desktop width for consistent SSR
+  };
+
   try {
     const html = render(
       <LocationProvider>
@@ -35,11 +41,12 @@ export function renderToString(url: string) {
     );
     return html;
   } finally {
-    // Restore original location
+    // Restore original location and window
     if (originalLocation !== undefined) {
       global.location = originalLocation;
     } else {
       (global as any).location = undefined;
     }
+    (global as any).window = originalWindow;
   }
 }

@@ -11,14 +11,24 @@ import { AboutPage } from "./pages/AboutPage";
 import { SettingsPage } from "./pages/SettingsPage";
 import { toggleDarkMode, themeConfig } from "./services/ThemeProvider";
 import { t } from "./services/i18n";
+import { useEffect, useState } from "preact/hooks";
 
 export function App() {
+  // Dodaj stan do śledzenia czy jesteśmy po stronie klienta
+  const [isClientSide, setIsClientSide] = useState(false);
+
+  useEffect(() => {
+    // To zapewni, że logika klienta uruchomi się dopiero po hydratacji
+    setIsClientSide(true);
+  }, []);
+
   const getMainContentMargin = () => {
-    // During SSR or before hydration, use safe defaults
-    if (!isHydrated.value) {
-      return "lg:ml-0";
+    // Podczas SSR i pierwszego renderowania po hydratacji - zawsze używaj desktop layout
+    if (typeof window === "undefined" || !isClientSide || !isHydrated.value) {
+      return "lg:ml-64";
     }
 
+    // Dopiero po pełnej hydratacji używaj responsywnego zachowania
     if (currentBreakpoint.value === "mobile") {
       return "lg:ml-0";
     }
@@ -37,7 +47,7 @@ export function App() {
   };
 
   return (
-    <div className="h-full bg-gray-50 dark:bg-gray-900 flex">
+    <div className="h-full bg-bg-primary text-text-primary flex">
       {/* Sidebar */}
       <Sidebar />
 
@@ -49,23 +59,27 @@ export function App() {
         `}
       >
         {/* Header */}
-        <header className="bg-white dark:bg-gray-800 shadow-sm border-b border-gray-200 dark:border-gray-700 px-6 py-4">
+        <header
+          className="bg-bg-surface shadow-sm border-b border-border-primary"
+          style="padding: var(--spacing-md) var(--spacing-xl)"
+        >
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+            <h1 className="text-2xl font-semibold text-text-primary">
               {import.meta.env.VITE_APP_NAME || t("appName")}
             </h1>
 
             {/* Theme toggle button */}
             <button
               onClick={handleThemeToggle}
-              className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="rounded-lg hover:bg-bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
+              style="padding: var(--spacing-xs)"
               aria-label={t("toggleTheme") as string}
             >
               {/* Sun icon for light mode, Moon icon for dark mode */}
               {themeConfig.value.mode === "light" ? (
                 // Sun icon
                 <svg
-                  className="w-5 h-5 text-gray-600 dark:text-gray-400 transition-colors"
+                  className="w-5 h-5 text-text-muted transition-colors"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -78,7 +92,7 @@ export function App() {
               ) : (
                 // Moon icon
                 <svg
-                  className="w-5 h-5 text-gray-600 dark:text-gray-400 transition-colors"
+                  className="w-5 h-5 text-text-muted transition-colors"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -91,7 +105,10 @@ export function App() {
 
         {/* Page Content */}
         <div className="flex-1 overflow-auto">
-          <div className="container mx-auto px-6 py-8">
+          <div
+            className="container mx-auto"
+            style="padding: var(--spacing-xl) var(--spacing-xl)"
+          >
             <Router>
               <Route path="/" component={HomePage} />
               <Route path="/about" component={AboutPage} />

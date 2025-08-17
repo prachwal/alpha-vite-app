@@ -1,15 +1,20 @@
 import { AppTitle } from "../components/AppTitle";
 import { CounterButton } from "../components/CounterButton";
 import { ApiTester } from "../components/ApiTester";
-import { t } from "../services/i18n";
+import { usePageTranslations } from "../services/i18n";
 
 export function HomePage() {
+  const t = usePageTranslations("home");
+
   return (
     <div className="space-y-8">
       <div className="text-center">
         <AppTitle />
-        <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
-          {t("welcome", "Welcome to your modern SSR Preact application")}
+        <p
+          className="text-lg text-text-muted"
+          style="margin-bottom: var(--spacing-xl)"
+        >
+          {t("welcome")}
         </p>
         <div className="flex justify-center">
           <CounterButton />
@@ -17,11 +22,14 @@ export function HomePage() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
-            {t("features", "Features")}
+        <div
+          className="bg-bg-surface rounded-lg shadow-md"
+          style="padding: var(--spacing-lg)"
+        >
+          <h2 className="text-2xl font-semibold mb-4 text-text-primary">
+            {t("features")}
           </h2>
-          <ul className="space-y-3 text-gray-600 dark:text-gray-400">
+          <ul className="space-y-3 text-text-muted">
             <li className="flex items-center">
               <svg
                 className="w-5 h-5 text-green-500 mr-3"
@@ -34,7 +42,7 @@ export function HomePage() {
                   clipRule="evenodd"
                 />
               </svg>
-              {t("featureSSR", "Server-Side Rendering (SSR)")}
+              {t("featureSSR")}
             </li>
             <li className="flex items-center">
               <svg
@@ -48,7 +56,7 @@ export function HomePage() {
                   clipRule="evenodd"
                 />
               </svg>
-              {t("featureSignals", "Preact Signals for State Management")}
+              {t("featureSignals")}
             </li>
             <li className="flex items-center">
               <svg
@@ -62,7 +70,7 @@ export function HomePage() {
                   clipRule="evenodd"
                 />
               </svg>
-              {t("featureTailwind", "Tailwind CSS 4 for Styling")}
+              {t("featureTailwind")}
             </li>
             <li className="flex items-center">
               <svg
@@ -76,7 +84,7 @@ export function HomePage() {
                   clipRule="evenodd"
                 />
               </svg>
-              {t("featureResponsive", "Responsive Design")}
+              {t("featureResponsive")}
             </li>
             <li className="flex items-center">
               <svg
@@ -90,17 +98,26 @@ export function HomePage() {
                   clipRule="evenodd"
                 />
               </svg>
-              {t("featureTheme", "Dark/Light Theme Support")}
+              {t("featureTheme")}
             </li>
           </ul>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
-          <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-100">
-            API Testing
+        <div
+          className="bg-bg-surface rounded-lg shadow-md"
+          style="padding: var(--spacing-lg)"
+        >
+          <h2
+            className="text-2xl font-semibold text-text-primary"
+            style="margin-bottom: var(--spacing-lg)"
+          >
+            {t("apiTesting")}
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 mb-6">
-            Test the API endpoints and see real-time responses:
+          <p
+            className="text-text-muted"
+            style="margin-bottom: var(--spacing-xl)"
+          >
+            {t("apiDescription")}
           </p>
           <ApiTester />
         </div>

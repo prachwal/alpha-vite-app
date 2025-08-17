@@ -1,0 +1,18 @@
+{
+    "title": "About Alpha Vite App",
+    "description": "This is a modern web application built with cutting-edge technologies to demonstrate best practices in full-stack development.",
+    "frontendTech": "Frontend Technologies",
+    "featurePreact": "Preact with Server-Side Rendering",
+    "featureSignals": "Preact Signals for State Management",
+    "featureTailwind": "Tailwind CSS 4 for Styling",
+    "featureTypeScript": "TypeScript for Type Safety",
+    "featureVite": "Vite for Fast Development",
+    "featureVitest": "Vitest for Testing",
+    "backendTech": "Backend Technologies",
+    "featureNode": "Node.js with Express",
+    "featureREST": "RESTful API Endpoints",
+    "featureConfig": "Environment Configuration",
+    "featureSecurity": "Compression & Security",
+    "featureError": "Error Handling",
+    "featureDeploy": "Deployment on Vercel"
+}
