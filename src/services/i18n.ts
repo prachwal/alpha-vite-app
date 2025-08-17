@@ -142,41 +142,62 @@ export const changeLanguage = (lng: string) => {
   }
 };
 
-// Translation function
-export const t = (key: string, options?: any) => {
-  if (typeof window === "undefined") {
-    // SSR fallback - return the key or use English fallback
-    const keys = key.split(".");
-    let result: any = resources.en.translation;
+// Helper function to get translation from resources
+const getTranslationFromResources = (
+  key: string,
+  language: "en" | "pl" = "en"
+): string => {
+  const keys = key.split(".");
+  let result: any = resources[language].translation;
 
-    for (const k of keys) {
-      if (result && typeof result === "object" && result[k] !== undefined) {
-        result = result[k];
-      } else {
-        return key;
-      }
+  for (const k of keys) {
+    if (result && typeof result === "object" && result[k] !== undefined) {
+      result = result[k];
+    } else {
+      return key;
     }
-
-    return typeof result === "string" ? result : key;
   }
 
+  return typeof result === "string" ? result : key;
+};
+
+// Translation function
+export const t = (key: string, options?: any): string => {
+  // SSR environment - use English fallback
+  if (typeof window === "undefined") {
+    return getTranslationFromResources(key, "en");
+  }
+
+  // i18n not initialized - use English fallback with warning
   if (!i18n.isInitialized) {
     console.warn("[i18n] Translation requested before initialization:", key);
-    const keys = key.split(".");
-    let result: any = resources.en.translation;
-
-    for (const k of keys) {
-      if (result && typeof result === "object" && result[k] !== undefined) {
-        result = result[k];
-      } else {
-        return key;
-      }
-    }
-
-    return typeof result === "string" ? result : key;
+    return getTranslationFromResources(key, "en");
   }
 
-  return i18n.t(key, options);
+  // Normal case - use i18n
+  const result = i18n.t(key, options);
+
+  // Handle different return types from i18n.t()
+  if (typeof result === "string") {
+    return result;
+  }
+
+  // Handle array/object results by returning the key as fallback
+  // This prevents [object Object] stringification issues
+  if (result === null || result === undefined) {
+    return key;
+  }
+
+  // For objects/arrays, return key instead of stringified object
+  if (typeof result === "object") {
+    console.warn(
+      `[i18n] Translation for key "${key}" returned object/array instead of string`
+    );
+    return key;
+  }
+
+  // Handle other primitive types (number, boolean)
+  return String(result);
 };
 
 // Helper function for page-specific translations

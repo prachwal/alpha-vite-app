@@ -33,7 +33,7 @@ export function App() {
       return "lg:ml-0";
     }
     if (currentBreakpoint.value === "tablet") {
-      return sidebarOpen.value ? "lg:ml-64" : "lg:ml-16";
+      return sidebarOpen.value ? "ml-64" : "ml-16";
     }
     return "lg:ml-64";
   };
@@ -59,10 +59,7 @@ export function App() {
         `}
       >
         {/* Header */}
-        <header
-          className="bg-bg-surface shadow-sm border-b border-border-primary"
-          style="padding: var(--spacing-md) var(--spacing-xl)"
-        >
+        <header className="bg-bg-surface shadow-sm border-b border-border-primary px-6 py-4">
           <div className="flex items-center justify-between">
             <h1 className="text-2xl font-semibold text-text-primary">
               {import.meta.env.VITE_APP_NAME || t("appName")}
@@ -71,8 +68,7 @@ export function App() {
             {/* Theme toggle button */}
             <button
               onClick={handleThemeToggle}
-              className="rounded-lg hover:bg-bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
-              style="padding: var(--spacing-xs)"
+              className="p-2 rounded-lg hover:bg-bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
               aria-label={t("toggleTheme") as string}
             >
               {/* Sun icon for light mode, Moon icon for dark mode */}
@@ -105,10 +101,7 @@ export function App() {
 
         {/* Page Content */}
         <div className="flex-1 overflow-auto">
-          <div
-            className="container mx-auto"
-            style="padding: var(--spacing-xl) var(--spacing-xl)"
-          >
+          <div className="container mx-auto px-6 py-8">
             <Router>
               <Route path="/" component={HomePage} />
               <Route path="/about" component={AboutPage} />

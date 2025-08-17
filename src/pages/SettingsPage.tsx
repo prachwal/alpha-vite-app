@@ -9,6 +9,7 @@ import {
   changeLanguage,
   usePageTranslations,
 } from "../services/i18n";
+import { ButtonGroup } from "../components/common/ButtonGroup";
 
 export function SettingsPage() {
   const t = usePageTranslations("settings");
@@ -108,7 +109,7 @@ export function SettingsPage() {
         <div className="space-y-4">
           <div className="flex items-center justify-between">
             <span className="text-text-muted">
-              Current theme: {themeConfig.value.mode}
+              {t("currentTheme")}: {String(t(String(themeConfig.value.mode)))}
             </span>
             <button
               onClick={handleThemeToggle}
@@ -130,23 +131,18 @@ export function SettingsPage() {
               className="text-lg font-medium text-text-primary"
               style="margin-bottom: var(--spacing-sm)"
             >
-              Font Family
+              {t("fontFamily")}
             </h3>
-            <div className="flex" style="gap: var(--spacing-xs)">
-              {(["sans", "mono"] as const).map((fontFamily) => (
-                <button
-                  key={fontFamily}
-                  onClick={() => handleFontFamilyChange(fontFamily)}
-                  className={`px-3 py-2 rounded transition-colors ${
-                    themeConfig.value.fontFamily === fontFamily
-                      ? "bg-primary text-white"
-                      : "bg-bg-muted text-text-muted hover:bg-bg-muted-hover"
-                  }`}
-                >
-                  {fontFamily === "sans" ? "Sans Serif" : "Monospace"}
-                </button>
-              ))}
-            </div>
+            <ButtonGroup
+              options={["sans", "mono"] as const}
+              currentValue={themeConfig.value.fontFamily}
+              onChange={handleFontFamilyChange}
+              getLabel={(fontFamily) =>
+                fontFamily === "sans"
+                  ? String(t("sansSerif"))
+                  : String(t("monospace"))
+              }
+            />
           </div>
 
           {/* Font Size Controls */}
@@ -155,23 +151,14 @@ export function SettingsPage() {
               className="text-lg font-medium text-text-primary"
               style="margin-bottom: var(--spacing-sm)"
             >
-              Font Size
+              {t("fontSize")}
             </h3>
-            <div className="flex" style="gap: var(--spacing-xs)">
-              {(["sm", "base", "lg", "xl"] as const).map((fontSize) => (
-                <button
-                  key={fontSize}
-                  onClick={() => handleFontSizeChange(fontSize)}
-                  className={`px-3 py-2 rounded transition-colors ${
-                    themeConfig.value.fontSize === fontSize
-                      ? "bg-primary text-white"
-                      : "bg-bg-muted text-text-muted hover:bg-bg-muted-hover"
-                  }`}
-                >
-                  {fontSize}
-                </button>
-              ))}
-            </div>
+            <ButtonGroup
+              options={["sm", "base", "lg", "xl"] as const}
+              currentValue={themeConfig.value.fontSize}
+              onChange={handleFontSizeChange}
+              getLabel={(fontSize) => String(t(String(fontSize)))}
+            />
           </div>
 
           {/* Spacing Controls */}
@@ -180,23 +167,14 @@ export function SettingsPage() {
               className="text-lg font-medium text-text-primary"
               style="margin-bottom: var(--spacing-sm)"
             >
-              Spacing Controls
+              {t("spacing")}
             </h3>
-            <div className="flex" style="gap: var(--spacing-xs)">
-              {(["compact", "normal", "spacious"] as const).map((spacing) => (
-                <button
-                  key={spacing}
-                  onClick={() => handleSpacingChange(spacing)}
-                  className={`px-3 py-2 rounded transition-colors ${
-                    themeConfig.value.spacing === spacing
-                      ? "bg-primary text-white"
-                      : "bg-bg-muted text-text-muted hover:bg-bg-muted-hover"
-                  }`}
-                >
-                  {spacing}
-                </button>
-              ))}
-            </div>
+            <ButtonGroup
+              options={["compact", "normal", "spacious"] as const}
+              currentValue={themeConfig.value.spacing}
+              onChange={handleSpacingChange}
+              getLabel={(spacing) => String(t(String(spacing)))}
+            />
           </div>
         </div>
       </div>
@@ -215,8 +193,10 @@ export function SettingsPage() {
 
         <div className="flex items-center justify-between">
           <span className="text-text-muted">
-            Current language:{" "}
-            {currentLanguage.value === "en" ? "English" : "Polski"}
+            {t("currentLanguage")}:{" "}
+            {currentLanguage.value === "en"
+              ? String(t("english"))
+              : String(t("polish"))}
           </span>
           <button
             onClick={handleLanguageToggle}
@@ -225,8 +205,8 @@ export function SettingsPage() {
           >
             {currentLanguage.value === "en" ? <span>🇵🇱</span> : <span>🇺🇸</span>}
             {currentLanguage.value === "en"
-              ? "Switch to Polish"
-              : "Przełącz na angielski"}
+              ? String(t("switchToPolish"))
+              : String(t("switchToEnglish"))}
           </button>
         </div>
       </div>
@@ -240,7 +220,7 @@ export function SettingsPage() {
           className="text-xl font-semibold text-text-primary"
           style="margin-bottom: var(--spacing-md)"
         >
-          Debug Information
+          {t("debugInformation")}
         </h2>
 
         <div className="space-y-2">
@@ -270,7 +250,7 @@ export function SettingsPage() {
           className="bg-bg-subtle text-white rounded hover:bg-bg-subtle-hover transition-colors"
           style="margin-top: var(--spacing-md); padding: var(--spacing-sm) var(--spacing-md)"
         >
-          Refresh Debug Info
+          {t("refreshDebugInfo")}
         </button>
       </div>
     </div>

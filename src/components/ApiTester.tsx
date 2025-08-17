@@ -46,10 +46,14 @@ export function ApiTester() {
 
       <div className="space-y-4">
         <div>
-          <label className="block text-sm font-medium mb-2 text-text-muted">
+          <label
+            htmlFor="endpoint-select"
+            className="block text-sm font-medium mb-2 text-text-muted"
+          >
             Select Endpoint:
           </label>
           <select
+            id="endpoint-select"
             value={selectedEndpoint.value}
             onChange={(e) =>
               (selectedEndpoint.value = (e.target as HTMLSelectElement).value)
@@ -66,12 +70,14 @@ export function ApiTester() {
         {selectedEndpoint.value === "/api/hello" && (
           <div>
             <label
+              htmlFor="custom-name-input"
               className="block text-sm font-medium text-text-muted"
               style="margin-bottom: var(--spacing-sm)"
             >
               Name (optional):
             </label>
             <input
+              id="custom-name-input"
               type="text"
               value={customName.value}
               onInput={(e) =>

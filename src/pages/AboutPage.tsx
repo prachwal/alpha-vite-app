@@ -1,4 +1,6 @@
 import { usePageTranslations } from "../services/i18n";
+import { CheckIcon } from "../components/common/CheckIcon";
+import { SectionCard } from "../components/common/SectionCard";
 
 export function AboutPage() {
   const t = usePageTranslations("about");
@@ -24,202 +26,67 @@ export function AboutPage() {
         className="grid grid-cols-1 lg:grid-cols-2"
         style="gap: var(--spacing-xl)"
       >
-        <div
-          className="bg-bg-surface rounded-lg shadow-md"
-          style="padding: var(--spacing-lg)"
+        <SectionCard
+          title={typeof t("frontendTech") === "string" ? t("frontendTech") : ""}
         >
-          <h2
-            className="text-2xl font-semibold text-text-primary"
-            style="margin-bottom: var(--spacing-md)"
-          >
-            {t("frontendTech")}
-          </h2>
           <ul className="space-y-3 text-text-muted">
             <li className="flex items-center">
-              <svg
-                className="w-5 h-5 text-green-500"
-                style="margin-right: var(--spacing-sm)"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
               {t("featurePreact")}
             </li>
             <li className="flex items-center">
-              <svg
-                className="w-5 h-5 text-green-500 mr-3"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
               {t("featureSignals")}
             </li>
             <li className="flex items-center">
-              <svg
-                className="w-5 h-5 text-green-500 mr-3"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
               {t("featureTailwind")}
             </li>
             <li className="flex items-center">
-              <svg
-                className="w-5 h-5 text-green-500 mr-3"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
               {t("featureTypeScript")}
             </li>
             <li className="flex items-center">
-              <svg
-                className="w-5 h-5 text-green-500 mr-3"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
               {t("featureVite")}
             </li>
             <li className="flex items-center">
-              <svg
-                className="w-5 h-5 text-green-500 mr-3"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
               {t("featureVitest")}
             </li>
           </ul>
-        </div>
+        </SectionCard>
 
-        <div
-          className="bg-bg-surface rounded-lg shadow-md"
-          style="padding: var(--spacing-lg)"
+        <SectionCard
+          title={typeof t("backendTech") === "string" ? t("backendTech") : ""}
         >
-          <h2
-            className="text-2xl font-semibold text-text-primary"
-            style="margin-bottom: var(--spacing-md)"
-          >
-            {t("backendTech")}
-          </h2>
           <ul className="space-y-3 text-text-muted">
             <li className="flex items-center">
-              <svg
-                className="w-5 h-5 text-green-500 mr-3"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
               {t("featureNode")}
             </li>
             <li className="flex items-center">
-              <svg
-                className="w-5 h-5 text-green-500 mr-3"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
               {t("featureREST")}
             </li>
             <li className="flex items-center">
-              <svg
-                className="w-5 h-5 text-green-500 mr-3"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
               {t("featureConfig")}
             </li>
             <li className="flex items-center">
-              <svg
-                className="w-5 h-5 text-green-500 mr-3"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
               {t("featureSecurity")}
             </li>
             <li className="flex items-center">
-              <svg
-                className="w-5 h-5 text-green-500 mr-3"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
               {t("featureError")}
             </li>
             <li className="flex items-center">
-              <svg
-                className="w-5 h-5 text-green-500 mr-3"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                  clipRule="evenodd"
-                />
-              </svg>
+              <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
               {t("featureDeploy")}
             </li>
           </ul>
-        </div>
+        </SectionCard>
       </div>
     </div>
   );

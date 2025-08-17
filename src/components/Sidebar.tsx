@@ -15,15 +15,15 @@ export function Sidebar() {
 
   // Dynamic classes for icons based on sidebar state
   const getIconClasses = () => {
-    const baseClasses = "w-5 h-5";
+    const baseClasses = "w-10 h-10";
 
     if (typeof window === "undefined" || !isHydrated.value) {
       return `${baseClasses} mr-3`;
     }
 
-    // In collapsed tablet mode - center icons
+    // In collapsed tablet mode - use even larger icons
     if (currentBreakpoint.value === "tablet" && !sidebarOpen.value) {
-      return `${baseClasses} mx-auto`;
+      return "w-12 h-12";
     }
 
     return `${baseClasses} mr-3`;
@@ -31,19 +31,20 @@ export function Sidebar() {
 
   // Dynamic classes for nav links based on sidebar state
   const getNavLinkClasses = (path: string) => {
-    const baseClasses = "flex items-center rounded-md transition-colors";
+    const baseClasses =
+      "flex items-center px-3 py-2 rounded-md transition-colors";
     const activeClasses = "bg-bg-accent-soft text-text-accent";
     const inactiveClasses = "hover:bg-bg-surface text-text-muted";
 
     const stateClasses = isActiveRoute(path) ? activeClasses : inactiveClasses;
 
-    // In collapsed tablet mode - center content
+    // In collapsed tablet mode - center content and adjust padding
     if (
       isHydrated.value &&
       currentBreakpoint.value === "tablet" &&
       !sidebarOpen.value
     ) {
-      return `${baseClasses} ${stateClasses} justify-center`;
+      return `${baseClasses} ${stateClasses} justify-center px-2 py-2`;
     }
 
     return `${baseClasses} ${stateClasses}`;
@@ -109,28 +110,16 @@ export function Sidebar() {
       <aside className={getSidebarClasses()}>
         <div className="h-full flex flex-col">
           {/* Sidebar Header */}
-          <div
-            className="flex items-center justify-between border-b border-border-primary"
-            style="padding: var(--spacing-md)"
-          >
-            <h2
-              className={`text-lg font-semibold text-text-primary overflow-hidden transition-all duration-300 ease-in-out ${
-                !sidebarOpen.value && currentBreakpoint.value === "tablet"
-                  ? "w-0"
-                  : "w-auto"
-              }`}
-            >
-              {t("navigation")}
-            </h2>
+          <div className="flex items-center justify-end p-4 border-b border-border-primary">
             <button
               onClick={toggleSidebar}
-              className="p-2 rounded-md hover:bg-bg-primary"
+              className="p-2 rounded-md hover:bg-bg-primary flex-shrink-0"
               aria-label={t("toggleSidebar") as string}
             >
               {/* Icon changes based on sidebar state */}
               {sidebarOpen.value ? (
                 <svg
-                  className="w-5 h-5"
+                  className="w-6 h-6"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -142,7 +131,7 @@ export function Sidebar() {
                 </svg>
               ) : (
                 <svg
-                  className="w-5 h-5"
+                  className="w-6 h-6"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                 >
@@ -157,12 +146,11 @@ export function Sidebar() {
           </div>
 
           {/* Navigation Links */}
-          <nav className="flex-1 space-y-2" style="padding: var(--spacing-md)">
+          <nav className="flex-1 px-4 py-4 space-y-2">
             <a
               href="/"
               onClick={(e) => handleNavigation(e, "/")}
               className={getNavLinkClasses("/")}
-              style="padding: var(--spacing-sm) var(--spacing-md)"
             >
               <svg
                 className={getIconClasses()}
@@ -172,10 +160,10 @@ export function Sidebar() {
                 <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
               </svg>
               <span
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                className={`transition-all duration-300 ease-in-out ${
                   !sidebarOpen.value && currentBreakpoint.value === "tablet"
-                    ? "w-0"
-                    : "w-auto"
+                    ? "opacity-0 w-0 overflow-hidden"
+                    : "opacity-100 w-auto"
                 }`}
               >
                 {t("homePage")}
@@ -185,7 +173,6 @@ export function Sidebar() {
               href="/about"
               onClick={(e) => handleNavigation(e, "/about")}
               className={getNavLinkClasses("/about")}
-              style="padding: var(--spacing-sm) var(--spacing-md)"
             >
               <svg
                 className={getIconClasses()}
@@ -199,10 +186,10 @@ export function Sidebar() {
                 ></path>
               </svg>
               <span
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                className={`transition-all duration-300 ease-in-out ${
                   !sidebarOpen.value && currentBreakpoint.value === "tablet"
-                    ? "w-0"
-                    : "w-auto"
+                    ? "opacity-0 w-0 overflow-hidden"
+                    : "opacity-100 w-auto"
                 }`}
               >
                 {t("aboutPage")}
@@ -212,7 +199,6 @@ export function Sidebar() {
               href="/settings"
               onClick={(e) => handleNavigation(e, "/settings")}
               className={getNavLinkClasses("/settings")}
-              style="padding: var(--spacing-sm) var(--spacing-md)"
             >
               <svg
                 className={getIconClasses()}
@@ -226,10 +212,10 @@ export function Sidebar() {
                 ></path>
               </svg>
               <span
-                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                className={`transition-all duration-300 ease-in-out ${
                   !sidebarOpen.value && currentBreakpoint.value === "tablet"
-                    ? "w-0"
-                    : "w-auto"
+                    ? "opacity-0 w-0 overflow-hidden"
+                    : "opacity-100 w-auto"
                 }`}
               >
                 {t("settingsPage")}
