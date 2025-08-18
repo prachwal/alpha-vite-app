@@ -1,4 +1,4 @@
-import { apiClient, apiState } from "../services/ApiClient";
+import { apiClient, apiState } from "@services/ApiClient";
 import { signal } from "@preact/signals";
 
 const selectedEndpoint = signal<string>("/api/health");

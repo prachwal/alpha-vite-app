@@ -10,8 +10,8 @@ import {
   loginWithPopup,
   logout,
   clearError,
-} from "../services/Auth0Provider";
-import { usePageTranslations } from "../services/i18n";
+} from "@services/Auth0Provider";
+import { usePageTranslations } from "@services/i18n";
 
 interface Auth0ButtonProps {
   /** Use popup instead of redirect for login */

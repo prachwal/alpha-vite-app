@@ -3,13 +3,13 @@ import {
   themeConfig,
   toggleDarkMode,
   updateTheme,
-} from "../services/ThemeProvider";
+} from "@services/ThemeProvider";
 import {
   currentLanguage,
   changeLanguage,
   usePageTranslations,
-} from "../services/i18n";
-import { ButtonGroup } from "../components/common/ButtonGroup";
+} from "@services/i18n";
+import { ButtonGroup } from "@components/legacy/ButtonGroup";
 
 export function SettingsPage() {
   const t = usePageTranslations("settings");
@@ -107,13 +107,13 @@ export function SettingsPage() {
         </h2>
 
         <div className="space-y-4">
-          <div className="flex items-center justify-between">
-            <span className="text-text-muted">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <span className="text-text-muted break-words">
               {t("currentTheme")}: {String(t(String(themeConfig.value.mode)))}
             </span>
             <button
               onClick={handleThemeToggle}
-              className="bg-primary text-white rounded hover:bg-primary-hover transition-colors flex items-center"
+              className="bg-primary text-white rounded hover:bg-primary-hover transition-colors flex items-center self-start sm:self-center"
               style="padding: var(--spacing-sm) var(--spacing-md); gap: var(--spacing-xs)"
             >
               {themeConfig.value.mode === "dark" ? (
@@ -137,11 +137,13 @@ export function SettingsPage() {
               options={["sans", "mono"] as const}
               currentValue={themeConfig.value.fontFamily}
               onChange={handleFontFamilyChange}
-              getLabel={(fontFamily) =>
-                fontFamily === "sans"
-                  ? String(t("sansSerif"))
-                  : String(t("monospace"))
+              getLabel={(value) =>
+                String(t(value === "sans" ? "sansSerif" : "monospace"))
               }
+              layout="grid"
+              size="md"
+              gridColumns={2}
+              className="w-full sm:w-auto"
             />
           </div>
 
@@ -157,7 +159,11 @@ export function SettingsPage() {
               options={["sm", "base", "lg", "xl"] as const}
               currentValue={themeConfig.value.fontSize}
               onChange={handleFontSizeChange}
-              getLabel={(fontSize) => String(t(String(fontSize)))}
+              getLabel={(value) => String(t(String(value)))}
+              layout="grid"
+              size="md"
+              gridColumns={4}
+              className="w-full sm:w-auto"
             />
           </div>
 
@@ -173,7 +179,11 @@ export function SettingsPage() {
               options={["compact", "normal", "spacious"] as const}
               currentValue={themeConfig.value.spacing}
               onChange={handleSpacingChange}
-              getLabel={(spacing) => String(t(String(spacing)))}
+              getLabel={(value) => String(t(String(value)))}
+              layout="grid"
+              size="md"
+              gridColumns={3}
+              className="w-full sm:w-auto"
             />
           </div>
         </div>

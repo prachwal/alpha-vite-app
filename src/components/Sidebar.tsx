@@ -6,7 +6,7 @@ import {
   currentPath,
   updateCurrentPath,
 } from "./SidebarState";
-import { t } from "../services/i18n";
+import { t } from "@services/i18n";
 import { AuthButton } from "./AuthProvider";
 
 export function Sidebar() {
@@ -78,12 +78,8 @@ export function Sidebar() {
       return `${baseClasses} w-64 transform ${
         sidebarOpen.value ? "translate-x-0" : "-translate-x-full"
       }`;
-    } else if (currentBreakpoint.value === "tablet") {
-      return `${baseClasses} ${
-        sidebarOpen.value ? "w-64" : "w-16"
-      } transform translate-x-0`;
     } else {
-      // Desktop - allow collapsing
+      // Tablet and Desktop - allow collapsing
       return `${baseClasses} ${
         sidebarOpen.value ? "w-64" : "w-16"
       } transform translate-x-0`;
@@ -114,7 +110,7 @@ export function Sidebar() {
             <button
               onClick={toggleSidebar}
               className="p-2 rounded-md hover:bg-bg-primary flex-shrink-0"
-              aria-label={t("toggleSidebar") as string}
+              aria-label={t("toggleSidebar")}
             >
               {/* Icon changes based on sidebar state */}
               {sidebarOpen.value ? (

@@ -2,10 +2,10 @@ import "./index.css";
 import { hydrate } from "preact";
 import { LocationProvider } from "preact-iso";
 import { App } from "./app";
-import { initializeTheme } from "./services/ThemeProvider";
-import { initializeSidebar } from "./components/SidebarState";
-import { initializeI18n } from "./services/i18n";
-import { initializeAuth0 } from "./services/Auth0Provider";
+import { initializeTheme } from "@services/ThemeProvider";
+import { initializeSidebar } from "@components/SidebarState";
+import { initializeI18n } from "@services/i18n";
+import { initializeAuth0 } from "@services/Auth0Provider";
 
 // Initialize services on client side
 async function initializeServices() {

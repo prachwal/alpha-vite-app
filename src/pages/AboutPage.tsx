@@ -1,6 +1,6 @@
-import { usePageTranslations } from "../services/i18n";
-import { CheckIcon } from "../components/common/CheckIcon";
-import { SectionCard } from "../components/common/SectionCard";
+import { usePageTranslations } from "@services/i18n";
+import { CheckIcon } from "@components/legacy/CheckIcon";
+import { SectionCard } from "@components/legacy/SectionCard";
 
 export function AboutPage() {
   const t = usePageTranslations("about");

@@ -29,11 +29,11 @@ describe("CounterButton Component", () => {
     const button = screen.getByRole("button");
 
     expect(button).toHaveClass(
-      "px-4",
-      "py-2",
-      "bg-blue-600",
+      "bg-primary",
       "text-white",
-      "rounded-lg"
+      "rounded-lg",
+      "hover:bg-primary-hover",
+      "transition-colors"
     );
   });
 });

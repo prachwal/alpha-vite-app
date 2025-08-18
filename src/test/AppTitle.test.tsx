@@ -12,7 +12,12 @@ describe("AppTitle Component", () => {
     render(<AppTitle />);
     const title = screen.getByRole("heading", { level: 1 });
 
-    expect(title).toHaveClass("text-4xl", "font-bold", "text-center", "mb-4");
+    expect(title).toHaveClass(
+      "text-4xl",
+      "font-bold",
+      "text-center",
+      "text-text-primary"
+    );
   });
 
   it("should display default app name when env var is not set", () => {

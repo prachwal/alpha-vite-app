@@ -1,5 +1,5 @@
 import { signal } from "@preact/signals";
-import { t } from "../services/i18n";
+import { t } from "@services/i18n";
 
 export const count = signal(0);
 export const appName = signal(

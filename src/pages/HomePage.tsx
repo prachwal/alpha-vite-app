@@ -1,9 +1,9 @@
-import { AppTitle } from "../components/AppTitle";
-import { CounterButton } from "../components/CounterButton";
-import { ApiTester } from "../components/ApiTester";
-import { usePageTranslations } from "../services/i18n";
-import { CheckIcon } from "../components/common/CheckIcon";
-import { SectionCard } from "../components/common/SectionCard";
+import { AppTitle } from "@components/AppTitle";
+import { CounterButton } from "@components/CounterButton";
+import { ApiTester } from "@components/ApiTester";
+import { usePageTranslations } from "@services/i18n";
+import { CheckIcon } from "@components/legacy/CheckIcon";
+import { SectionCard } from "@components/legacy/SectionCard";
 
 export function HomePage() {
   const t = usePageTranslations("home");

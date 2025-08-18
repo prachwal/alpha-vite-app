@@ -21,6 +21,13 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": resolve(__dirname, "./src"),
+      "@components": resolve(__dirname, "./src/components"),
+      "@services": resolve(__dirname, "./src/services"),
+      "@pages": resolve(__dirname, "./src/pages"),
+      "@assets": resolve(__dirname, "./src/assets"),
+      "@utils": resolve(__dirname, "./src/utils"),
+      "@hooks": resolve(__dirname, "./src/hooks"),
+      "@test": resolve(__dirname, "./src/test"),
     },
   },
   plugins: [],

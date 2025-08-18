@@ -9,8 +9,8 @@ import {
   loginWithRedirect,
   logout,
   clearError,
-} from "../services/Auth0Provider";
-import { usePageTranslations } from "../services/i18n";
+} from "@services/Auth0Provider";
+import { usePageTranslations } from "@services/i18n";
 
 interface User {
   name?: string;

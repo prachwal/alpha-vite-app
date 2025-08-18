@@ -3,7 +3,7 @@ import { cleanup } from "@testing-library/preact";
 import "@testing-library/jest-dom";
 
 // Mock i18n
-vi.mock("../services/i18n", () => ({
+vi.mock("@services/i18n", () => ({
   t: (key: string) => {
     const translations: Record<string, string> = {
       // Navigation
@@ -45,7 +45,7 @@ vi.mock("../services/i18n", () => ({
 }));
 
 // Mock ThemeProvider
-vi.mock("../services/ThemeProvider", () => ({
+vi.mock("@services/ThemeProvider", () => ({
   themeConfig: {
     value: {
       mode: "light",

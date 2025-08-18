@@ -9,8 +9,8 @@ import {
 import { HomePage } from "./pages/HomePage";
 import { AboutPage } from "./pages/AboutPage";
 import { SettingsPage } from "./pages/SettingsPage";
-import { toggleDarkMode, themeConfig } from "./services/ThemeProvider";
-import { t } from "./services/i18n";
+import { toggleDarkMode, themeConfig } from "@services/ThemeProvider";
+import { t } from "@services/i18n";
 import { useEffect, useState } from "preact/hooks";
 
 export function App() {
@@ -50,6 +50,10 @@ export function App() {
     toggleDarkMode();
   };
 
+  const toggleMobileSidebar = () => {
+    sidebarOpen.value = !sidebarOpen.value;
+  };
+
   return (
     <div className="h-full bg-bg-primary text-text-primary flex">
       {/* Sidebar */}
@@ -65,7 +69,27 @@ export function App() {
         {/* Header */}
         <header className="bg-bg-surface shadow-sm border-b border-border-primary px-4 py-3">
           <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-semibold text-text-primary">
+            {/* Mobile hamburger menu */}
+            <button
+              onClick={toggleMobileSidebar}
+              className="lg:hidden p-2 rounded-lg hover:bg-bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
+              aria-label={t("toggleSidebar")}
+            >
+              <svg
+                className="w-6 h-6 text-text-primary"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
+            </button>
+
+            {/* Centered title for mobile, left-aligned for desktop */}
+            <h1 className="text-2xl font-semibold text-text-primary flex-1 text-center lg:text-left">
               {import.meta.env.VITE_APP_NAME || t("appName")}
             </h1>
 
@@ -73,7 +97,7 @@ export function App() {
             <button
               onClick={handleThemeToggle}
               className="p-2 rounded-lg hover:bg-bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
-              aria-label={t("toggleTheme") as string}
+              aria-label={t("toggleTheme")}
             >
               {/* Sun icon for light mode, Moon icon for dark mode */}
               {themeConfig.value.mode === "light" ? (

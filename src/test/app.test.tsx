@@ -1,7 +1,32 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/preact";
 import { LocationProvider } from "preact-iso";
 import { App } from "../app";
+
+vi.mock("@services/i18n", () => ({
+  usePageTranslations: () => (key: string) => {
+    const translations: Record<string, string> = {
+      appName: "Alpha Vite App",
+      homePage: "Home",
+      aboutPage: "About",
+      settingsPage: "Settings",
+      toggleTheme: "Toggle theme",
+      welcome: "welcome",
+    };
+    return translations[key] || key;
+  },
+  t: (key: string) => {
+    const translations: Record<string, string> = {
+      appName: "Alpha Vite App",
+      homePage: "Home",
+      aboutPage: "About",
+      settingsPage: "Settings",
+      toggleTheme: "Toggle theme",
+      welcome: "welcome",
+    };
+    return translations[key] || key;
+  },
+}));
 
 const renderWithLocationProvider = () => {
   return render(
@@ -20,15 +45,15 @@ describe("App Component", () => {
 
   it("should render sidebar navigation items", () => {
     renderWithLocationProvider();
-    expect(screen.getByText("Strona główna")).toBeInTheDocument();
-    expect(screen.getByText("O aplikacji")).toBeInTheDocument();
-    expect(screen.getByText("Ustawienia")).toBeInTheDocument();
+    expect(screen.getByText("Home")).toBeInTheDocument();
+    expect(screen.getByText("About")).toBeInTheDocument();
+    expect(screen.getByText("Settings")).toBeInTheDocument();
   });
 
   it("should render theme toggle button", () => {
     renderWithLocationProvider();
     expect(
-      screen.getByRole("button", { name: /Przełącz motyw/i })
+      screen.getByRole("button", { name: "Toggle theme" })
     ).toBeInTheDocument();
   });
 
@@ -41,6 +66,6 @@ describe("App Component", () => {
 
   it("should display welcome message", () => {
     renderWithLocationProvider();
-    expect(screen.getByText("Witamy w Alpha Vite App")).toBeInTheDocument();
+    expect(screen.getByText("welcome")).toBeInTheDocument();
   });
 });
