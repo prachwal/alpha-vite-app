@@ -1,34 +1,34 @@
-import { useState } from "preact/hooks";
-import { ColorPicker } from "../components/form-advanced";
+import { useState } from 'preact/hooks';
+import { ColorPicker } from '../components/form-advanced';
 
 export default {
-  title: "Design System/Advanced Form/ColorPicker",
+  title: 'Design System/Advanced Form/ColorPicker',
   component: ColorPicker,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    value: { control: "color" },
-    onChange: { action: "onChange" },
+    value: { control: 'color' },
+    onChange: { action: 'onChange' },
     format: {
-      control: "select",
-      options: ["hex", "rgb", "hsl"],
+      control: 'select',
+      options: ['hex', 'rgb', 'hsl'],
     },
-    showAlpha: { control: "boolean" },
-    disabled: { control: "boolean" },
-    presets: { control: "object" },
-    className: { control: "text" },
+    showAlpha: { control: 'boolean' },
+    disabled: { control: 'boolean' },
+    presets: { control: 'object' },
+    className: { control: 'text' },
   },
 };
 
 export const Default = {
   args: {
-    value: "#1890ff",
+    value: '#1890ff',
     onChange: () => {},
   },
 };
 
 export const WithAlpha = {
   args: {
-    value: "#1890ff80",
+    value: '#1890ff80',
     onChange: () => {},
     showAlpha: true,
   },
@@ -36,40 +36,40 @@ export const WithAlpha = {
 
 export const RGB_Format = {
   args: {
-    value: "#ff4d4f",
+    value: '#ff4d4f',
     onChange: () => {},
-    format: "rgb",
+    format: 'rgb',
   },
 };
 
 export const HSL_Format = {
   args: {
-    value: "#52c41a",
+    value: '#52c41a',
     onChange: () => {},
-    format: "hsl",
+    format: 'hsl',
   },
 };
 
 export const With_Presets = {
   args: {
-    value: "#1890ff",
+    value: '#1890ff',
     onChange: () => {},
     presets: [
-      "#1890ff",
-      "#52c41a",
-      "#fa8c16",
-      "#eb2f96",
-      "#722ed1",
-      "#13c2c2",
-      "#fa541c",
-      "#f5222d",
+      '#1890ff',
+      '#52c41a',
+      '#fa8c16',
+      '#eb2f96',
+      '#722ed1',
+      '#13c2c2',
+      '#fa541c',
+      '#f5222d',
     ],
   },
 };
 
 export const Disabled = {
   args: {
-    value: "#1890ff",
+    value: '#1890ff',
     onChange: () => {},
     disabled: true,
   },
@@ -77,9 +77,9 @@ export const Disabled = {
 
 export const Interactive_Demo = {
   render: () => {
-    const [bgColor, setBgColor] = useState("#f0f0f0");
-    const [textColor, setTextColor] = useState("#333333");
-    const [accentColor, setAccentColor] = useState("#1890ff");
+    const [bgColor, setBgColor] = useState('#f0f0f0');
+    const [textColor, setTextColor] = useState('#333333');
+    const [accentColor, setAccentColor] = useState('#1890ff');
 
     return (
       <div className="space-y-6 p-4">
@@ -99,7 +99,7 @@ export const Interactive_Demo = {
             className="px-4 py-2 rounded font-medium"
             style={{
               backgroundColor: accentColor,
-              color: "#ffffff",
+              color: '#ffffff',
             }}
           >
             Accent Button
@@ -128,14 +128,14 @@ export const Interactive_Demo = {
               onChange={setAccentColor}
               format="hex"
               presets={[
-                "#1890ff",
-                "#52c41a",
-                "#fa8c16",
-                "#eb2f96",
-                "#722ed1",
-                "#13c2c2",
-                "#fa541c",
-                "#f5222d",
+                '#1890ff',
+                '#52c41a',
+                '#fa8c16',
+                '#eb2f96',
+                '#722ed1',
+                '#13c2c2',
+                '#fa541c',
+                '#f5222d',
               ]}
             />
           </div>

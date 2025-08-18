@@ -1,32 +1,32 @@
-import { useMemo } from "preact/hooks";
-import type { ComponentType } from "preact";
+import { useMemo } from 'preact/hooks';
+import type { ComponentType } from 'preact';
 
 export interface ButtonProps {
-  variant?: "primary" | "secondary" | "tertiary" | "danger" | "ghost";
-  size?: "sm" | "md" | "lg" | "xl";
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'danger' | 'ghost';
+  size?: 'sm' | 'md' | 'lg' | 'xl';
   fullWidth?: boolean;
   disabled?: boolean;
   loading?: boolean;
   leftIcon?: ComponentType<any>;
   rightIcon?: ComponentType<any>;
-  type?: "button" | "submit" | "reset";
+  type?: 'button' | 'submit' | 'reset';
   onClick?: (event: Event) => void;
   children: preact.ComponentChildren;
   className?: string;
 }
 
 export function Button({
-  variant = "primary",
-  size = "md",
+  variant = 'primary',
+  size = 'md',
   fullWidth = false,
   disabled = false,
   loading = false,
   leftIcon: LeftIcon,
   rightIcon: RightIcon,
-  type = "button",
+  type = 'button',
   onClick,
   children,
-  className = "",
+  className = '',
 }: Readonly<ButtonProps>) {
   const baseClasses = `
     inline-flex items-center justify-center
@@ -75,10 +75,10 @@ export function Button({
 
   const sizeClasses = useMemo(() => {
     const sizes = {
-      sm: "px-3 py-1.5 text-sm",
-      md: "px-4 py-2 text-base",
-      lg: "px-6 py-3 text-lg",
-      xl: "px-8 py-4 text-xl",
+      sm: 'px-3 py-1.5 text-sm',
+      md: 'px-4 py-2 text-base',
+      lg: 'px-6 py-3 text-lg',
+      xl: 'px-8 py-4 text-xl',
     };
     return sizes[size];
   }, [size]);
@@ -100,7 +100,7 @@ export function Button({
         ${baseClasses}
         ${variantClasses}
         ${sizeClasses}
-        ${fullWidth ? "w-full" : ""}
+        ${fullWidth ? 'w-full' : ''}
         ${className}
       `}
       aria-busy={loading}

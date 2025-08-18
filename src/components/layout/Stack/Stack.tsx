@@ -1,12 +1,12 @@
-import { JSX } from "preact";
+import { JSX } from 'preact';
 
-type StackResponsiveKeys = "direction" | "spacing" | "align" | "justify";
+type StackResponsiveKeys = 'direction' | 'spacing' | 'align' | 'justify';
 
 export interface StackProps {
-  direction?: "row" | "column";
-  spacing?: "none" | "xs" | "sm" | "md" | "lg" | "xl" | "2xl";
-  align?: "start" | "center" | "end" | "stretch";
-  justify?: "start" | "center" | "end" | "between" | "around" | "evenly";
+  direction?: 'row' | 'column';
+  spacing?: 'none' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | '2xl';
+  align?: 'start' | 'center' | 'end' | 'stretch';
+  justify?: 'start' | 'center' | 'end' | 'between' | 'around' | 'evenly';
   wrap?: boolean;
   divider?: JSX.Element;
   responsive?: {
@@ -20,45 +20,45 @@ export interface StackProps {
 }
 
 export function Stack({
-  direction = "column",
-  spacing = "md",
-  align = "stretch",
-  justify = "start",
+  direction = 'column',
+  spacing = 'md',
+  align = 'stretch',
+  justify = 'start',
   wrap = false,
   divider,
   responsive = {},
   children,
-  className = "",
+  className = '',
 }: Readonly<StackProps>) {
   const spacingClasses = {
-    none: "gap-0",
-    xs: "gap-1",
-    sm: "gap-2",
-    md: "gap-4",
-    lg: "gap-6",
-    xl: "gap-8",
-    "2xl": "gap-12",
+    none: 'gap-0',
+    xs: 'gap-1',
+    sm: 'gap-2',
+    md: 'gap-4',
+    lg: 'gap-6',
+    xl: 'gap-8',
+    '2xl': 'gap-12',
   };
 
   const alignClasses = {
-    start: "items-start",
-    center: "items-center",
-    end: "items-end",
-    stretch: "items-stretch",
+    start: 'items-start',
+    center: 'items-center',
+    end: 'items-end',
+    stretch: 'items-stretch',
   };
 
   const justifyClasses = {
-    start: "justify-start",
-    center: "justify-center",
-    end: "justify-end",
-    between: "justify-between",
-    around: "justify-around",
-    evenly: "justify-evenly",
+    start: 'justify-start',
+    center: 'justify-center',
+    end: 'justify-end',
+    between: 'justify-between',
+    around: 'justify-around',
+    evenly: 'justify-evenly',
   };
 
   const directionClasses = {
-    row: "flex-row",
-    column: "flex-col",
+    row: 'flex-row',
+    column: 'flex-col',
   };
 
   const responsiveClasses = Object.entries(responsive)
@@ -79,20 +79,20 @@ export function Stack({
       return classes;
     })
     .flat()
-    .join(" ");
+    .join(' ');
 
   const stackClasses = [
-    "flex",
+    'flex',
     directionClasses[direction],
     spacingClasses[spacing],
     alignClasses[align],
     justifyClasses[justify],
-    wrap ? "flex-wrap" : "flex-nowrap",
+    wrap ? 'flex-wrap' : 'flex-nowrap',
     responsiveClasses,
     className,
   ]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 
   const childrenArray = Array.isArray(children) ? children : [children];
   const filteredChildren = childrenArray.filter(Boolean);

@@ -1,10 +1,10 @@
-import { useMemo } from "preact/hooks";
+import { useMemo } from 'preact/hooks';
 
 export interface CheckboxProps {
   checked: boolean;
   onChange: (checked: boolean) => void;
   label?: string;
-  size?: "sm" | "md" | "lg";
+  size?: 'sm' | 'md' | 'lg';
   disabled?: boolean;
   indeterminate?: boolean;
   error?: boolean;
@@ -17,13 +17,13 @@ export function Checkbox({
   checked,
   onChange,
   label,
-  size = "md",
+  size = 'md',
   disabled = false,
   indeterminate = false,
   error = false,
   helperText,
   required = false,
-  className = "",
+  className = '',
 }: Readonly<CheckboxProps>) {
   const checkboxId = useMemo(
     () => `checkbox-${Math.random().toString(36).slice(2, 11)}`,
@@ -37,9 +37,9 @@ export function Checkbox({
 
   const sizeClasses = useMemo(() => {
     const sizes = {
-      sm: "h-4 w-4",
-      md: "h-5 w-5",
-      lg: "h-6 w-6",
+      sm: 'h-4 w-4',
+      md: 'h-5 w-5',
+      lg: 'h-6 w-6',
     };
     return sizes[size];
   }, [size]);
@@ -68,9 +68,9 @@ export function Checkbox({
 
   const iconClasses = useMemo(() => {
     const sizes = {
-      sm: "h-3 w-3",
-      md: "h-3.5 w-3.5",
-      lg: "h-4 w-4",
+      sm: 'h-3 w-3',
+      md: 'h-3.5 w-3.5',
+      lg: 'h-4 w-4',
     };
     return sizes[size];
   }, [size]);
@@ -133,8 +133,8 @@ export function Checkbox({
               <p
                 id={`${checkboxId}-helper`}
                 className={`text-sm ${
-                  error ? "text-danger" : "text-text-muted"
-                } ${label ? "mt-1" : ""}`}
+                  error ? 'text-danger' : 'text-text-muted'
+                } ${label ? 'mt-1' : ''}`}
               >
                 {helperText}
               </p>

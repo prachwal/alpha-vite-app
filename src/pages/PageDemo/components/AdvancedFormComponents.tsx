@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useState } from 'preact/hooks';
 import {
   Switch,
   Rate,
@@ -7,7 +7,7 @@ import {
   ColorPicker,
   AutoComplete,
   AutoCompleteOption,
-} from "../../../components/form-advanced";
+} from '../../../components/form-advanced';
 
 export function AdvancedFormComponents() {
   const [notifications, setNotifications] = useState(true);
@@ -26,29 +26,29 @@ export function AdvancedFormComponents() {
   ]);
 
   // ColorPicker states
-  const [primaryColor, setPrimaryColor] = useState("#1890ff");
-  const [backgroundColor, setBackgroundColor] = useState("#f5f5f5");
+  const [primaryColor, setPrimaryColor] = useState('#1890ff');
+  const [backgroundColor, setBackgroundColor] = useState('#f5f5f5');
 
   // AutoComplete states
-  const [selectedCity, setSelectedCity] = useState("");
-  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedCity, setSelectedCity] = useState('');
+  const [selectedCountry, setSelectedCountry] = useState('');
 
   const cityOptions: AutoCompleteOption[] = [
-    { value: "new-york", label: "New York" },
-    { value: "london", label: "London" },
-    { value: "paris", label: "Paris" },
-    { value: "tokyo", label: "Tokyo" },
-    { value: "sydney", label: "Sydney" },
-    { value: "berlin", label: "Berlin" },
+    { value: 'new-york', label: 'New York' },
+    { value: 'london', label: 'London' },
+    { value: 'paris', label: 'Paris' },
+    { value: 'tokyo', label: 'Tokyo' },
+    { value: 'sydney', label: 'Sydney' },
+    { value: 'berlin', label: 'Berlin' },
   ];
 
   const countryOptions: AutoCompleteOption[] = [
-    { value: "us", label: "United States" },
-    { value: "uk", label: "United Kingdom" },
-    { value: "fr", label: "France" },
-    { value: "de", label: "Germany" },
-    { value: "jp", label: "Japan" },
-    { value: "au", label: "Australia" },
+    { value: 'us', label: 'United States' },
+    { value: 'uk', label: 'United Kingdom' },
+    { value: 'fr', label: 'France' },
+    { value: 'de', label: 'Germany' },
+    { value: 'jp', label: 'Japan' },
+    { value: 'au', label: 'Australia' },
   ];
 
   return (
@@ -102,11 +102,11 @@ export function AdvancedFormComponents() {
               <Rate
                 value={movieRating}
                 onChange={setMovieRating}
-                tooltips={["Terrible", "Bad", "Normal", "Good", "Excellent"]}
+                tooltips={['Terrible', 'Bad', 'Normal', 'Good', 'Excellent']}
                 allowHalf
               />
               <div className="text-xs text-gray-600">
-                {movieRating === 0 ? "Not rated" : `${movieRating}/5 stars`}
+                {movieRating === 0 ? 'Not rated' : `${movieRating}/5 stars`}
               </div>
             </div>
 
@@ -143,7 +143,7 @@ export function AdvancedFormComponents() {
                 step={0.5}
                 tooltip
                 tooltipFormatter={(val) => `${val}°C`}
-                marks={{ 10: "Cold", 22: "Room", 35: "Hot" }}
+                marks={{ 10: 'Cold', 22: 'Room', 35: 'Hot' }}
               />
             </div>
 
@@ -156,7 +156,7 @@ export function AdvancedFormComponents() {
                 max={100}
                 tooltip
                 tooltipFormatter={(val) => `${val}%`}
-                marks={{ 0: "🔇", 50: "🔉", 100: "🔊" }}
+                marks={{ 0: '🔇', 50: '🔉', 100: '🔊' }}
               />
             </div>
           </div>
@@ -190,14 +190,14 @@ export function AdvancedFormComponents() {
                 onChange={setPrimaryColor}
                 format="hex"
                 presets={[
-                  "#1890ff",
-                  "#52c41a",
-                  "#fa8c16",
-                  "#eb2f96",
-                  "#722ed1",
-                  "#13c2c2",
-                  "#fa541c",
-                  "#f5222d",
+                  '#1890ff',
+                  '#52c41a',
+                  '#fa8c16',
+                  '#eb2f96',
+                  '#722ed1',
+                  '#13c2c2',
+                  '#fa541c',
+                  '#f5222d',
                 ]}
               />
             </div>

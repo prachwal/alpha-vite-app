@@ -1,25 +1,25 @@
-import { h } from "preact";
+// No need to import h - it's handled by JSX transform
 
 export interface LoadingProps {
-  size?: "sm" | "md" | "lg" | "xl";
-  variant?: "spinner" | "dots" | "bars" | "pulse";
-  color?: "primary" | "secondary" | "accent" | "neutral";
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+  variant?: 'spinner' | 'dots' | 'bars' | 'pulse';
+  color?: 'primary' | 'secondary' | 'accent' | 'neutral';
   className?: string;
   label?: string;
 }
 
 const sizeClasses = {
-  sm: "h-4 w-4",
-  md: "h-6 w-6",
-  lg: "h-8 w-8",
-  xl: "h-12 w-12",
+  sm: 'h-4 w-4',
+  md: 'h-6 w-6',
+  lg: 'h-8 w-8',
+  xl: 'h-12 w-12',
 };
 
 const colorClasses = {
-  primary: "text-blue-600",
-  secondary: "text-green-600",
-  accent: "text-purple-600",
-  neutral: "text-gray-600",
+  primary: 'text-blue-600',
+  secondary: 'text-green-600',
+  accent: 'text-purple-600',
+  neutral: 'text-gray-600',
 };
 
 const Spinner = ({ size, color }: { size: string; color: string }) => (
@@ -46,18 +46,18 @@ const Spinner = ({ size, color }: { size: string; color: string }) => (
 );
 
 const Dots = ({ size, color }: { size: string; color: string }) => (
-  <div className={`flex space-x-1 ${size === "h-4 w-4" ? "space-x-0.5" : ""}`}>
+  <div className={`flex space-x-1 ${size === 'h-4 w-4' ? 'space-x-0.5' : ''}`}>
     <div
       className={`${size} ${color} rounded-full animate-bounce`}
-      style={{ animationDelay: "0ms" }}
+      style={{ animationDelay: '0ms' }}
     />
     <div
       className={`${size} ${color} rounded-full animate-bounce`}
-      style={{ animationDelay: "150ms" }}
+      style={{ animationDelay: '150ms' }}
     />
     <div
       className={`${size} ${color} rounded-full animate-bounce`}
-      style={{ animationDelay: "300ms" }}
+      style={{ animationDelay: '300ms' }}
     />
   </div>
 );
@@ -66,15 +66,15 @@ const Bars = ({ size, color }: { size: string; color: string }) => (
   <div className="flex space-x-1">
     <div
       className={`${size} ${color} rounded animate-pulse`}
-      style={{ animationDelay: "0ms" }}
+      style={{ animationDelay: '0ms' }}
     />
     <div
       className={`${size} ${color} rounded animate-pulse`}
-      style={{ animationDelay: "200ms" }}
+      style={{ animationDelay: '200ms' }}
     />
     <div
       className={`${size} ${color} rounded animate-pulse`}
-      style={{ animationDelay: "400ms" }}
+      style={{ animationDelay: '400ms' }}
     />
   </div>
 );
@@ -91,10 +91,10 @@ const variants = {
 };
 
 export function Loading({
-  size = "md",
-  variant = "spinner",
-  color = "primary",
-  className = "",
+  size = 'md',
+  variant = 'spinner',
+  color = 'primary',
+  className = '',
   label,
 }: LoadingProps) {
   const sizeClass = sizeClasses[size];
@@ -105,7 +105,7 @@ export function Loading({
     <div
       className={`flex items-center justify-center ${className}`}
       role="status"
-      aria-label={label || "Loading"}
+      aria-label={label || 'Loading'}
     >
       <Component size={sizeClass} color={colorClass} />
       {label && <span className="ml-2 text-sm text-gray-600">{label}</span>}
@@ -114,18 +114,18 @@ export function Loading({
 }
 
 // Convenience components
-export const LoadingSpinner = (props: Omit<LoadingProps, "variant">) => (
+export const LoadingSpinner = (props: Omit<LoadingProps, 'variant'>) => (
   <Loading {...props} variant="spinner" />
 );
 
-export const LoadingDots = (props: Omit<LoadingProps, "variant">) => (
+export const LoadingDots = (props: Omit<LoadingProps, 'variant'>) => (
   <Loading {...props} variant="dots" />
 );
 
-export const LoadingBars = (props: Omit<LoadingProps, "variant">) => (
+export const LoadingBars = (props: Omit<LoadingProps, 'variant'>) => (
   <Loading {...props} variant="bars" />
 );
 
-export const LoadingPulse = (props: Omit<LoadingProps, "variant">) => (
+export const LoadingPulse = (props: Omit<LoadingProps, 'variant'>) => (
   <Loading {...props} variant="pulse" />
 );

@@ -1,22 +1,22 @@
-import { useState } from "preact/hooks";
-import { Slider, RangeSlider } from "../components/form-advanced";
+import { useState } from 'preact/hooks';
+import { Slider, RangeSlider } from '../components/form-advanced';
 
 export default {
-  title: "Design System/Advanced Form/Slider",
+  title: 'Design System/Advanced Form/Slider',
   component: Slider,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    value: { control: "number" },
-    onChange: { action: "onChange" },
-    min: { control: "number" },
-    max: { control: "number" },
-    step: { control: "number" },
-    disabled: { control: "boolean" },
-    vertical: { control: "boolean" },
-    tooltip: { control: "boolean" },
-    included: { control: "boolean" },
-    marks: { control: "object" },
-    className: { control: "text" },
+    value: { control: 'number' },
+    onChange: { action: 'onChange' },
+    min: { control: 'number' },
+    max: { control: 'number' },
+    step: { control: 'number' },
+    disabled: { control: 'boolean' },
+    vertical: { control: 'boolean' },
+    tooltip: { control: 'boolean' },
+    included: { control: 'boolean' },
+    marks: { control: 'object' },
+    className: { control: 'text' },
   },
 };
 
@@ -42,7 +42,7 @@ export const WithMarks = {
   args: {
     value: 50,
     onChange: () => {},
-    marks: { 0: "0°", 25: "25°", 50: "50°", 75: "75°", 100: "100°" },
+    marks: { 0: '0°', 25: '25°', 50: '50°', 75: '75°', 100: '100°' },
   },
 };
 
@@ -94,7 +94,7 @@ export const Interactive_Demo = {
             step={0.5}
             tooltip
             tooltipFormatter={(val) => `${val}°C`}
-            marks={{ 10: "10°", 22: "Room", 35: "35°" }}
+            marks={{ 10: '10°', 22: 'Room', 35: '35°' }}
           />
         </div>
 
@@ -107,7 +107,7 @@ export const Interactive_Demo = {
             max={100}
             tooltip
             tooltipFormatter={(val) => `${val}%`}
-            marks={{ 0: "🔇", 50: "🔉", 100: "🔊" }}
+            marks={{ 0: '🔇', 50: '🔉', 100: '🔊' }}
           />
         </div>
 

@@ -1,4 +1,4 @@
-import { JSX } from "preact";
+import { JSX } from 'preact';
 
 export interface CardProps {
   children: JSX.Element | JSX.Element[];
@@ -20,7 +20,7 @@ export interface CardFooterProps {
   className?: string;
 }
 
-export function Card({ children, className = "" }: CardProps) {
+export function Card({ children, className = '' }: CardProps) {
   return (
     <div
       className={`bg-surface-primary border border-border-subtle rounded-lg shadow-sm ${className}`}
@@ -30,7 +30,7 @@ export function Card({ children, className = "" }: CardProps) {
   );
 }
 
-export function CardHeader({ children, className = "" }: CardHeaderProps) {
+export function CardHeader({ children, className = '' }: CardHeaderProps) {
   return (
     <div className={`px-6 py-4 border-b border-border-subtle ${className}`}>
       {children}
@@ -38,11 +38,11 @@ export function CardHeader({ children, className = "" }: CardHeaderProps) {
   );
 }
 
-export function CardBody({ children, className = "" }: CardBodyProps) {
+export function CardBody({ children, className = '' }: CardBodyProps) {
   return <div className={`px-6 py-4 ${className}`}>{children}</div>;
 }
 
-export function CardFooter({ children, className = "" }: CardFooterProps) {
+export function CardFooter({ children, className = '' }: CardFooterProps) {
   return (
     <div className={`px-6 py-4 border-t border-border-subtle ${className}`}>
       {children}

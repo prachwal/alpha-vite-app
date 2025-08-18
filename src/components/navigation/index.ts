@@ -1,12 +1,5 @@
-export { Tabs } from "./Tabs/Tabs";
-export { Tab } from "./Tabs/Tab";
-export { TabPanel } from "./Tabs/TabPanel";
-export { Menu } from "./Menu/Menu";
-export { MenuItem } from "./Menu/MenuItem";
-export { MenuGroup } from "./Menu/MenuGroup";
-export type { TabsProps } from "./Tabs/Tabs";
-export type { TabProps } from "./Tabs/Tab";
-export type { TabPanelProps } from "./Tabs/TabPanel";
-export type { MenuProps, MenuItemData } from "./Menu/Menu";
-export type { MenuItemProps } from "./Menu/MenuItem";
-export type { MenuGroupProps } from "./Menu/MenuGroup";
+export { Breadcrumb } from './Breadcrumb';
+export { Menu } from './Menu';
+export { Pagination } from './Pagination/Pagination';
+export { Tab } from './Tabs/Tab';
+export { Tabs } from './Tabs/Tabs';

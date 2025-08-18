@@ -1,18 +1,18 @@
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useState } from 'preact/hooks';
 import {
   themeConfig,
   toggleDarkMode,
   updateTheme,
-} from "@services/ThemeProvider";
+} from '@services/ThemeProvider';
 import {
   currentLanguage,
   changeLanguage,
   usePageTranslations,
-} from "@services/i18n";
-import { Button, RadioGroup } from "@components/form";
+} from '@services/i18n';
+import { Button, RadioGroup } from '@components/form';
 
 export function SettingsPage() {
-  const t = usePageTranslations("settings");
+  const t = usePageTranslations('settings');
   const [debugInfo, setDebugInfo] = useState<string[]>([]);
 
   // Reaktywne debugowanie - aktualizuj przy każdej zmianie
@@ -34,33 +34,33 @@ export function SettingsPage() {
   }, [themeConfig.value, currentLanguage.value]);
 
   const handleThemeToggle = () => {
-    console.log("[SettingsPage] Toggling theme...");
+    console.log('[SettingsPage] Toggling theme...');
     toggleDarkMode();
   };
 
   const handleLanguageToggle = () => {
-    const newLang = currentLanguage.value === "en" ? "pl" : "en";
+    const newLang = currentLanguage.value === 'en' ? 'pl' : 'en';
     changeLanguage(newLang);
   };
 
   const handleSpacingChange = (spacing: string) => {
-    const validSpacings = ["compact", "normal", "spacious"] as const;
+    const validSpacings = ['compact', 'normal', 'spacious'] as const;
     if (validSpacings.includes(spacing as any)) {
-      updateTheme({ spacing: spacing as "compact" | "normal" | "spacious" });
+      updateTheme({ spacing: spacing as 'compact' | 'normal' | 'spacious' });
     }
   };
 
   const handleFontSizeChange = (fontSize: string) => {
-    const validFontSizes = ["sm", "base", "lg", "xl"] as const;
+    const validFontSizes = ['sm', 'base', 'lg', 'xl'] as const;
     if (validFontSizes.includes(fontSize as any)) {
-      updateTheme({ fontSize: fontSize as "sm" | "base" | "lg" | "xl" });
+      updateTheme({ fontSize: fontSize as 'sm' | 'base' | 'lg' | 'xl' });
     }
   };
 
   const handleFontFamilyChange = (fontFamily: string) => {
-    const validFontFamilies = ["sans", "mono"] as const;
+    const validFontFamilies = ['sans', 'mono'] as const;
     if (validFontFamilies.includes(fontFamily as any)) {
-      updateTheme({ fontFamily: fontFamily as "sans" | "mono" });
+      updateTheme({ fontFamily: fontFamily as 'sans' | 'mono' });
     }
   };
 
@@ -70,7 +70,7 @@ export function SettingsPage() {
         className="text-3xl font-bold text-text-primary"
         style="margin-bottom: var(--spacing-xl)"
       >
-        {t("title")}
+        {t('title')}
       </h1>
 
       {/* Theme Settings */}
@@ -82,19 +82,19 @@ export function SettingsPage() {
           className="text-xl font-semibold text-text-primary"
           style="margin-bottom: var(--spacing-md)"
         >
-          {t("themeSettings")}
+          {t('themeSettings')}
         </h2>
 
         <div className="space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <span className="text-text-muted break-words">
-              {t("currentTheme")}:{" "}
+              {t('currentTheme')}:{' '}
               {t(String(themeConfig.value.mode)) ||
                 String(themeConfig.value.mode)}
             </span>
             <Button onClick={handleThemeToggle} variant="primary" size="md">
-              {themeConfig.value.mode === "dark" ? "☀️" : "🌙"}{" "}
-              {t("toggleTheme")}
+              {themeConfig.value.mode === 'dark' ? '☀️' : '🌙'}{' '}
+              {t('toggleTheme')}
             </Button>
           </div>
 
@@ -104,15 +104,15 @@ export function SettingsPage() {
               className="text-lg font-medium text-text-primary"
               style="margin-bottom: var(--spacing-sm)"
             >
-              {t("fontFamily")}
+              {t('fontFamily')}
             </h3>
             <RadioGroup
               name="fontFamily"
               value={themeConfig.value.fontFamily}
               onChange={handleFontFamilyChange}
               options={[
-                { value: "sans", label: t("sansSerif") || "Sans Serif" },
-                { value: "mono", label: t("monospace") || "Monospace" },
+                { value: 'sans', label: t('sansSerif') || 'Sans Serif' },
+                { value: 'mono', label: t('monospace') || 'Monospace' },
               ]}
               layout="horizontal"
             />
@@ -124,17 +124,17 @@ export function SettingsPage() {
               className="text-lg font-medium text-text-primary"
               style="margin-bottom: var(--spacing-sm)"
             >
-              {t("fontSize")}
+              {t('fontSize')}
             </h3>
             <RadioGroup
               name="fontSize"
               value={themeConfig.value.fontSize}
               onChange={handleFontSizeChange}
               options={[
-                { value: "sm", label: t("sm") || "Small" },
-                { value: "base", label: t("base") || "Base" },
-                { value: "lg", label: t("lg") || "Large" },
-                { value: "xl", label: t("xl") || "Extra Large" },
+                { value: 'sm', label: t('sm') || 'Small' },
+                { value: 'base', label: t('base') || 'Base' },
+                { value: 'lg', label: t('lg') || 'Large' },
+                { value: 'xl', label: t('xl') || 'Extra Large' },
               ]}
               layout="horizontal"
             />
@@ -146,16 +146,16 @@ export function SettingsPage() {
               className="text-lg font-medium text-text-primary"
               style="margin-bottom: var(--spacing-sm)"
             >
-              {t("spacing")}
+              {t('spacing')}
             </h3>
             <RadioGroup
               name="spacing"
               value={themeConfig.value.spacing}
               onChange={handleSpacingChange}
               options={[
-                { value: "compact", label: t("compact") || "Compact" },
-                { value: "normal", label: t("normal") || "Normal" },
-                { value: "spacious", label: t("spacious") || "Spacious" },
+                { value: 'compact', label: t('compact') || 'Compact' },
+                { value: 'normal', label: t('normal') || 'Normal' },
+                { value: 'spacious', label: t('spacious') || 'Spacious' },
               ]}
               layout="horizontal"
             />
@@ -172,21 +172,21 @@ export function SettingsPage() {
           className="text-xl font-semibold text-text-primary"
           style="margin-bottom: var(--spacing-md)"
         >
-          {t("languageSettings")}
+          {t('languageSettings')}
         </h2>
 
         <div className="flex items-center justify-between">
           <span className="text-text-muted">
-            {t("currentLanguage")}:{" "}
-            {currentLanguage.value === "en"
-              ? t("english") || "English"
-              : t("polish") || "Polish"}
+            {t('currentLanguage')}:{' '}
+            {currentLanguage.value === 'en'
+              ? t('english') || 'English'
+              : t('polish') || 'Polish'}
           </span>
           <Button onClick={handleLanguageToggle} variant="secondary" size="md">
-            {currentLanguage.value === "en" ? "🇵🇱" : "🇺🇸"}{" "}
-            {currentLanguage.value === "en"
-              ? t("switchToPolish") || "Switch to Polish"
-              : t("switchToEnglish") || "Switch to English"}
+            {currentLanguage.value === 'en' ? '🇵🇱' : '🇺🇸'}{' '}
+            {currentLanguage.value === 'en'
+              ? t('switchToPolish') || 'Switch to Polish'
+              : t('switchToEnglish') || 'Switch to English'}
           </Button>
         </div>
       </div>
@@ -200,7 +200,7 @@ export function SettingsPage() {
           className="text-xl font-semibold text-text-primary"
           style="margin-bottom: var(--spacing-md)"
         >
-          {t("debugInformation")}
+          {t('debugInformation')}
         </h2>
 
         <div className="space-y-2">
@@ -231,7 +231,7 @@ export function SettingsPage() {
           size="sm"
           className="mt-4"
         >
-          {t("refreshDebugInfo")}
+          {t('refreshDebugInfo')}
         </Button>
       </div>
     </div>

@@ -1,12 +1,12 @@
-import { Spacer } from "./Spacer";
+import { Spacer } from './Spacer';
 
 export default {
-  title: "Layout/Spacer",
+  title: 'Layout/Spacer',
   component: Spacer,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    size: { control: "text" },
-    className: { control: "text" },
+    size: { control: 'text' },
+    className: { control: 'text' },
   },
 };
 

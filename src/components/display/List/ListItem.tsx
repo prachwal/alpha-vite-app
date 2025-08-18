@@ -1,6 +1,6 @@
-import { JSX } from "preact";
-import { cn } from "../../../utils/cn";
-import { ListItemProps } from "./List";
+import { JSX } from 'preact';
+import { cn } from '../../../utils/cn';
+import { ListItemProps } from './List';
 
 export function ListItem({
   title,
@@ -14,12 +14,12 @@ export function ListItem({
   className,
 }: Readonly<ListItemProps>): JSX.Element {
   const isClickable = !disabled && (onClick || href);
-  const Component = href ? "a" : "div";
+  const Component = href ? 'a' : 'div';
 
   const baseClasses = cn(
-    "flex items-start space-x-3 transition-colors",
-    isClickable && "cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700",
-    disabled && "opacity-50 cursor-not-allowed",
+    'flex items-start space-x-3 transition-colors',
+    isClickable && 'cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700',
+    disabled && 'opacity-50 cursor-not-allowed',
     className
   );
 

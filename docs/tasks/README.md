@@ -75,6 +75,20 @@
 - **Accessibility:** Pełna dostępność dla wszystkich komponentów
 - **Responsive:** Pełna responsywność dla wszystkich komponentów
 
+### [06_utility_components_low.md](./06_utility_components_low.md)
+**Status:** ✅ Zakończone
+- Progress: ✅ (implementacja, testy, demo)
+- **Testy:** 10/10 testów przechodzi pomyślnie
+- **Demo:** Dodano do PageDemo
+- **Accessibility:** Pełna dostępność
+- **Responsive:** Pełna responsywność
+
+### [07_project_setup_critical.md](./07_project_setup_critical.md)
+**Status:** 🔄 W trakcie
+- **Priorytet:** KRYTYCZNY ⭐⭐⭐
+- **Opis:** Konfiguracja projektu i infrastruktury - aliasy importów, nowa struktura folderów, migracja komponentów, konfiguracja Storybook, testów i narzędzi development
+- **Postęp:** Rozpoczęto implementację
+
 ---
 
 ## 🔗 Referencje do szczegółowych planów i statusów
@@ -83,18 +97,20 @@
 - [03_feedback_components_high.md](./03_feedback_components_high.md)
 - [04_data_display_medium.md](./04_data_display_medium.md)
 - [05_advanced_form_medium.md](./05_advanced_form_medium.md)
+- [06_utility_components_low.md](./06_utility_components_low.md)
 - [copilot-instructions.md](../.github/copilot-instructions.md) – źródło podstawowej konfiguracji modelu
 
 ---
 
 ## 🟢 Podsumowanie
 - **Wszystkie komponenty zostały zakończone (100%)**
-- **Pełne pokrycie testami (473 testów)**
+- **Pełne pokrycie testami (483 testów)**
 - **Pełna dostępność i responsywność**
 - **Profesjonalne demo komponentów dostępne w src/pages/PageDemo.tsx**
 - **Poprawiono motyw jasny/ciemny dla wszystkich komponentów**
 - **Poprawiono kontrast kolorów w trybie ciemnym**
 - **Wszystkie testy zaawansowanych formularzy zostały naprawione i przechodzą pomyślnie**
+- **Dodano komponenty użytkowe (Progress)**
 
 ## 📅 Ostatnia aktualizacja: 2025-08-18
 

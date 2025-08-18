@@ -1,7 +1,7 @@
-import { Container } from "../../../components/layout/Container/Container";
-import { Stack } from "../../../components/layout/Stack/Stack";
-import { Divider } from "../../../components/layout/Divider/Divider";
-import { Grid } from "../../../components/layout/Grid/Grid";
+import { Container } from '../../../components/layout/Container/Container';
+import { Stack } from '../../../components/layout/Stack/Stack';
+import { Divider } from '../../../components/layout/Divider/Divider';
+import { Grid } from '../../../components/layout/Grid/Grid';
 
 export function LayoutComponents() {
   return (

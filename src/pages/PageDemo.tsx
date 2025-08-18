@@ -6,7 +6,8 @@ import {
   NavigationComponents,
   FeedbackComponents,
   AuthComponents,
-} from "./PageDemo/components";
+  UtilityComponents,
+} from './PageDemo/components';
 
 export function PageDemo() {
   return (
@@ -22,6 +23,7 @@ export function PageDemo() {
       <NavigationComponents />
       <FeedbackComponents />
       <AuthComponents />
+      <UtilityComponents />
     </div>
   );
 }

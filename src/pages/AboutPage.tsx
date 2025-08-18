@@ -1,8 +1,8 @@
-import { usePageTranslations } from "@services/i18n";
-import { CheckIcon, Card, CardHeader, CardBody } from "@components/display";
+import { usePageTranslations } from '@services/i18n';
+import { CheckIcon, Card, CardHeader, CardBody } from '@components/display';
 
 export function AboutPage() {
-  const t = usePageTranslations("about");
+  const t = usePageTranslations('about');
 
   return (
     <div className="space-y-8">
@@ -11,13 +11,13 @@ export function AboutPage() {
           className="text-4xl font-bold text-text-primary"
           style="margin-bottom: var(--spacing-md)"
         >
-          {t("title")}
+          {t('title')}
         </h1>
         <p
           className="text-lg text-text-muted"
           style="margin-bottom: var(--spacing-xl)"
         >
-          {t("description")}
+          {t('description')}
         </p>
       </div>
 
@@ -28,34 +28,34 @@ export function AboutPage() {
         <Card>
           <CardHeader>
             <h3 className="text-lg font-semibold text-text-primary">
-              {typeof t("frontendTech") === "string" ? t("frontendTech") : ""}
+              {typeof t('frontendTech') === 'string' ? t('frontendTech') : ''}
             </h3>
           </CardHeader>
           <CardBody>
             <ul className="space-y-3 text-text-muted">
               <li className="flex items-center">
                 <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
-                {t("featurePreact")}
+                {t('featurePreact')}
               </li>
               <li className="flex items-center">
                 <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
-                {t("featureSignals")}
+                {t('featureSignals')}
               </li>
               <li className="flex items-center">
                 <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
-                {t("featureTailwind")}
+                {t('featureTailwind')}
               </li>
               <li className="flex items-center">
                 <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
-                {t("featureTypeScript")}
+                {t('featureTypeScript')}
               </li>
               <li className="flex items-center">
                 <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
-                {t("featureVite")}
+                {t('featureVite')}
               </li>
               <li className="flex items-center">
                 <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
-                {t("featureVitest")}
+                {t('featureVitest')}
               </li>
             </ul>
           </CardBody>
@@ -64,34 +64,34 @@ export function AboutPage() {
         <Card>
           <CardHeader>
             <h3 className="text-lg font-semibold text-text-primary">
-              {typeof t("backendTech") === "string" ? t("backendTech") : ""}
+              {typeof t('backendTech') === 'string' ? t('backendTech') : ''}
             </h3>
           </CardHeader>
           <CardBody>
             <ul className="space-y-3 text-text-muted">
               <li className="flex items-center">
                 <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
-                {t("featureNode")}
+                {t('featureNode')}
               </li>
               <li className="flex items-center">
                 <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
-                {t("featureREST")}
+                {t('featureREST')}
               </li>
               <li className="flex items-center">
                 <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
-                {t("featureConfig")}
+                {t('featureConfig')}
               </li>
               <li className="flex items-center">
                 <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
-                {t("featureSecurity")}
+                {t('featureSecurity')}
               </li>
               <li className="flex items-center">
                 <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
-                {t("featureError")}
+                {t('featureError')}
               </li>
               <li className="flex items-center">
                 <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
-                {t("featureDeploy")}
+                {t('featureDeploy')}
               </li>
             </ul>
           </CardBody>

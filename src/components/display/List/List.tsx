@@ -1,7 +1,7 @@
-import { JSX } from "preact";
-import { cn } from "../../../utils/cn";
-import { ListItem } from "./ListItem";
-import { ListGroup } from "./ListGroup";
+import { JSX } from 'preact';
+import { cn } from '../../../utils/cn';
+import { ListItem } from './ListItem';
+import { ListGroup } from './ListGroup';
 
 export interface ListItemProps {
   title: string;
@@ -22,7 +22,7 @@ export interface ListProps {
   footer?: preact.ComponentChildren;
   bordered?: boolean;
   split?: boolean;
-  size?: "sm" | "md" | "lg";
+  size?: 'sm' | 'md' | 'lg';
   loading?: boolean;
   loadingRows?: number;
   virtual?: boolean;
@@ -32,15 +32,15 @@ export interface ListProps {
 }
 
 const sizeClasses = {
-  sm: "text-sm",
-  md: "text-base",
-  lg: "text-lg",
+  sm: 'text-sm',
+  md: 'text-base',
+  lg: 'text-lg',
 };
 
 const sizeSpacing = {
-  sm: "py-2 px-3",
-  md: "py-3 px-4",
-  lg: "py-4 px-5",
+  sm: 'py-2 px-3',
+  md: 'py-3 px-4',
+  lg: 'py-4 px-5',
 };
 
 export function List({
@@ -50,16 +50,16 @@ export function List({
   footer,
   bordered = false,
   split = true,
-  size = "md",
+  size = 'md',
   loading = false,
   loadingRows = 3,
   children,
   className,
 }: Readonly<ListProps>): JSX.Element {
   const baseClasses = cn(
-    "list",
+    'list',
     sizeClasses[size],
-    bordered && "border border-gray-200 dark:border-gray-700 rounded-lg",
+    bordered && 'border border-gray-200 dark:border-gray-700 rounded-lg',
     className
   );
 
@@ -69,11 +69,11 @@ export function List({
         key={`loading-${index}`}
         aria-label="Loading"
         className={cn(
-          "flex items-center space-x-3",
+          'flex items-center space-x-3',
           sizeSpacing[size],
           split &&
             index !== loadingRows - 1 &&
-            "border-b border-gray-100 dark:border-gray-700"
+            'border-b border-gray-100 dark:border-gray-700'
         )}
       >
         <div className="w-10 h-10 bg-gray-200 rounded-full animate-pulse" />
@@ -94,7 +94,7 @@ export function List({
       return items.map((item, index) => {
         // Use item.id if available, otherwise fallback to index (not recommended)
         const key =
-          item && typeof item === "object" && "id" in item
+          item && typeof item === 'object' && 'id' in item
             ? item.id
             : `item-${index}`;
         return (
@@ -103,7 +103,7 @@ export function List({
             className={cn(
               split &&
                 index !== items.length - 1 &&
-                "border-b border-gray-100 dark:border-gray-700"
+                'border-b border-gray-100 dark:border-gray-700'
             )}
           >
             {renderItem(item, index)}
@@ -120,7 +120,7 @@ export function List({
       {header && (
         <div
           className={cn(
-            "border-b border-gray-100 dark:border-gray-700",
+            'border-b border-gray-100 dark:border-gray-700',
             sizeSpacing[size]
           )}
         >
@@ -131,7 +131,7 @@ export function List({
       {footer && (
         <div
           className={cn(
-            "border-t border-gray-100 dark:border-gray-700",
+            'border-t border-gray-100 dark:border-gray-700',
             sizeSpacing[size]
           )}
         >

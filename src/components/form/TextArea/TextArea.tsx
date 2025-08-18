@@ -1,4 +1,4 @@
-import { useMemo, useRef, useEffect } from "preact/hooks";
+import { useMemo, useRef, useEffect } from 'preact/hooks';
 
 export interface TextAreaProps {
   value: string;
@@ -7,9 +7,9 @@ export interface TextAreaProps {
   rows?: number;
   minRows?: number;
   maxRows?: number;
-  resize?: "none" | "vertical" | "horizontal" | "both";
-  size?: "sm" | "md" | "lg";
-  variant?: "default" | "filled" | "outlined";
+  resize?: 'none' | 'vertical' | 'horizontal' | 'both';
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'default' | 'filled' | 'outlined';
   disabled?: boolean;
   readOnly?: boolean;
   error?: boolean;
@@ -29,9 +29,9 @@ export function TextArea({
   rows = 3,
   minRows = 2,
   maxRows = 10,
-  resize = "vertical",
-  size = "md",
-  variant = "default",
+  resize = 'vertical',
+  size = 'md',
+  variant = 'default',
   disabled = false,
   readOnly = false,
   error = false,
@@ -41,7 +41,7 @@ export function TextArea({
   fullWidth = false,
   maxLength,
   autoResize = false,
-  className = "",
+  className = '',
 }: Readonly<TextAreaProps>) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -58,17 +58,17 @@ export function TextArea({
       default: `
         bg-bg-surface border border-border
         focus:border-primary focus:ring-primary
-        ${error ? "border-danger focus:border-danger focus:ring-danger" : ""}
+        ${error ? 'border-danger focus:border-danger focus:ring-danger' : ''}
       `,
       filled: `
         bg-bg-muted border-2 border-transparent
         focus:bg-bg-surface focus:border-primary focus:ring-primary
-        ${error ? "bg-danger/10 focus:border-danger focus:ring-danger" : ""}
+        ${error ? 'bg-danger/10 focus:border-danger focus:ring-danger' : ''}
       `,
       outlined: `
         bg-transparent border-2 border-border
         focus:border-primary focus:ring-primary
-        ${error ? "border-danger focus:border-danger focus:ring-danger" : ""}
+        ${error ? 'border-danger focus:border-danger focus:ring-danger' : ''}
       `,
     };
     return variants[variant];
@@ -76,19 +76,19 @@ export function TextArea({
 
   const sizeClasses = useMemo(() => {
     const sizes = {
-      sm: "px-3 py-2 text-sm",
-      md: "px-4 py-2.5 text-base",
-      lg: "px-5 py-3 text-lg",
+      sm: 'px-3 py-2 text-sm',
+      md: 'px-4 py-2.5 text-base',
+      lg: 'px-5 py-3 text-lg',
     };
     return sizes[size];
   }, [size]);
 
   const resizeClasses = useMemo(() => {
     const resizes = {
-      none: "resize-none",
-      vertical: "resize-y",
-      horizontal: "resize-x",
-      both: "resize",
+      none: 'resize-none',
+      vertical: 'resize-y',
+      horizontal: 'resize-x',
+      both: 'resize',
     };
     return resizes[resize];
   }, [resize]);
@@ -96,7 +96,7 @@ export function TextArea({
   useEffect(() => {
     if (autoResize && textareaRef.current) {
       const textarea = textareaRef.current;
-      textarea.style.height = "auto";
+      textarea.style.height = 'auto';
 
       const scrollHeight = textarea.scrollHeight;
       const lineHeight = parseInt(getComputedStyle(textarea).lineHeight, 10);
@@ -122,7 +122,7 @@ export function TextArea({
   const showCharacterCount = maxLength && maxLength > 0;
 
   return (
-    <div className={`${fullWidth ? "w-full" : ""}`}>
+    <div className={`${fullWidth ? 'w-full' : ''}`}>
       {label && (
         <label
           htmlFor={textareaId}
@@ -157,7 +157,7 @@ export function TextArea({
             ${variantClasses}
             ${sizeClasses}
             ${resizeClasses}
-            ${autoResize ? "overflow-hidden" : ""}
+            ${autoResize ? 'overflow-hidden' : ''}
             ${className}
           `}
         />
@@ -170,7 +170,7 @@ export function TextArea({
         >
           {helperText && (
             <p
-              className={`text-sm ${error ? "text-danger" : "text-text-muted"}`}
+              className={`text-sm ${error ? 'text-danger' : 'text-text-muted'}`}
             >
               {helperText}
             </p>
@@ -178,7 +178,7 @@ export function TextArea({
           {showCharacterCount && (
             <p
               className={`text-sm ${
-                error ? "text-danger" : "text-text-muted"
+                error ? 'text-danger' : 'text-text-muted'
               } ml-auto`}
             >
               {characterCount}/{maxLength}

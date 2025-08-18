@@ -1,27 +1,27 @@
-import { Breadcrumb } from "./Breadcrumb";
+import { Breadcrumb } from './Breadcrumb';
 
 export default {
-  title: "Navigation/Breadcrumb",
+  title: 'Navigation/Breadcrumb',
   component: Breadcrumb,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    items: { control: "object" },
-    separator: { control: "text" },
-    maxItems: { control: "number" },
-    collapseFrom: { control: "text" },
-    size: { control: "text" },
-    className: { control: "text" },
+    items: { control: 'object' },
+    separator: { control: 'text' },
+    maxItems: { control: 'number' },
+    collapseFrom: { control: 'text' },
+    size: { control: 'text' },
+    className: { control: 'text' },
   },
 };
 
 export const Default = {
   args: {
     items: [
-      { label: "Home", href: "/" },
-      { label: "Section", href: "/section" },
-      { label: "Current" },
+      { label: 'Home', href: '/' },
+      { label: 'Section', href: '/section' },
+      { label: 'Current' },
     ],
-    separator: "/",
-    size: "md",
+    separator: '/',
+    size: 'md',
   },
 };

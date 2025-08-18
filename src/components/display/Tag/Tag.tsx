@@ -1,9 +1,9 @@
-import { JSX } from "preact";
-import { cn } from "../../../utils/cn";
+import { JSX } from 'preact';
+import { cn } from '../../../utils/cn';
 
 export interface TagProps {
-  variant?: "default" | "primary" | "success" | "warning" | "error" | "info";
-  size?: "sm" | "md" | "lg";
+  variant?: 'default' | 'primary' | 'success' | 'warning' | 'error' | 'info';
+  size?: 'sm' | 'md' | 'lg';
   closable?: boolean;
   onClose?: () => void;
   onClick?: () => void;
@@ -14,23 +14,23 @@ export interface TagProps {
 }
 
 const variantColors = {
-  default: "bg-gray-100 text-gray-700 border-gray-200",
-  primary: "bg-blue-100 text-blue-700 border-blue-200",
-  success: "bg-green-100 text-green-700 border-green-200",
-  warning: "bg-yellow-100 text-yellow-700 border-yellow-200",
-  error: "bg-red-100 text-red-700 border-red-200",
-  info: "bg-purple-100 text-purple-700 border-purple-200",
+  default: 'bg-gray-100 text-gray-700 border-gray-200',
+  primary: 'bg-blue-100 text-blue-700 border-blue-200',
+  success: 'bg-green-100 text-green-700 border-green-200',
+  warning: 'bg-yellow-100 text-yellow-700 border-yellow-200',
+  error: 'bg-red-100 text-red-700 border-red-200',
+  info: 'bg-purple-100 text-purple-700 border-purple-200',
 };
 
 const sizeClasses = {
-  sm: "px-2.5 py-0.5 text-xs",
-  md: "px-2.5 py-1.5 text-sm",
-  lg: "px-3.5 py-2 text-sm",
+  sm: 'px-2.5 py-0.5 text-xs',
+  md: 'px-2.5 py-1.5 text-sm',
+  lg: 'px-3.5 py-2 text-sm',
 };
 
 export function Tag({
-  variant = "default",
-  size = "md",
+  variant = 'default',
+  size = 'md',
   closable = false,
   onClose,
   onClick,
@@ -47,11 +47,11 @@ export function Tag({
   };
 
   const baseClasses = cn(
-    "inline-flex items-center rounded-md border font-medium transition-colors",
+    'inline-flex items-center rounded-md border font-medium transition-colors',
     sizeClasses[size],
     color || variantColors[variant],
-    closable && "pr-1",
-    onClick && "cursor-pointer hover:opacity-80",
+    closable && 'pr-1',
+    onClick && 'cursor-pointer hover:opacity-80',
     className
   );
 
@@ -62,7 +62,7 @@ export function Tag({
       onClick={onClick}
       tabIndex={0}
       onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
+        if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           onClick();
         }

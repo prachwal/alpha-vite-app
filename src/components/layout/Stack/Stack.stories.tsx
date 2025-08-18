@@ -1,16 +1,16 @@
-import { Stack } from "./Stack";
+import { Stack } from './Stack';
 
 export default {
-  title: "Layout/Stack",
+  title: 'Layout/Stack',
   component: Stack,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    direction: { control: "text" },
-    spacing: { control: "text" },
-    align: { control: "text" },
-    justify: { control: "text" },
-    wrap: { control: "boolean" },
-    className: { control: "text" },
+    direction: { control: 'text' },
+    spacing: { control: 'text' },
+    align: { control: 'text' },
+    justify: { control: 'text' },
+    wrap: { control: 'boolean' },
+    className: { control: 'text' },
   },
 };
 

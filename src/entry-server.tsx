@@ -1,14 +1,14 @@
-import { render } from "preact-render-to-string";
-import { LocationProvider } from "preact-iso";
-import { App } from "./app";
+import { render } from 'preact-render-to-string';
+import { LocationProvider } from 'preact-iso';
+import { App } from './app';
 
 export function renderToString(url: string) {
   // Ensure URL is properly formatted for URL constructor
   let fullUrl: string;
-  if (url.startsWith("http")) {
+  if (url.startsWith('http')) {
     fullUrl = url;
   } else {
-    const path = url.startsWith("/") ? url : "/" + url;
+    const path = url.startsWith('/') ? url : '/' + url;
     fullUrl = `http://localhost${path}`;
   }
 

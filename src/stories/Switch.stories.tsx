@@ -1,58 +1,58 @@
-import type { Meta, StoryObj } from "@storybook/preact";
+import type { Meta, StoryObj } from '@storybook/preact';
 import {
   Switch,
   type SwitchProps,
-} from "../components/form-advanced/Switch/Switch";
-import { useState } from "preact/hooks";
+} from '../components/form-advanced/Switch/Switch';
+import { useState } from 'preact/hooks';
 
 const meta: Meta<SwitchProps> = {
-  title: "Components/Form Advanced/Switch",
+  title: 'Components/Form Advanced/Switch',
   component: Switch,
   parameters: {
     docs: {
       description: {
         component:
-          "Switch component for boolean input with visual toggle state. Provides an accessible alternative to checkboxes for on/off controls.",
+          'Switch component for boolean input with visual toggle state. Provides an accessible alternative to checkboxes for on/off controls.',
       },
     },
   },
   argTypes: {
     checked: {
-      control: "boolean",
-      description: "Whether the switch is checked/on",
+      control: 'boolean',
+      description: 'Whether the switch is checked/on',
     },
     defaultChecked: {
-      control: "boolean",
-      description: "Default checked state for uncontrolled component",
+      control: 'boolean',
+      description: 'Default checked state for uncontrolled component',
     },
     disabled: {
-      control: "boolean",
-      description: "Whether the switch is disabled",
+      control: 'boolean',
+      description: 'Whether the switch is disabled',
     },
     size: {
-      control: "select",
-      options: ["sm", "md", "lg"],
-      description: "Size variant",
+      control: 'select',
+      options: ['sm', 'md', 'lg'],
+      description: 'Size variant',
     },
     loading: {
-      control: "boolean",
-      description: "Loading state - shows spinner",
+      control: 'boolean',
+      description: 'Loading state - shows spinner',
     },
     children: {
-      control: "text",
-      description: "Label text",
+      control: 'text',
+      description: 'Label text',
     },
     name: {
-      control: "text",
-      description: "HTML name attribute",
+      control: 'text',
+      description: 'HTML name attribute',
     },
-    "aria-label": {
-      control: "text",
-      description: "ARIA label for accessibility",
+    'aria-label': {
+      control: 'text',
+      description: 'ARIA label for accessibility',
     },
-    onChange: { action: "changed" },
+    onChange: { action: 'changed' },
   },
-  tags: ["autodocs"],
+  tags: ['autodocs'],
 };
 
 export default meta;
@@ -61,7 +61,7 @@ type Story = StoryObj<SwitchProps>;
 
 export const Default: Story = {
   args: {
-    children: "Enable notifications",
+    children: 'Enable notifications',
   },
 };
 
@@ -72,20 +72,20 @@ export const Controlled: Story = {
       <div className="space-y-4">
         <Switch {...args} checked={checked} onChange={setChecked} />
         <p className="text-sm text-gray-600">
-          Current state: {checked ? "ON" : "OFF"}
+          Current state: {checked ? 'ON' : 'OFF'}
         </p>
       </div>
     );
   },
   args: {
-    children: "Controlled switch",
+    children: 'Controlled switch',
   },
 };
 
 export const Uncontrolled: Story = {
   args: {
     defaultChecked: true,
-    children: "Uncontrolled switch (starts checked)",
+    children: 'Uncontrolled switch (starts checked)',
   },
 };
 
@@ -118,14 +118,14 @@ export const States: Story = {
 
 export const WithoutLabel: Story = {
   args: {
-    "aria-label": "Toggle feature",
+    'aria-label': 'Toggle feature',
   },
 };
 
 export const CustomStyling: Story = {
   args: {
-    className: "p-4 bg-gray-50 dark:bg-gray-800 rounded-lg",
-    children: "Custom styled switch",
+    className: 'p-4 bg-gray-50 dark:bg-gray-800 rounded-lg',
+    children: 'Custom styled switch',
     defaultChecked: true,
   },
 };
@@ -152,7 +152,7 @@ export const FormIntegration: Story = {
           <Switch
             name="notifications"
             checked={preferences.notifications}
-            onChange={handleChange("notifications")}
+            onChange={handleChange('notifications')}
           >
             Push notifications
           </Switch>
@@ -160,7 +160,7 @@ export const FormIntegration: Story = {
           <Switch
             name="darkMode"
             checked={preferences.darkMode}
-            onChange={handleChange("darkMode")}
+            onChange={handleChange('darkMode')}
           >
             Dark mode
           </Switch>
@@ -168,7 +168,7 @@ export const FormIntegration: Story = {
           <Switch
             name="autoSave"
             checked={preferences.autoSave}
-            onChange={handleChange("autoSave")}
+            onChange={handleChange('autoSave')}
           >
             Auto-save documents
           </Switch>

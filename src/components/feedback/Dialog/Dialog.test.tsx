@@ -1,10 +1,10 @@
-import { h } from "preact";
-import { render, screen, fireEvent } from "@testing-library/preact";
-import { Dialog } from "./Dialog";
-import "@testing-library/jest-dom";
+// No need to import h - it's handled by JSX transform
+import { render, screen, fireEvent } from '@testing-library/preact';
+import { Dialog } from './Dialog';
+import '@testing-library/jest-dom';
 
-describe("Dialog", () => {
-  it("renders when isOpen is true", () => {
+describe('Dialog', () => {
+  it('renders when isOpen is true', () => {
     render(
       <Dialog
         isOpen={true}
@@ -15,11 +15,11 @@ describe("Dialog", () => {
       />
     );
 
-    expect(screen.getByText("Test Dialog")).toBeInTheDocument();
-    expect(screen.getByText("This is a test dialog")).toBeInTheDocument();
+    expect(screen.getByText('Test Dialog')).toBeInTheDocument();
+    expect(screen.getByText('This is a test dialog')).toBeInTheDocument();
   });
 
-  it("does not render when isOpen is false", () => {
+  it('does not render when isOpen is false', () => {
     render(
       <Dialog
         isOpen={false}
@@ -30,10 +30,10 @@ describe("Dialog", () => {
       />
     );
 
-    expect(screen.queryByText("Test Dialog")).not.toBeInTheDocument();
+    expect(screen.queryByText('Test Dialog')).not.toBeInTheDocument();
   });
 
-  it("calls onConfirm when confirm button is clicked", () => {
+  it('calls onConfirm when confirm button is clicked', () => {
     const onConfirm = jest.fn();
     render(
       <Dialog
@@ -45,13 +45,13 @@ describe("Dialog", () => {
       />
     );
 
-    const confirmButton = screen.getByText("Confirm");
+    const confirmButton = screen.getByText('Confirm');
     fireEvent.click(confirmButton);
 
     expect(onConfirm).toHaveBeenCalledTimes(1);
   });
 
-  it("calls onClose when cancel button is clicked", () => {
+  it('calls onClose when cancel button is clicked', () => {
     const onClose = jest.fn();
     render(
       <Dialog
@@ -63,13 +63,13 @@ describe("Dialog", () => {
       />
     );
 
-    const cancelButton = screen.getByText("Cancel");
+    const cancelButton = screen.getByText('Cancel');
     fireEvent.click(cancelButton);
 
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it("calls onClose when overlay is clicked", () => {
+  it('calls onClose when overlay is clicked', () => {
     const onClose = jest.fn();
     render(
       <Dialog
@@ -81,13 +81,13 @@ describe("Dialog", () => {
       />
     );
 
-    const overlay = screen.getByRole("dialog");
+    const overlay = screen.getByRole('dialog');
     fireEvent.click(overlay);
 
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it("uses custom confirm button text", () => {
+  it('uses custom confirm button text', () => {
     render(
       <Dialog
         isOpen={true}
@@ -99,10 +99,10 @@ describe("Dialog", () => {
       />
     );
 
-    expect(screen.getByText("Delete")).toBeInTheDocument();
+    expect(screen.getByText('Delete')).toBeInTheDocument();
   });
 
-  it("uses custom cancel button text", () => {
+  it('uses custom cancel button text', () => {
     render(
       <Dialog
         isOpen={true}
@@ -114,10 +114,10 @@ describe("Dialog", () => {
       />
     );
 
-    expect(screen.getByText("Go Back")).toBeInTheDocument();
+    expect(screen.getByText('Go Back')).toBeInTheDocument();
   });
 
-  it("renders with danger variant", () => {
+  it('renders with danger variant', () => {
     render(
       <Dialog
         isOpen={true}
@@ -129,11 +129,11 @@ describe("Dialog", () => {
       />
     );
 
-    const confirmButton = screen.getByText("Confirm");
-    expect(confirmButton).toHaveClass("bg-red-600");
+    const confirmButton = screen.getByText('Confirm');
+    expect(confirmButton).toHaveClass('bg-red-600');
   });
 
-  it("has correct ARIA attributes", () => {
+  it('has correct ARIA attributes', () => {
     render(
       <Dialog
         isOpen={true}
@@ -144,12 +144,12 @@ describe("Dialog", () => {
       />
     );
 
-    const dialog = screen.getByRole("dialog");
-    expect(dialog).toHaveAttribute("aria-modal", "true");
-    expect(dialog).toHaveAttribute("aria-labelledby", "modal-title");
+    const dialog = screen.getByRole('dialog');
+    expect(dialog).toHaveAttribute('aria-modal', 'true');
+    expect(dialog).toHaveAttribute('aria-labelledby', 'modal-title');
   });
 
-  it("applies custom size", () => {
+  it('applies custom size', () => {
     render(
       <Dialog
         isOpen={true}
@@ -161,10 +161,10 @@ describe("Dialog", () => {
       />
     );
 
-    const dialog = screen.getByRole("dialog");
+    const dialog = screen.getByRole('dialog');
     // Modal content is a child div with max-w-lg
     const content = Array.from(dialog.children).find((el) =>
-      (el as HTMLElement).className.includes("max-w-lg")
+      (el as HTMLElement).className.includes('max-w-lg')
     ) as HTMLElement;
     expect(content).toBeTruthy();
     expect(content.className).toMatch(/max-w-lg/);

@@ -1,10 +1,10 @@
-import { h, createContext } from "preact";
-import { useContext, useState, useCallback } from "preact/hooks";
-import { Toast, ToastData } from "./Toast";
+import { createContext } from 'preact';
+import { useContext, useState, useCallback } from 'preact/hooks';
+import { Toast, ToastData } from './Toast';
 
 interface ToastContextType {
   toasts: ToastData[];
-  addToast: (toast: Omit<ToastData, "id">) => string;
+  addToast: (toast: Omit<ToastData, 'id'>) => string;
   removeToast: (id: string) => void;
   clearToasts: () => void;
 }
@@ -14,7 +14,7 @@ const ToastContext = createContext<ToastContextType | undefined>(undefined);
 export const useToast = () => {
   const context = useContext(ToastContext);
   if (!context) {
-    throw new Error("useToast must be used within a ToastProvider");
+    throw new Error('useToast must be used within a ToastProvider');
   }
   return context;
 };
@@ -26,7 +26,7 @@ interface ToastProviderProps {
 export function ToastProvider({ children }: ToastProviderProps) {
   const [toasts, setToasts] = useState<ToastData[]>([]);
 
-  const addToast = useCallback((toast: Omit<ToastData, "id">) => {
+  const addToast = useCallback((toast: Omit<ToastData, 'id'>) => {
     const id = Math.random().toString(36).substr(2, 9);
     const newToast = { ...toast, id };
     setToasts((prev) => [...prev, newToast]);
@@ -48,7 +48,7 @@ export function ToastProvider({ children }: ToastProviderProps) {
       {children}
       {/* Render Toasts in a fixed container */}
       <div
-        style={{ position: "fixed", top: 16, right: 16, zIndex: 9999 }}
+        style={{ position: 'fixed', top: 16, right: 16, zIndex: 9999 }}
         aria-live="polite"
       >
         {toasts.map((toast) => (

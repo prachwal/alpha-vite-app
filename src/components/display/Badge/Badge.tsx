@@ -1,32 +1,32 @@
-import { JSX } from "preact";
-import { cn } from "../../../utils/cn";
+import { JSX } from 'preact';
+import { cn } from '../../../utils/cn';
 
 export interface BadgeProps {
   count?: number;
   max?: number;
   showZero?: boolean;
   dot?: boolean;
-  status?: "default" | "processing" | "success" | "error" | "warning";
+  status?: 'default' | 'processing' | 'success' | 'error' | 'warning';
   color?: string;
   text?: string;
   offset?: readonly [number, number];
-  size?: "sm" | "md" | "lg";
+  size?: 'sm' | 'md' | 'lg';
   children?: preact.ComponentChildren;
   className?: string;
 }
 
 const statusColors = {
-  default: "bg-gray-500",
-  processing: "bg-blue-500",
-  success: "bg-green-500",
-  error: "bg-red-500",
-  warning: "bg-yellow-500",
+  default: 'bg-gray-500',
+  processing: 'bg-blue-500',
+  success: 'bg-green-500',
+  error: 'bg-red-500',
+  warning: 'bg-yellow-500',
 };
 
 const sizeClasses = {
-  sm: "px-1.5 py-0.5 text-xs",
-  md: "px-2 py-1 text-sm",
-  lg: "px-2.5 py-1 text-base",
+  sm: 'px-1.5 py-0.5 text-xs',
+  md: 'px-2 py-1 text-sm',
+  lg: 'px-2.5 py-1 text-base',
 };
 
 export function Badge({
@@ -34,11 +34,11 @@ export function Badge({
   max = 99,
   showZero = false,
   dot = false,
-  status = "default",
+  status = 'default',
   color,
   text,
   offset,
-  size = "md",
+  size = 'md',
   children,
   className,
 }: Readonly<BadgeProps>): JSX.Element {
@@ -51,7 +51,7 @@ export function Badge({
   const showBadge = count !== undefined ? showZero || count > 0 : true;
 
   const badgeClasses = cn(
-    "inline-flex items-center justify-center rounded-full font-medium",
+    'inline-flex items-center justify-center rounded-full font-medium',
     sizeClasses[size],
     color || statusColors[status],
     className
@@ -65,7 +65,7 @@ export function Badge({
 
   const renderBadge = () => {
     if (dot) {
-      return <span className={cn(badgeClasses, "w-2 h-2 min-w-0 p-0")} />;
+      return <span className={cn(badgeClasses, 'w-2 h-2 min-w-0 p-0')} />;
     }
 
     if (text) {
@@ -76,7 +76,7 @@ export function Badge({
       return <span className={badgeClasses}>{displayCount}</span>;
     }
 
-    return <span className={cn(badgeClasses, "hidden")} />;
+    return <span className={cn(badgeClasses, 'hidden')} />;
   };
 
   if (!children) {

@@ -1,4 +1,4 @@
-import { Auth0Button } from "../../../components/Auth0Button";
+import { Auth0Button } from '../../../components/Auth0Button';
 
 export function AuthComponents() {
   return (

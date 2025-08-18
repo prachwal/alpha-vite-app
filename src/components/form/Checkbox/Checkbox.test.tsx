@@ -1,57 +1,57 @@
-import { describe, it, expect, vi } from "vitest";
-import { render, screen } from "@testing-library/preact";
-import userEvent from "@testing-library/user-event";
-import { Checkbox } from "./Checkbox";
+import { describe, it, expect, vi } from 'vitest';
+import { render, screen } from '@testing-library/preact';
+import userEvent from '@testing-library/user-event';
+import { Checkbox } from './Checkbox';
 
-describe("Checkbox Component", () => {
-  it("renders with default props", () => {
+describe('Checkbox Component', () => {
+  it('renders with default props', () => {
     const handleChange = vi.fn();
     render(<Checkbox checked={false} onChange={handleChange} />);
 
-    const checkbox = screen.getByRole("checkbox");
+    const checkbox = screen.getByRole('checkbox');
     expect(checkbox).toBeInTheDocument();
     expect(checkbox).not.toBeChecked();
   });
 
-  it("renders checked state", () => {
+  it('renders checked state', () => {
     const handleChange = vi.fn();
     render(<Checkbox checked={true} onChange={handleChange} />);
 
-    const checkbox = screen.getByRole("checkbox");
+    const checkbox = screen.getByRole('checkbox');
     expect(checkbox).toBeChecked();
   });
 
-  it("renders with label", () => {
+  it('renders with label', () => {
     const handleChange = vi.fn();
     render(
       <Checkbox checked={false} onChange={handleChange} label="Test label" />
     );
 
-    expect(screen.getByText("Test label")).toBeInTheDocument();
+    expect(screen.getByText('Test label')).toBeInTheDocument();
   });
 
-  it("handles change events", async () => {
+  it('handles change events', async () => {
     const handleChange = vi.fn();
     const user = userEvent.setup();
 
     render(<Checkbox checked={false} onChange={handleChange} />);
 
-    const checkbox = screen.getByRole("checkbox");
+    const checkbox = screen.getByRole('checkbox');
     await user.click(checkbox);
 
     expect(handleChange).toHaveBeenCalledTimes(1);
     expect(handleChange).toHaveBeenCalledWith(true);
   });
 
-  it("renders disabled state", () => {
+  it('renders disabled state', () => {
     const handleChange = vi.fn();
     render(<Checkbox checked={false} onChange={handleChange} disabled />);
 
-    const checkbox = screen.getByRole("checkbox");
+    const checkbox = screen.getByRole('checkbox');
     expect(checkbox).toBeDisabled();
   });
 
-  it("renders indeterminate state", () => {
+  it('renders indeterminate state', () => {
     const handleChange = vi.fn();
     render(
       <Checkbox
@@ -62,11 +62,11 @@ describe("Checkbox Component", () => {
       />
     );
 
-    const checkbox = screen.getByRole("checkbox");
+    const checkbox = screen.getByRole('checkbox');
     expect((checkbox as HTMLInputElement).indeterminate).toBe(true);
   });
 
-  it("renders error state", () => {
+  it('renders error state', () => {
     const handleChange = vi.fn();
     render(
       <Checkbox
@@ -77,14 +77,14 @@ describe("Checkbox Component", () => {
       />
     );
 
-    const checkbox = screen.getByRole("checkbox");
+    const checkbox = screen.getByRole('checkbox');
     const checkboxContainer = checkbox.parentElement?.querySelector(
       'div[class*="border-"]'
     );
-    expect(checkboxContainer).toHaveClass("border-danger");
+    expect(checkboxContainer).toHaveClass('border-danger');
   });
 
-  it("renders helper text", () => {
+  it('renders helper text', () => {
     const handleChange = vi.fn();
     render(
       <Checkbox
@@ -95,10 +95,10 @@ describe("Checkbox Component", () => {
       />
     );
 
-    expect(screen.getByText("This is helper text")).toBeInTheDocument();
+    expect(screen.getByText('This is helper text')).toBeInTheDocument();
   });
 
-  it("renders required indicator", () => {
+  it('renders required indicator', () => {
     const handleChange = vi.fn();
     render(
       <Checkbox
@@ -109,10 +109,10 @@ describe("Checkbox Component", () => {
       />
     );
 
-    expect(screen.getByText("*")).toBeInTheDocument();
+    expect(screen.getByText('*')).toBeInTheDocument();
   });
 
-  it("renders different sizes", () => {
+  it('renders different sizes', () => {
     const handleChange = vi.fn();
     const { rerender } = render(
       <Checkbox
@@ -123,11 +123,11 @@ describe("Checkbox Component", () => {
       />
     );
 
-    const checkbox = screen.getByRole("checkbox");
+    const checkbox = screen.getByRole('checkbox');
     const checkboxContainer = checkbox.parentElement?.querySelector(
       'div[class*="h-"][class*="w-"]'
     );
-    expect(checkboxContainer).toHaveClass("h-4", "w-4");
+    expect(checkboxContainer).toHaveClass('h-4', 'w-4');
 
     rerender(
       <Checkbox
@@ -138,15 +138,15 @@ describe("Checkbox Component", () => {
       />
     );
 
-    const checkboxAfterRerender = screen.getByRole("checkbox");
+    const checkboxAfterRerender = screen.getByRole('checkbox');
     const checkboxContainerAfterRerender =
       checkboxAfterRerender.parentElement?.querySelector(
         'div[class*="h-"][class*="w-"]'
       );
-    expect(checkboxContainerAfterRerender).toHaveClass("h-6", "w-6");
+    expect(checkboxContainerAfterRerender).toHaveClass('h-6', 'w-6');
   });
 
-  it("applies custom className", () => {
+  it('applies custom className', () => {
     const handleChange = vi.fn();
     const { container } = render(
       <Checkbox
@@ -156,6 +156,6 @@ describe("Checkbox Component", () => {
       />
     );
 
-    expect(container.firstChild).toHaveClass("custom-class");
+    expect(container.firstChild).toHaveClass('custom-class');
   });
 });

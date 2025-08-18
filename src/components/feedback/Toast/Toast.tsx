@@ -1,9 +1,9 @@
-import { h } from "preact";
-import { useEffect } from "preact/hooks";
+// No need to import h - it's handled by JSX transform
+import { useEffect } from 'preact/hooks';
 
 export interface ToastData {
   id: string;
-  variant?: "info" | "success" | "warning" | "error";
+  variant?: 'info' | 'success' | 'warning' | 'error';
   title?: string;
   description?: string;
   duration?: number;
@@ -20,40 +20,40 @@ interface ToastProps extends ToastData {
 
 const variantStyles = {
   info: {
-    base: "bg-blue-50 text-blue-800 border-blue-200",
-    icon: "text-blue-500",
-    title: "text-blue-900",
-    description: "text-blue-700",
+    base: 'bg-blue-50 text-blue-800 border-blue-200',
+    icon: 'text-blue-500',
+    title: 'text-blue-900',
+    description: 'text-blue-700',
   },
   success: {
-    base: "bg-green-50 text-green-800 border-green-200",
-    icon: "text-green-500",
-    title: "text-green-900",
-    description: "text-green-700",
+    base: 'bg-green-50 text-green-800 border-green-200',
+    icon: 'text-green-500',
+    title: 'text-green-900',
+    description: 'text-green-700',
   },
   warning: {
-    base: "bg-yellow-50 text-yellow-800 border-yellow-200",
-    icon: "text-yellow-500",
-    title: "text-yellow-900",
-    description: "text-yellow-700",
+    base: 'bg-yellow-50 text-yellow-800 border-yellow-200',
+    icon: 'text-yellow-500',
+    title: 'text-yellow-900',
+    description: 'text-yellow-700',
   },
   error: {
-    base: "bg-red-50 text-red-800 border-red-200",
-    icon: "text-red-500",
-    title: "text-red-900",
-    description: "text-red-700",
+    base: 'bg-red-50 text-red-800 border-red-200',
+    icon: 'text-red-500',
+    title: 'text-red-900',
+    description: 'text-red-700',
   },
 };
 
 const Icon = ({ name, className }: { name: string; className?: string }) => {
   const icons: Record<string, string> = {
-    "check-circle": "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z",
-    "exclamation-triangle":
-      "M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z",
-    "x-circle":
-      "M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z",
-    "information-circle":
-      "M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
+    'check-circle': 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
+    'exclamation-triangle':
+      'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z',
+    'x-circle':
+      'M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z',
+    'information-circle':
+      'M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
   };
 
   return (
@@ -74,12 +74,12 @@ const Icon = ({ name, className }: { name: string; className?: string }) => {
 };
 
 const cn = (...classes: (string | undefined | null | false)[]) => {
-  return classes.filter(Boolean).join(" ");
+  return classes.filter(Boolean).join(' ');
 };
 
 export function Toast({
   id,
-  variant = "info",
+  variant = 'info',
   title,
   description,
   duration = 5000,
@@ -102,28 +102,28 @@ export function Toast({
   const renderIcon = () => {
     let iconName: string;
     switch (variant) {
-      case "success":
-        iconName = "check-circle";
+      case 'success':
+        iconName = 'check-circle';
         break;
-      case "warning":
-        iconName = "exclamation-triangle";
+      case 'warning':
+        iconName = 'exclamation-triangle';
         break;
-      case "error":
-        iconName = "x-circle";
+      case 'error':
+        iconName = 'x-circle';
         break;
       default:
-        iconName = "information-circle";
+        iconName = 'information-circle';
     }
 
-    return <Icon name={iconName} className={cn("h-5 w-5", styles.icon)} />;
+    return <Icon name={iconName} className={cn('h-5 w-5', styles.icon)} />;
   };
 
   return (
     <div
       className={cn(
-        "relative rounded-lg border p-4 shadow-lg",
+        'relative rounded-lg border p-4 shadow-lg',
         styles.base,
-        "animate-slide-in-right"
+        'animate-slide-in-right'
       )}
       role="alert"
     >
@@ -132,12 +132,12 @@ export function Toast({
 
         <div className="ml-3 flex-1">
           {title && (
-            <h3 className={cn("text-sm font-medium", styles.title)}>{title}</h3>
+            <h3 className={cn('text-sm font-medium', styles.title)}>{title}</h3>
           )}
 
           {description && (
             <p
-              className={cn(title ? "mt-1" : "", "text-sm", styles.description)}
+              className={cn(title ? 'mt-1' : '', 'text-sm', styles.description)}
             >
               {description}
             </p>
@@ -148,10 +148,10 @@ export function Toast({
               <button
                 type="button"
                 className={cn(
-                  "inline-flex items-center rounded-md border border-transparent px-3 py-2 text-sm font-medium",
-                  "focus:outline-none focus:ring-2 focus:ring-offset-2",
-                  "bg-white bg-opacity-20 text-white hover:bg-opacity-30",
-                  "focus:ring-white"
+                  'inline-flex items-center rounded-md border border-transparent px-3 py-2 text-sm font-medium',
+                  'focus:outline-none focus:ring-2 focus:ring-offset-2',
+                  'bg-white bg-opacity-20 text-white hover:bg-opacity-30',
+                  'focus:ring-white'
                 )}
                 onClick={action.onClick}
               >
@@ -164,9 +164,9 @@ export function Toast({
         <button
           type="button"
           className={cn(
-            "ml-4 inline-flex flex-shrink-0 rounded-md p-1.5",
-            "hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2",
-            "focus:ring-gray-500"
+            'ml-4 inline-flex flex-shrink-0 rounded-md p-1.5',
+            'hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2',
+            'focus:ring-gray-500'
           )}
           onClick={() => onClose(id)}
           aria-label="Close toast"

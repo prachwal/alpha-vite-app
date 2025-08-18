@@ -9,8 +9,8 @@ interface SelectProps {
   readonly value: string;
   readonly onChange: (value: string) => void;
   readonly placeholder?: string;
-  readonly size?: "sm" | "md" | "lg";
-  readonly variant?: "default" | "filled" | "outlined";
+  readonly size?: 'sm' | 'md' | 'lg';
+  readonly variant?: 'default' | 'filled' | 'outlined';
   readonly disabled?: boolean;
   readonly error?: boolean;
   readonly helperText?: string;
@@ -22,25 +22,25 @@ export function Select({
   options,
   value,
   onChange,
-  placeholder = "Select an option...",
-  size = "md",
-  variant = "default",
+  placeholder = 'Select an option...',
+  size = 'md',
+  variant = 'default',
   disabled = false,
   error = false,
   helperText,
-  className = "",
+  className = '',
   fullWidth = false,
 }: Readonly<SelectProps>) {
   const sizeClasses = {
-    sm: "px-2 py-1 text-sm",
-    md: "px-3 py-2",
-    lg: "px-4 py-3 text-lg",
+    sm: 'px-2 py-1 text-sm',
+    md: 'px-3 py-2',
+    lg: 'px-4 py-3 text-lg',
   };
 
   const variantClasses = {
-    default: "bg-bg-muted border border-border",
-    filled: "bg-bg-surface border-2 border-transparent",
-    outlined: "bg-transparent border-2 border-border",
+    default: 'bg-bg-muted border border-border',
+    filled: 'bg-bg-surface border-2 border-transparent',
+    outlined: 'bg-transparent border-2 border-border',
   };
 
   const baseClasses = `
@@ -51,9 +51,9 @@ export function Select({
     appearance-none cursor-pointer
   `;
 
-  const errorClasses = error ? "border-red-500 focus:ring-red-500" : "";
+  const errorClasses = error ? 'border-red-500 focus:ring-red-500' : '';
 
-  const widthClasses = fullWidth ? "w-full" : "w-auto min-w-[120px]";
+  const widthClasses = fullWidth ? 'w-full' : 'w-auto min-w-[120px]';
 
   return (
     <div className={`relative ${className}`}>
@@ -74,9 +74,9 @@ export function Select({
         `}
         style={{
           backgroundImage: `url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24'%3E%3Cpath stroke='%23666' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'/%3E%3C/svg%3E")`,
-          backgroundPosition: "right 8px center",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "16px 16px",
+          backgroundPosition: 'right 8px center',
+          backgroundRepeat: 'no-repeat',
+          backgroundSize: '16px 16px',
         }}
       >
         {placeholder && (
@@ -99,7 +99,7 @@ export function Select({
       {helperText && (
         <div
           className={`text-xs mt-1 ${
-            error ? "text-red-500" : "text-text-muted"
+            error ? 'text-red-500' : 'text-text-muted'
           }`}
         >
           {helperText}

@@ -1,22 +1,22 @@
-import { Pagination } from "./Pagination";
+import { Pagination } from './Pagination';
 
 export default {
-  title: "Navigation/Pagination",
+  title: 'Navigation/Pagination',
   component: Pagination,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    currentPage: { control: "number" },
-    totalPages: { control: "number" },
-    pageSize: { control: "number" },
-    totalItems: { control: "number" },
-    showPageSize: { control: "boolean" },
-    pageSizeOptions: { control: "object" },
-    showQuickJumper: { control: "boolean" },
-    showTotal: { control: "boolean" },
-    size: { control: "text" },
-    variant: { control: "text" },
-    disabled: { control: "boolean" },
-    className: { control: "text" },
+    currentPage: { control: 'number' },
+    totalPages: { control: 'number' },
+    pageSize: { control: 'number' },
+    totalItems: { control: 'number' },
+    showPageSize: { control: 'boolean' },
+    pageSizeOptions: { control: 'object' },
+    showQuickJumper: { control: 'boolean' },
+    showTotal: { control: 'boolean' },
+    size: { control: 'text' },
+    variant: { control: 'text' },
+    disabled: { control: 'boolean' },
+    className: { control: 'text' },
   },
 };
 
@@ -30,8 +30,8 @@ export const Default = {
     pageSizeOptions: [10, 20, 50],
     showQuickJumper: false,
     showTotal: true,
-    size: "md",
-    variant: "default",
+    size: 'md',
+    variant: 'default',
     disabled: false,
   },
 };

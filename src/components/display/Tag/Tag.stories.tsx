@@ -1,32 +1,32 @@
-import type { Meta, StoryObj } from "@storybook/preact";
-import { useState } from "preact/hooks";
-import { Tag } from "./Tag";
-import { TagGroup } from "./TagGroup";
+import type { Meta, StoryObj } from '@storybook/preact';
+import { useState } from 'preact/hooks';
+import { Tag } from './Tag';
+import { TagGroup } from './TagGroup';
 
 const meta: Meta<typeof Tag> = {
-  title: "Components/Display/Tag",
+  title: 'Components/Display/Tag',
   component: Tag,
   parameters: {
     docs: {
       description: {
-        component: "Tag component for displaying labels and categories.",
+        component: 'Tag component for displaying labels and categories.',
       },
     },
   },
   argTypes: {
     variant: {
-      control: { type: "select" },
-      options: ["default", "primary", "success", "warning", "error", "info"],
+      control: { type: 'select' },
+      options: ['default', 'primary', 'success', 'warning', 'error', 'info'],
     },
     size: {
-      control: { type: "select" },
-      options: ["sm", "md", "lg"],
+      control: { type: 'select' },
+      options: ['sm', 'md', 'lg'],
     },
     closable: {
-      control: { type: "boolean" },
+      control: { type: 'boolean' },
     },
     color: {
-      control: { type: "text" },
+      control: { type: 'text' },
     },
   },
 };
@@ -36,7 +36,7 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    children: "Default Tag",
+    children: 'Default Tag',
   } as any,
 };
 
@@ -119,8 +119,8 @@ export const CustomColor: Story = {
 export const Clickable: Story = {
   render: () => (
     <div className="flex flex-wrap gap-2">
-      <Tag onClick={() => alert("Tag clicked!")}>Clickable Tag</Tag>
-      <Tag variant="primary" onClick={() => alert("Primary tag clicked!")}>
+      <Tag onClick={() => alert('Tag clicked!')}>Clickable Tag</Tag>
+      <Tag variant="primary" onClick={() => alert('Primary tag clicked!')}>
         Clickable Primary
       </Tag>
     </div>
@@ -128,13 +128,13 @@ export const Clickable: Story = {
 };
 
 export const TagGroupExample: Story = {
-  name: "Tag Group",
+  name: 'Tag Group',
   render: () => {
     const [tags, setTags] = useState([
-      "React",
-      "TypeScript",
-      "Tailwind",
-      "Preact",
+      'React',
+      'TypeScript',
+      'Tailwind',
+      'Preact',
     ]);
 
     return (

@@ -1,34 +1,34 @@
-import type { Meta, StoryObj } from "@storybook/preact";
-import { Statistic } from "./Statistic";
+import type { Meta, StoryObj } from '@storybook/preact';
+import { Statistic } from './Statistic';
 
 const meta: Meta<typeof Statistic> = {
-  title: "Components/Display/Statistic",
+  title: 'Components/Display/Statistic',
   component: Statistic,
   parameters: {
     docs: {
       description: {
-        component: "Statistic component for displaying numerical data.",
+        component: 'Statistic component for displaying numerical data.',
       },
     },
   },
   argTypes: {
     value: {
-      control: { type: "text" },
+      control: { type: 'text' },
     },
     title: {
-      control: { type: "text" },
+      control: { type: 'text' },
     },
     prefix: {
-      control: { type: "text" },
+      control: { type: 'text' },
     },
     suffix: {
-      control: { type: "text" },
+      control: { type: 'text' },
     },
     precision: {
-      control: { type: "number", min: 0, max: 5 },
+      control: { type: 'number', min: 0, max: 5 },
     },
     loading: {
-      control: { type: "boolean" },
+      control: { type: 'boolean' },
     },
   },
 };
@@ -44,30 +44,30 @@ export const Default: Story = {
 
 export const WithTitle: Story = {
   args: {
-    title: "Total Users",
+    title: 'Total Users',
     value: 1234,
   } as any,
 };
 
 export const WithPrefix: Story = {
   args: {
-    title: "Revenue",
+    title: 'Revenue',
     value: 1234.56,
-    prefix: "$",
+    prefix: '$',
   } as any,
 };
 
 export const WithSuffix: Story = {
   args: {
-    title: "Conversion Rate",
+    title: 'Conversion Rate',
     value: 12.34,
-    suffix: "%",
+    suffix: '%',
   } as any,
 };
 
 export const WithPrecision: Story = {
   args: {
-    title: "Average Score",
+    title: 'Average Score',
     value: 85.6789,
     precision: 2,
   } as any,
@@ -75,7 +75,7 @@ export const WithPrecision: Story = {
 
 export const Loading: Story = {
   args: {
-    title: "Loading Data",
+    title: 'Loading Data',
     value: 0,
     loading: true,
   } as any,
@@ -83,32 +83,32 @@ export const Loading: Story = {
 
 export const StringValue: Story = {
   args: {
-    title: "Status",
-    value: "Active",
+    title: 'Status',
+    value: 'Active',
   } as any,
 };
 
 export const LargeNumbers: Story = {
   args: {
-    title: "Total Sales",
+    title: 'Total Sales',
     value: 1234567.89,
-    prefix: "$",
+    prefix: '$',
     precision: 2,
   } as any,
 };
 
 export const ZeroValue: Story = {
   args: {
-    title: "Pending Tasks",
+    title: 'Pending Tasks',
     value: 0,
   } as any,
 };
 
 export const NegativeValue: Story = {
   args: {
-    title: "Profit/Loss",
+    title: 'Profit/Loss',
     value: -123.45,
-    prefix: "$",
+    prefix: '$',
   } as any,
 };
 

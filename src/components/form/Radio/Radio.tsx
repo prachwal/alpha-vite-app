@@ -1,4 +1,4 @@
-import { useMemo } from "preact/hooks";
+import { useMemo } from 'preact/hooks';
 
 export interface RadioOption {
   value: string;
@@ -11,8 +11,8 @@ export interface RadioGroupProps {
   value: string;
   onChange: (value: string) => void;
   name: string;
-  size?: "sm" | "md" | "lg";
-  layout?: "vertical" | "horizontal" | "grid";
+  size?: 'sm' | 'md' | 'lg';
+  layout?: 'vertical' | 'horizontal' | 'grid';
   gridColumns?: 2 | 3 | 4;
   disabled?: boolean;
   error?: boolean;
@@ -27,15 +27,15 @@ export function RadioGroup({
   value,
   onChange,
   name,
-  size = "md",
-  layout = "vertical",
+  size = 'md',
+  layout = 'vertical',
   gridColumns = 2,
   disabled = false,
   error = false,
   helperText,
   label,
   required = false,
-  className = "",
+  className = '',
 }: Readonly<RadioGroupProps>) {
   const handleChange = (event: Event) => {
     const target = event.target as HTMLInputElement;
@@ -44,9 +44,9 @@ export function RadioGroup({
 
   const sizeClasses = useMemo(() => {
     const sizes = {
-      sm: "h-4 w-4",
-      md: "h-5 w-5",
-      lg: "h-6 w-6",
+      sm: 'h-4 w-4',
+      md: 'h-5 w-5',
+      lg: 'h-6 w-6',
     };
     return sizes[size];
   }, [size]);
@@ -71,8 +71,8 @@ export function RadioGroup({
 
   const layoutClasses = useMemo(() => {
     const layouts = {
-      vertical: "flex flex-col space-y-3",
-      horizontal: "flex flex-wrap gap-x-6 gap-y-3",
+      vertical: 'flex flex-col space-y-3',
+      horizontal: 'flex flex-wrap gap-x-6 gap-y-3',
       grid: `grid grid-cols-1 sm:grid-cols-${gridColumns} gap-4`,
     };
     return layouts[layout];
@@ -108,8 +108,8 @@ export function RadioGroup({
               flex items-center cursor-pointer
               ${
                 option.disabled || disabled
-                  ? "cursor-not-allowed opacity-50"
-                  : ""
+                  ? 'cursor-not-allowed opacity-50'
+                  : ''
               }
             `}
           >
@@ -141,7 +141,7 @@ export function RadioGroup({
         <p
           id={`${groupId}-helper`}
           className={`mt-2 text-sm ${
-            error ? "text-danger" : "text-text-muted"
+            error ? 'text-danger' : 'text-text-muted'
           }`}
         >
           {helperText}

@@ -1,10 +1,10 @@
-import { JSX } from "preact";
+import { JSX } from 'preact';
 
 export interface CheckIconProps {
   className?: string;
 }
 
-export function CheckIcon({ className = "" }: CheckIconProps): JSX.Element {
+export function CheckIcon({ className = '' }: CheckIconProps): JSX.Element {
   return (
     <svg
       className={className}

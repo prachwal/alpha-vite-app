@@ -1,8 +1,8 @@
-import { JSX } from "preact";
+import { JSX } from 'preact';
 
 export interface ContainerProps {
-  maxWidth?: "sm" | "md" | "lg" | "xl" | "2xl" | "full";
-  padding?: "none" | "sm" | "md" | "lg" | "xl";
+  maxWidth?: 'sm' | 'md' | 'lg' | 'xl' | '2xl' | 'full';
+  padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl';
   centered?: boolean;
   fluid?: boolean;
   children: JSX.Element | JSX.Element[];
@@ -10,39 +10,39 @@ export interface ContainerProps {
 }
 
 export function Container({
-  maxWidth = "lg",
-  padding = "md",
+  maxWidth = 'lg',
+  padding = 'md',
   centered = true,
   fluid = false,
   children,
-  className = "",
+  className = '',
 }: Readonly<ContainerProps>) {
   const maxWidthClasses = {
-    sm: "max-w-2xl",
-    md: "max-w-3xl",
-    lg: "max-w-4xl",
-    xl: "max-w-5xl",
-    "2xl": "max-w-6xl",
-    full: "max-w-full",
+    sm: 'max-w-2xl',
+    md: 'max-w-3xl',
+    lg: 'max-w-4xl',
+    xl: 'max-w-5xl',
+    '2xl': 'max-w-6xl',
+    full: 'max-w-full',
   };
 
   const paddingClasses = {
-    none: "p-0",
-    sm: "p-4",
-    md: "p-6",
-    lg: "p-8",
-    xl: "p-12",
+    none: 'p-0',
+    sm: 'p-4',
+    md: 'p-6',
+    lg: 'p-8',
+    xl: 'p-12',
   };
 
   const containerClasses = [
-    "container",
-    fluid ? "w-full" : maxWidthClasses[maxWidth],
+    'container',
+    fluid ? 'w-full' : maxWidthClasses[maxWidth],
     paddingClasses[padding],
-    centered ? "mx-auto" : "",
+    centered ? 'mx-auto' : '',
     className,
   ]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 
   return <div className={containerClasses}>{children}</div>;
 }

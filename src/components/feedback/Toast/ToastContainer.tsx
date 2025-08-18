@@ -1,6 +1,6 @@
-import { h } from "preact";
-import { useToast } from "./ToastContext";
-import { Toast } from "./Toast";
+// No need to import h - it's handled by JSX transform
+import { useToast } from './ToastContext';
+import { Toast } from './Toast';
 
 export function ToastContainer() {
   const { toasts, removeToast } = useToast();

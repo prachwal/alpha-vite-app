@@ -1,5 +1,5 @@
-import { AppTitle } from "../../../components/AppTitle";
-import { CounterButton } from "../../../components/CounterButton";
+import { AppTitle } from '../../../components/AppTitle';
+import { CounterButton } from '../../../components/CounterButton';
 
 export function FormComponents() {
   return (

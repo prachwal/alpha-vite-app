@@ -1,1 +1,1 @@
-export { Rate, type RateProps } from "./Rate";
+export { Rate, type RateProps } from './Rate';

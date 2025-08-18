@@ -1,17 +1,17 @@
-import { useState } from "preact/hooks";
-import { Alert } from "../../../components/feedback/Alert/Alert";
-import { Modal } from "../../../components/feedback/Modal/Modal";
-import { Dialog } from "../../../components/feedback/Dialog/Dialog";
-import { Tooltip } from "../../../components/feedback/Tooltip/Tooltip";
-import { Loading } from "../../../components/feedback/Loading/Loading";
-import { Button } from "../../../components/form/Button/Button";
-import { Input } from "../../../components/form/Input/Input";
+import { useState } from 'preact/hooks';
+import { Alert } from '../../../components/feedback/Alert/Alert';
+import { Modal } from '../../../components/feedback/Modal/Modal';
+import { Dialog } from '../../../components/feedback/Dialog/Dialog';
+import { Tooltip } from '../../../components/feedback/Tooltip/Tooltip';
+import { Loading } from '../../../components/feedback/Loading/Loading';
+import { Button } from '../../../components/form/Button/Button';
+import { Input } from '../../../components/form/Input/Input';
 
 export function FeedbackComponents() {
   const [showModal, setShowModal] = useState(false);
   const [showDialog, setShowDialog] = useState(false);
   const [alertVisible, setAlertVisible] = useState(true);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
 
   return (
     <section className="space-y-6">
@@ -112,7 +112,7 @@ export function FeedbackComponents() {
           isOpen={showDialog}
           onClose={() => setShowDialog(false)}
           onConfirm={() => {
-            alert("Potwierdzono!");
+            alert('Potwierdzono!');
             setShowDialog(false);
           }}
           title="Potwierdzenie"

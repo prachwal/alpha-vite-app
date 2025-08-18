@@ -1,28 +1,28 @@
-import { apiClient, apiState } from "@services/ApiClient";
-import { signal } from "@preact/signals";
+import { apiClient, apiState } from '@services/ApiClient';
+import { signal } from '@preact/signals';
 
-const selectedEndpoint = signal<string>("/api/health");
-const customName = signal<string>("");
+const selectedEndpoint = signal<string>('/api/health');
+const customName = signal<string>('');
 
 export function ApiTester() {
   const handleTest = async () => {
     try {
       switch (selectedEndpoint.value) {
-        case "/api/health":
+        case '/api/health':
           await apiClient.getHealth();
           break;
-        case "/api/hello":
+        case '/api/hello':
           await apiClient.getHello(customName.value || undefined);
           break;
-        case "/api/test":
+        case '/api/test':
           await apiClient.getTest();
           break;
-        case "/api/info":
+        case '/api/info':
           await apiClient.getInfo();
           break;
       }
     } catch (error) {
-      console.error("API test failed:", error);
+      console.error('API test failed:', error);
     }
   };
 
@@ -67,7 +67,7 @@ export function ApiTester() {
           </select>
         </div>
 
-        {selectedEndpoint.value === "/api/hello" && (
+        {selectedEndpoint.value === '/api/hello' && (
           <div>
             <label
               htmlFor="custom-name-input"
@@ -94,7 +94,7 @@ export function ApiTester() {
           disabled={currentState.loading}
           className="px-4 py-2 bg-primary hover:bg-primary-hover disabled:bg-primary-disabled text-white rounded-md transition-colors"
         >
-          {currentState.loading ? "Testing..." : "Test API"}
+          {currentState.loading ? 'Testing...' : 'Test API'}
         </button>
 
         {currentState.error && (

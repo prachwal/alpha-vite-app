@@ -1,5 +1,5 @@
-import { useToast } from "./ToastContext";
-import { ToastData } from "./Toast";
+import { useToast } from './ToastContext';
+import { ToastData } from './Toast';
 
 export const useToastHooks = () => {
   const { addToast } = useToast();
@@ -7,7 +7,7 @@ export const useToastHooks = () => {
   const showToast = {
     info: (title: string, description?: string, duration?: number) => {
       return addToast({
-        variant: "info",
+        variant: 'info',
         title,
         ...(description && { description }),
         ...(duration && { duration }),
@@ -16,7 +16,7 @@ export const useToastHooks = () => {
 
     success: (title: string, description?: string, duration?: number) => {
       return addToast({
-        variant: "success",
+        variant: 'success',
         title,
         ...(description && { description }),
         ...(duration && { duration }),
@@ -25,7 +25,7 @@ export const useToastHooks = () => {
 
     warning: (title: string, description?: string, duration?: number) => {
       return addToast({
-        variant: "warning",
+        variant: 'warning',
         title,
         ...(description && { description }),
         ...(duration && { duration }),
@@ -34,14 +34,14 @@ export const useToastHooks = () => {
 
     error: (title: string, description?: string, duration?: number) => {
       return addToast({
-        variant: "error",
+        variant: 'error',
         title,
         ...(description && { description }),
         ...(duration && { duration }),
       });
     },
 
-    custom: (toast: Omit<ToastData, "id">) => {
+    custom: (toast: Omit<ToastData, 'id'>) => {
       return addToast(toast);
     },
   };

@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect, useMemo } from "preact/hooks";
-import { cn } from "../../../utils/cn";
+import { useState, useRef, useEffect, useMemo } from 'preact/hooks';
+import { cn } from '../../../utils/cn';
 
 export interface AutoCompleteOption {
   /** Option value */
@@ -22,7 +22,7 @@ export interface AutoCompleteProps {
   /** Input placeholder */
   placeholder?: string;
   /** Size variant */
-  size?: "sm" | "md" | "lg";
+  size?: 'sm' | 'md' | 'lg';
   /** Disable component */
   disabled?: boolean;
   /** Loading state */
@@ -55,7 +55,7 @@ export function AutoComplete({
   options,
   onSearch,
   placeholder,
-  size = "md",
+  size = 'md',
   disabled = false,
   loading = false,
   filterOption,
@@ -71,9 +71,9 @@ export function AutoComplete({
   const listRef = useRef<HTMLDivElement>(null);
 
   const sizeClasses = {
-    sm: "text-sm px-3 py-1.5",
-    md: "text-base px-3 py-2",
-    lg: "text-lg px-4 py-3",
+    sm: 'text-sm px-3 py-1.5',
+    md: 'text-base px-3 py-2',
+    lg: 'text-lg px-4 py-3',
   };
 
   // Default filter function
@@ -123,7 +123,7 @@ export function AutoComplete({
   // Handle keyboard navigation
   const handleKeyDown = (event: KeyboardEvent) => {
     if (!isOpen) {
-      if (event.key === "ArrowDown") {
+      if (event.key === 'ArrowDown') {
         event.preventDefault();
         setIsOpen(true);
         setHighlightedIndex(0);
@@ -132,26 +132,26 @@ export function AutoComplete({
     }
 
     switch (event.key) {
-      case "ArrowDown":
+      case 'ArrowDown':
         event.preventDefault();
         setHighlightedIndex((prev) =>
           prev < filteredOptions.length - 1 ? prev + 1 : prev
         );
         break;
 
-      case "ArrowUp":
+      case 'ArrowUp':
         event.preventDefault();
         setHighlightedIndex((prev) => (prev > 0 ? prev - 1 : prev));
         break;
 
-      case "Enter":
+      case 'Enter':
         event.preventDefault();
         if (highlightedIndex >= 0 && filteredOptions[highlightedIndex]) {
           handleOptionSelect(filteredOptions[highlightedIndex]);
         }
         break;
 
-      case "Escape":
+      case 'Escape':
         event.preventDefault();
         setIsOpen(false);
         setHighlightedIndex(-1);
@@ -191,8 +191,8 @@ export function AutoComplete({
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   // Scroll highlighted option into view
@@ -203,8 +203,8 @@ export function AutoComplete({
       ] as HTMLElement;
       if (highlightedElement && highlightedElement.scrollIntoView) {
         highlightedElement.scrollIntoView({
-          block: "nearest",
-          behavior: "smooth",
+          block: 'nearest',
+          behavior: 'smooth',
         });
       }
     }
@@ -216,7 +216,7 @@ export function AutoComplete({
   }, [value]);
 
   return (
-    <div className={cn("relative", className)} ref={containerRef}>
+    <div className={cn('relative', className)} ref={containerRef}>
       {/* Input Field */}
       <div className="relative">
         <input
@@ -230,18 +230,18 @@ export function AutoComplete({
           placeholder={placeholder}
           disabled={disabled}
           className={cn(
-            "w-full border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors",
+            'w-full border border-gray-300 dark:border-gray-600 rounded-md bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-colors',
             sizeClasses[size],
             disabled &&
-              "bg-gray-50 dark:bg-gray-800 text-gray-500 cursor-not-allowed",
-            loading && "pr-8"
+              'bg-gray-50 dark:bg-gray-800 text-gray-500 cursor-not-allowed',
+            loading && 'pr-8'
           )}
           autoComplete="off"
           role="combobox"
           aria-autocomplete="list"
           aria-expanded={isOpen}
-          aria-controls={isOpen ? "autocomplete-listbox" : undefined}
-          aria-describedby={isOpen ? "autocomplete-listbox" : undefined}
+          aria-controls={isOpen ? 'autocomplete-listbox' : undefined}
+          aria-describedby={isOpen ? 'autocomplete-listbox' : undefined}
         />
 
         {/* Loading Spinner */}
@@ -257,7 +257,7 @@ export function AutoComplete({
         <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg z-50">
           {filteredOptions.length === 0 ? (
             <div className="px-3 py-2 text-gray-500 dark:text-gray-400 text-center">
-              {loading ? "Loading..." : "No results found"}
+              {loading ? 'Loading...' : 'No results found'}
             </div>
           ) : (
             <div
@@ -266,7 +266,7 @@ export function AutoComplete({
               className="max-h-60 overflow-y-auto"
               style={{
                 maxHeight:
-                  typeof maxHeight === "number" ? `${maxHeight}px` : maxHeight,
+                  typeof maxHeight === 'number' ? `${maxHeight}px` : maxHeight,
               }}
             >
               {filteredOptions.map((option, index) => (
@@ -275,11 +275,11 @@ export function AutoComplete({
                   type="button"
                   disabled={option.disabled}
                   className={cn(
-                    "w-full text-left px-3 py-2 cursor-pointer text-gray-900 dark:text-gray-100 transition-colors focus:outline-none focus:bg-blue-50 dark:focus:bg-blue-900/50",
+                    'w-full text-left px-3 py-2 cursor-pointer text-gray-900 dark:text-gray-100 transition-colors focus:outline-none focus:bg-blue-50 dark:focus:bg-blue-900/50',
                     highlightedIndex === index &&
-                      "bg-blue-50 dark:bg-blue-900/50",
+                      'bg-blue-50 dark:bg-blue-900/50',
                     option.disabled &&
-                      "text-gray-400 dark:text-gray-500 cursor-not-allowed"
+                      'text-gray-400 dark:text-gray-500 cursor-not-allowed'
                   )}
                   onClick={() => handleOptionSelect(option)}
                   onMouseEnter={() => setHighlightedIndex(index)}
@@ -287,7 +287,7 @@ export function AutoComplete({
                   <div className="flex items-center justify-between">
                     <span
                       className={cn(
-                        option.label !== option.value && "font-medium"
+                        option.label !== option.value && 'font-medium'
                       )}
                     >
                       {option.label}

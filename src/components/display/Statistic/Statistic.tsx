@@ -1,5 +1,5 @@
-import { JSX } from "preact";
-import { cn } from "../../../utils/cn";
+import { JSX } from 'preact';
+import { cn } from '../../../utils/cn';
 
 export interface StatisticProps {
   title?: string;
@@ -29,7 +29,7 @@ export function Statistic({
   children,
 }: Readonly<StatisticProps>): JSX.Element {
   const formatValue = (val: string | number): string => {
-    if (typeof val === "number" && precision !== undefined) {
+    if (typeof val === 'number' && precision !== undefined) {
       return val.toFixed(precision);
     }
     return String(val);
@@ -39,18 +39,18 @@ export function Statistic({
 
   if (loading) {
     return (
-      <div className={cn("space-y-2", className)}>
+      <div className={cn('space-y-2', className)}>
         {title && (
           <div
             className={cn(
-              "h-4 w-24 animate-pulse rounded bg-gray-200",
+              'h-4 w-24 animate-pulse rounded bg-gray-200',
               titleClassName
             )}
           />
         )}
         <div
           className={cn(
-            "h-8 w-32 animate-pulse rounded bg-gray-200",
+            'h-8 w-32 animate-pulse rounded bg-gray-200',
             valueClassName
           )}
         />
@@ -60,11 +60,11 @@ export function Statistic({
   }
 
   return (
-    <div className={cn("space-y-2", className)}>
+    <div className={cn('space-y-2', className)}>
       {title && (
         <div
           className={cn(
-            "text-sm font-medium text-gray-700 dark:text-gray-300",
+            'text-sm font-medium text-gray-700 dark:text-gray-300',
             titleClassName
           )}
         >
@@ -73,7 +73,7 @@ export function Statistic({
       )}
       <div
         className={cn(
-          "text-2xl font-bold text-gray-900 dark:text-gray-100",
+          'text-2xl font-bold text-gray-900 dark:text-gray-100',
           valueClassName
         )}
         style={valueStyle}

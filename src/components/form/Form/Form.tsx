@@ -1,4 +1,4 @@
-import { useMemo } from "preact/hooks";
+import { useMemo } from 'preact/hooks';
 
 export interface FormFieldProps {
   label?: string;
@@ -21,7 +21,7 @@ export function FormField({
   error = false,
   helperText,
   children,
-  className = "",
+  className = '',
 }: Readonly<FormFieldProps>) {
   const fieldId = useMemo(
     () => `form-field-${Math.random().toString(36).slice(2, 11)}`,
@@ -45,7 +45,7 @@ export function FormField({
       {helperText && (
         <p
           id={`${fieldId}-helper`}
-          className={`text-sm ${error ? "text-danger" : "text-text-muted"}`}
+          className={`text-sm ${error ? 'text-danger' : 'text-text-muted'}`}
         >
           {helperText}
         </p>
@@ -57,7 +57,7 @@ export function FormField({
 export function Form({
   onSubmit,
   children,
-  className = "",
+  className = '',
 }: Readonly<FormProps>) {
   const handleSubmit = (event: Event) => {
     event.preventDefault();
@@ -77,4 +77,4 @@ export function Form({
 }
 
 // Re-export validation utilities
-export * from "./FormValidation";
+export * from './FormValidation';

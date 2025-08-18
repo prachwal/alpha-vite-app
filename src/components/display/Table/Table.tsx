@@ -1,4 +1,4 @@
-import { useMemo, useState } from "preact/hooks";
+import { useMemo, useState } from 'preact/hooks';
 
 export interface Column<T> {
   key: string;
@@ -7,10 +7,10 @@ export interface Column<T> {
   render?: (value: any, record: T, index: number) => preact.ComponentChildren;
   width?: string | number;
   minWidth?: string | number;
-  align?: "left" | "center" | "right";
+  align?: 'left' | 'center' | 'right';
   sortable?: boolean;
   filterable?: boolean;
-  fixed?: "left" | "right";
+  fixed?: 'left' | 'right';
 }
 
 export interface TableProps<T = any> {
@@ -28,8 +28,8 @@ export interface TableProps<T = any> {
     onChange: (selectedRowKeys: readonly string[]) => void;
     getCheckboxProps?: (record: T) => { disabled?: boolean };
   };
-  sortOrder?: { field: string; direction: "asc" | "desc" };
-  onSort?: (field: string, direction: "asc" | "desc") => void;
+  sortOrder?: { field: string; direction: 'asc' | 'desc' };
+  onSort?: (field: string, direction: 'asc' | 'desc') => void;
   onRow?: (
     record: T,
     index: number
@@ -43,7 +43,7 @@ export interface TableProps<T = any> {
     onExpand: (expanded: boolean, record: T) => void;
     expandedRowRender: (record: T) => preact.ComponentChildren;
   };
-  size?: "sm" | "md" | "lg";
+  size?: 'sm' | 'md' | 'lg';
   bordered?: boolean;
   striped?: boolean;
   sticky?: boolean;
@@ -53,15 +53,15 @@ export interface TableProps<T = any> {
 }
 
 const sizeClasses = {
-  sm: "text-xs",
-  md: "text-sm",
-  lg: "text-base",
+  sm: 'text-xs',
+  md: 'text-sm',
+  lg: 'text-base',
 };
 
 const alignClasses = {
-  left: "text-left",
-  center: "text-center",
-  right: "text-right",
+  left: 'text-left',
+  center: 'text-center',
+  right: 'text-right',
 };
 
 export function Table<T = any>({
@@ -74,17 +74,17 @@ export function Table<T = any>({
   onSort,
   onRow,
   expandable,
-  size = "md",
+  size = 'md',
   bordered = false,
   striped = false,
   sticky = false,
   scrollX,
   scrollY,
-  className = "",
+  className = '',
 }: Readonly<TableProps<T>>) {
   const [internalSortOrder, setInternalSortOrder] = useState<{
     field: string;
-    direction: "asc" | "desc";
+    direction: 'asc' | 'desc';
   } | null>(sortOrder || null);
 
   const currentSortOrder = sortOrder || internalSortOrder;
@@ -95,8 +95,8 @@ export function Table<T = any>({
     const field = (column.dataIndex as string) || column.key;
     const currentDirection =
       currentSortOrder?.field === field ? currentSortOrder.direction : null;
-    const newDirection: "asc" | "desc" =
-      currentDirection === "asc" ? "desc" : "asc";
+    const newDirection: 'asc' | 'desc' =
+      currentDirection === 'asc' ? 'desc' : 'asc';
 
     const newSortOrder = { field, direction: newDirection };
 
@@ -124,8 +124,8 @@ export function Table<T = any>({
         ? b[column.dataIndex]
         : b[field as keyof T];
 
-      if (aValue < bValue) return direction === "asc" ? -1 : 1;
-      if (aValue > bValue) return direction === "asc" ? 1 : -1;
+      if (aValue < bValue) return direction === 'asc' ? -1 : 1;
+      if (aValue > bValue) return direction === 'asc' ? 1 : -1;
       return 0;
     });
   }, [data, currentSortOrder, columns]);
@@ -163,18 +163,18 @@ export function Table<T = any>({
     rowSelection && rowSelection.selectedRowKeys.length > 0 && !isAllSelected;
 
   const tableClasses = [
-    "min-w-full table-auto",
+    'min-w-full table-auto',
     sizeClasses[size],
-    bordered ? "border border-gray-200 dark:border-gray-700" : "",
+    bordered ? 'border border-gray-200 dark:border-gray-700' : '',
     className,
   ]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 
   const containerStyle: any = {};
-  if (scrollX) containerStyle.overflowX = "auto";
+  if (scrollX) containerStyle.overflowX = 'auto';
   if (scrollY) {
-    containerStyle.overflowY = "auto";
+    containerStyle.overflowY = 'auto';
     containerStyle.maxHeight = scrollY;
   }
 
@@ -200,7 +200,7 @@ export function Table<T = any>({
         <table className={tableClasses}>
           <thead
             className={
-              sticky ? "sticky top-0 bg-white dark:bg-gray-800 z-10" : ""
+              sticky ? 'sticky top-0 bg-white dark:bg-gray-800 z-10' : ''
             }
           >
             <tr className="border-b border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-800">
@@ -222,11 +222,11 @@ export function Table<T = any>({
                 <th
                   key={column.key}
                   className={`px-4 py-3 font-medium text-gray-900 dark:text-gray-100 ${
-                    alignClasses[column.align || "left"]
+                    alignClasses[column.align || 'left']
                   } ${
                     column.sortable
-                      ? "cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700"
-                      : ""
+                      ? 'cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700'
+                      : ''
                   }`}
                   style={{
                     width: column.width,
@@ -243,11 +243,11 @@ export function Table<T = any>({
                             currentSortOrder?.field ===
                             ((column.dataIndex as string) || column.key)
                           ) {
-                            return currentSortOrder.direction === "asc"
-                              ? "↑"
-                              : "↓";
+                            return currentSortOrder.direction === 'asc'
+                              ? '↑'
+                              : '↓';
                           }
-                          return "↕";
+                          return '↕';
                         })()}
                       </span>
                     )}
@@ -270,10 +270,10 @@ export function Table<T = any>({
                     border-b border-gray-100 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700
                     ${
                       striped && index % 2 === 1
-                        ? "bg-gray-25 dark:bg-gray-800"
-                        : "dark:bg-gray-900"
+                        ? 'bg-gray-25 dark:bg-gray-800'
+                        : 'dark:bg-gray-900'
                     }
-                    ${isSelected ? "bg-blue-50 dark:bg-blue-900" : ""}
+                    ${isSelected ? 'bg-blue-50 dark:bg-blue-900' : ''}
                   `}
                   onClick={rowProps.onClick}
                   onMouseEnter={rowProps.onMouseEnter}
@@ -300,7 +300,7 @@ export function Table<T = any>({
                         onClick={() => expandable.onExpand(!isExpanded, record)}
                         className="text-gray-400 hover:text-gray-600"
                       >
-                        {isExpanded ? "−" : "+"}
+                        {isExpanded ? '−' : '+'}
                       </button>
                     </td>
                   )}
@@ -310,13 +310,13 @@ export function Table<T = any>({
                       : record[column.key as keyof T];
                     const content = column.render
                       ? column.render(value, record, index)
-                      : String(value || "");
+                      : String(value || '');
 
                     return (
                       <td
                         key={column.key}
                         className={`px-4 py-3 ${
-                          alignClasses[column.align || "left"]
+                          alignClasses[column.align || 'left']
                         }`}
                         style={{
                           width: column.width,
@@ -383,18 +383,18 @@ export function Table<T = any>({
           <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
             <div>
               <p className="text-sm text-gray-700 dark:text-gray-300">
-                Showing{" "}
+                Showing{' '}
                 <span className="font-medium">
                   {(pagination.current - 1) * pagination.pageSize + 1}
-                </span>{" "}
-                to{" "}
+                </span>{' '}
+                to{' '}
                 <span className="font-medium">
                   {Math.min(
                     pagination.current * pagination.pageSize,
                     pagination.total
                   )}
-                </span>{" "}
-                of <span className="font-medium">{pagination.total}</span>{" "}
+                </span>{' '}
+                of <span className="font-medium">{pagination.total}</span>{' '}
                 results
               </p>
             </div>
@@ -414,7 +414,7 @@ export function Table<T = any>({
                   ‹
                 </button>
                 <span className="relative inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600">
-                  Page {pagination.current} of{" "}
+                  Page {pagination.current} of{' '}
                   {Math.ceil(pagination.total / pagination.pageSize)}
                 </span>
                 <button

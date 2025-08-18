@@ -1,12 +1,12 @@
-import { describe, it, expect, beforeEach, vi } from "vitest";
-import { signal } from "@preact/signals";
+import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { signal } from '@preact/signals';
 
 // Create mock signals for testing
 const themeConfig = signal({
-  mode: "light",
-  fontSize: "base",
-  fontFamily: "sans",
-  spacing: "normal",
+  mode: 'light',
+  fontSize: 'base',
+  fontFamily: 'sans',
+  spacing: 'normal',
 });
 
 // Mock the actual implementation
@@ -17,7 +17,7 @@ const updateTheme = (updates: Partial<typeof themeConfig.value>) => {
 const toggleDarkMode = () => {
   themeConfig.value = {
     ...themeConfig.value,
-    mode: themeConfig.value.mode === "light" ? "dark" : "light",
+    mode: themeConfig.value.mode === 'light' ? 'dark' : 'light',
   };
 };
 
@@ -29,7 +29,7 @@ const localStorageMock = {
   clear: vi.fn(),
 };
 
-Object.defineProperty(window, "localStorage", {
+Object.defineProperty(window, 'localStorage', {
   value: localStorageMock,
   writable: true,
 });
@@ -41,93 +41,93 @@ const mockClassList = {
   remove: vi.fn(),
 };
 
-Object.defineProperty(document, "documentElement", {
+Object.defineProperty(document, 'documentElement', {
   value: {
     classList: mockClassList,
   },
   writable: true,
 });
 
-describe("ThemeProvider", () => {
+describe('ThemeProvider', () => {
   beforeEach(() => {
     // Reset all mocks
     vi.clearAllMocks();
 
     // Reset theme to default
     themeConfig.value = {
-      mode: "light",
-      fontSize: "base",
-      fontFamily: "sans",
-      spacing: "normal",
+      mode: 'light',
+      fontSize: 'base',
+      fontFamily: 'sans',
+      spacing: 'normal',
     };
   });
 
-  describe("themeConfig signal", () => {
-    it("should have default theme configuration", () => {
+  describe('themeConfig signal', () => {
+    it('should have default theme configuration', () => {
       expect(themeConfig.value).toEqual({
-        mode: "light",
-        fontSize: "base",
-        fontFamily: "sans",
-        spacing: "normal",
+        mode: 'light',
+        fontSize: 'base',
+        fontFamily: 'sans',
+        spacing: 'normal',
       });
     });
   });
 
-  describe("updateTheme function", () => {
-    it("should update theme configuration", () => {
-      updateTheme({ mode: "dark" });
+  describe('updateTheme function', () => {
+    it('should update theme configuration', () => {
+      updateTheme({ mode: 'dark' });
 
-      expect(themeConfig.value.mode).toBe("dark");
-      expect(themeConfig.value.fontSize).toBe("base"); // other props unchanged
+      expect(themeConfig.value.mode).toBe('dark');
+      expect(themeConfig.value.fontSize).toBe('base'); // other props unchanged
     });
 
-    it("should update multiple theme properties", () => {
+    it('should update multiple theme properties', () => {
       updateTheme({
-        mode: "dark",
-        fontSize: "lg",
-        fontFamily: "mono",
+        mode: 'dark',
+        fontSize: 'lg',
+        fontFamily: 'mono',
       });
 
       expect(themeConfig.value).toEqual({
-        mode: "dark",
-        fontSize: "lg",
-        fontFamily: "mono",
-        spacing: "normal",
+        mode: 'dark',
+        fontSize: 'lg',
+        fontFamily: 'mono',
+        spacing: 'normal',
       });
     });
   });
 
-  describe("toggleDarkMode function", () => {
-    it("should toggle from light to dark", () => {
-      themeConfig.value = { ...themeConfig.value, mode: "light" };
+  describe('toggleDarkMode function', () => {
+    it('should toggle from light to dark', () => {
+      themeConfig.value = { ...themeConfig.value, mode: 'light' };
 
       toggleDarkMode();
 
-      expect(themeConfig.value.mode).toBe("dark");
+      expect(themeConfig.value.mode).toBe('dark');
     });
 
-    it("should toggle from dark to light", () => {
-      themeConfig.value = { ...themeConfig.value, mode: "dark" };
+    it('should toggle from dark to light', () => {
+      themeConfig.value = { ...themeConfig.value, mode: 'dark' };
 
       toggleDarkMode();
 
-      expect(themeConfig.value.mode).toBe("light");
+      expect(themeConfig.value.mode).toBe('light');
     });
   });
 
-  describe("localStorage integration", () => {
-    it("should save theme config to localStorage on update", () => {
+  describe('localStorage integration', () => {
+    it('should save theme config to localStorage on update', () => {
       // Skip this test as localStorage integration is handled differently
       // in the actual implementation
       expect(true).toBe(true);
     });
 
-    it("should load theme config from localStorage", () => {
+    it('should load theme config from localStorage', () => {
       const storedTheme = {
-        mode: "dark",
-        fontSize: "lg",
-        fontFamily: "mono",
-        spacing: "spacious",
+        mode: 'dark',
+        fontSize: 'lg',
+        fontFamily: 'mono',
+        spacing: 'spacious',
       };
 
       localStorageMock.getItem.mockReturnValue(JSON.stringify(storedTheme));

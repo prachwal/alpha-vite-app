@@ -46,7 +46,7 @@ export class FormValidator {
 
   validateField(value: any, rules: ValidationRule): string | null {
     if (this.isRequiredMissing(value, rules)) {
-      return "To pole jest wymagane";
+      return 'To pole jest wymagane';
     }
 
     if (!this.hasValue(value)) {
@@ -63,7 +63,7 @@ export class FormValidator {
 
   private isRequiredMissing(value: any, rules: ValidationRule): boolean {
     return Boolean(
-      rules.required && (value === undefined || value === null || value === "")
+      rules.required && (value === undefined || value === null || value === '')
     );
   }
 
@@ -81,7 +81,7 @@ export class FormValidator {
     }
 
     if (rules.pattern && !rules.pattern.test(value)) {
-      return "Nieprawidłowy format";
+      return 'Nieprawidłowy format';
     }
 
     return null;
@@ -99,34 +99,34 @@ export class FormValidator {
   validateEmail(email: string): string | null {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return "Nieprawidłowy adres email";
+      return 'Nieprawidłowy adres email';
     }
     return null;
   }
 
   validatePhone(phone: string): string | null {
     const phoneRegex = /^\+?\d{9,15}$/;
-    if (!phoneRegex.test(phone.replace(/\s/g, ""))) {
-      return "Nieprawidłowy numer telefonu";
+    if (!phoneRegex.test(phone.replace(/\s/g, ''))) {
+      return 'Nieprawidłowy numer telefonu';
     }
     return null;
   }
 
   validatePassword(password: string): string | null {
     if (password.length < 8) {
-      return "Hasło musi mieć co najmniej 8 znaków";
+      return 'Hasło musi mieć co najmniej 8 znaków';
     }
 
     if (!/[A-Z]/.test(password)) {
-      return "Hasło musi zawierać co najmniej jedną wielką literę";
+      return 'Hasło musi zawierać co najmniej jedną wielką literę';
     }
 
     if (!/[a-z]/.test(password)) {
-      return "Hasło musi zawierać co najmniej jedną małą literę";
+      return 'Hasło musi zawierać co najmniej jedną małą literę';
     }
 
     if (!/\d/.test(password)) {
-      return "Hasło musi zawierać co najmniej jedną cyfrę";
+      return 'Hasło musi zawierać co najmniej jedną cyfrę';
     }
 
     return null;
@@ -135,19 +135,19 @@ export class FormValidator {
   validatePolishPostalCode(code: string): string | null {
     const postalCodeRegex = /^\d{2}-\d{3}$/;
     if (!postalCodeRegex.test(code)) {
-      return "Nieprawidłowy format kodu pocztowego (XX-XXX)";
+      return 'Nieprawidłowy format kodu pocztowego (XX-XXX)';
     }
     return null;
   }
 
   validatePESEL(pesel: string): string | null {
     if (!/^\d{11}$/.test(pesel)) {
-      return "PESEL musi mieć 11 cyfr";
+      return 'PESEL musi mieć 11 cyfr';
     }
 
     // PESEL validation algorithm
     const weights = [1, 3, 7, 9, 1, 3, 7, 9, 1, 3];
-    const digits = pesel.split("").map(Number);
+    const digits = pesel.split('').map(Number);
 
     let sum = 0;
     for (let i = 0; i < 10; i++) {
@@ -159,7 +159,7 @@ export class FormValidator {
     const control = (10 - (sum % 10)) % 10;
 
     if (digits.length > 10 && control !== digits[10]) {
-      return "Nieprawidłowy numer PESEL";
+      return 'Nieprawidłowy numer PESEL';
     }
 
     return null;
@@ -167,11 +167,11 @@ export class FormValidator {
 
   validateNIP(nip: string): string | null {
     if (!/^\d{10}$/.test(nip)) {
-      return "NIP musi mieć 10 cyfr";
+      return 'NIP musi mieć 10 cyfr';
     }
 
     const weights = [6, 5, 7, 2, 3, 4, 5, 6, 7];
-    const digits = nip.split("").map(Number);
+    const digits = nip.split('').map(Number);
 
     let sum = 0;
     for (let i = 0; i < 9; i++) {
@@ -183,7 +183,7 @@ export class FormValidator {
     const control = sum % 11;
 
     if (digits.length > 9 && control !== digits[9]) {
-      return "Nieprawidłowy numer NIP";
+      return 'Nieprawidłowy numer NIP';
     }
 
     return null;
@@ -193,9 +193,9 @@ export class FormValidator {
 // Utility functions for common validations
 export const validators = {
   required: (value: any) =>
-    value !== undefined && value !== null && value !== "",
+    value !== undefined && value !== null && value !== '',
   email: (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
-  phone: (phone: string) => /^\+?\d{9,15}$/.test(phone.replace(/\s/g, "")),
+  phone: (phone: string) => /^\+?\d{9,15}$/.test(phone.replace(/\s/g, '')),
   url: (url: string) => {
     try {
       new URL(url);
@@ -222,12 +222,12 @@ export const validationRules = {
     required: true,
     pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
     custom: (value: string) =>
-      validators.email(value) ? null : "Nieprawidłowy adres email",
+      validators.email(value) ? null : 'Nieprawidłowy adres email',
   },
   phone: {
     required: true,
     custom: (value: string) =>
-      validators.phone(value) ? null : "Nieprawidłowy numer telefonu",
+      validators.phone(value) ? null : 'Nieprawidłowy numer telefonu',
   },
   password: {
     required: true,

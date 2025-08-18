@@ -1,4 +1,4 @@
-import { signal } from "@preact/signals";
+import { signal } from '@preact/signals';
 
 export interface ApiResponse<T = any> {
   data: T | null;
@@ -9,7 +9,7 @@ export interface ApiResponse<T = any> {
 export const apiState = signal<Record<string, ApiResponse>>({});
 
 export class ApiClient {
-  private baseUrl = "";
+  private baseUrl = '';
 
   async request<T>(endpoint: string): Promise<T> {
     const key = endpoint;
@@ -38,7 +38,7 @@ export class ApiClient {
       return data;
     } catch (error) {
       const errorMessage =
-        error instanceof Error ? error.message : "Unknown error";
+        error instanceof Error ? error.message : 'Unknown error';
 
       // Set error state
       apiState.value = {
@@ -56,11 +56,11 @@ export class ApiClient {
       timestamp: string;
       uptime: number;
       version: string;
-    }>("/api/health");
+    }>('/api/health');
   }
 
   async getHello(name?: string) {
-    const query = name ? `?name=${encodeURIComponent(name)}` : "";
+    const query = name ? `?name=${encodeURIComponent(name)}` : '';
     return this.request<{
       message: string;
       appName: string;
@@ -74,7 +74,7 @@ export class ApiClient {
       environment: string;
       userAgent: string;
       ip: string;
-    }>("/api/test");
+    }>('/api/test');
   }
 
   async getInfo() {
@@ -84,7 +84,7 @@ export class ApiClient {
       description: string;
       environment: string;
       nodeVersion: string;
-    }>("/api/info");
+    }>('/api/info');
   }
 }
 

@@ -1,12 +1,12 @@
-import { h } from "preact";
-import { useEffect, useState } from "preact/hooks";
+// No need to import h - it's handled by JSX transform
+import { useEffect, useState } from 'preact/hooks';
 
 export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   title?: string;
   children: preact.ComponentChildren;
-  size?: "sm" | "md" | "lg" | "xl" | "full";
+  size?: 'sm' | 'md' | 'lg' | 'xl' | 'full';
   closeOnOverlay?: boolean;
   closeOnEsc?: boolean;
   showCloseButton?: boolean;
@@ -14,11 +14,11 @@ export interface ModalProps {
 }
 
 const sizeClasses = {
-  sm: "max-w-sm",
-  md: "max-w-md",
-  lg: "max-w-lg",
-  xl: "max-w-xl",
-  full: "max-w-full mx-4",
+  sm: 'max-w-sm',
+  md: 'max-w-md',
+  lg: 'max-w-lg',
+  xl: 'max-w-xl',
+  full: 'max-w-full mx-4',
 };
 
 export function Modal({
@@ -26,11 +26,11 @@ export function Modal({
   onClose,
   title,
   children,
-  size = "md",
+  size = 'md',
   closeOnOverlay = true,
   closeOnEsc = true,
   showCloseButton = true,
-  className = "",
+  className = '',
 }: ModalProps) {
   const [isVisible, setIsVisible] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
@@ -49,19 +49,19 @@ export function Modal({
     if (!closeOnEsc) return;
 
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
+      if (event.key === 'Escape') {
         onClose();
       }
     };
 
     if (isOpen) {
-      document.addEventListener("keydown", handleEscape);
-      document.body.style.overflow = "hidden";
+      document.addEventListener('keydown', handleEscape);
+      document.body.style.overflow = 'hidden';
     }
 
     return () => {
-      document.removeEventListener("keydown", handleEscape);
-      document.body.style.overflow = "";
+      document.removeEventListener('keydown', handleEscape);
+      document.body.style.overflow = '';
     };
   }, [isOpen, closeOnEsc, onClose]);
 
@@ -77,20 +77,20 @@ export function Modal({
     <div
       className={`
         fixed inset-0 z-50 flex items-center justify-center
-        ${isAnimating ? "opacity-100" : "opacity-0"}
+        ${isAnimating ? 'opacity-100' : 'opacity-0'}
         transition-opacity duration-300
       `}
       onClick={handleOverlayClick}
       role="dialog"
       aria-modal="true"
-      aria-labelledby={title ? "modal-title" : undefined}
+      aria-labelledby={title ? 'modal-title' : undefined}
     >
       <div
         className={`
           relative bg-white rounded-lg shadow-xl
           ${sizeClasses[size]}
           ${className}
-          ${isAnimating ? "scale-100" : "scale-95"}
+          ${isAnimating ? 'scale-100' : 'scale-95'}
           transition-transform duration-300
         `}
       >
@@ -139,7 +139,7 @@ export interface ModalHeaderProps {
   className?: string;
 }
 
-export function ModalHeader({ children, className = "" }: ModalHeaderProps) {
+export function ModalHeader({ children, className = '' }: ModalHeaderProps) {
   return <div className={`px-6 py-4 border-b ${className}`}>{children}</div>;
 }
 
@@ -148,7 +148,7 @@ export interface ModalBodyProps {
   className?: string;
 }
 
-export function ModalBody({ children, className = "" }: ModalBodyProps) {
+export function ModalBody({ children, className = '' }: ModalBodyProps) {
   return <div className={`px-6 py-4 ${className}`}>{children}</div>;
 }
 
@@ -157,6 +157,6 @@ export interface ModalFooterProps {
   className?: string;
 }
 
-export function ModalFooter({ children, className = "" }: ModalFooterProps) {
+export function ModalFooter({ children, className = '' }: ModalFooterProps) {
   return <div className={`px-6 py-4 border-t ${className}`}>{children}</div>;
 }

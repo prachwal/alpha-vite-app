@@ -1,7 +1,6 @@
-import { h } from "preact";
-import { useState, useEffect } from "preact/hooks";
-import { Modal, ModalBody, ModalFooter } from "../Modal/Modal";
-import { Button } from "../../form/Button/Button";
+import { useState } from 'preact/hooks';
+import { Modal, ModalBody, ModalFooter } from '../Modal/Modal';
+import { Button } from '../../form/Button/Button';
 
 export interface DialogProps {
   isOpen: boolean;
@@ -11,8 +10,8 @@ export interface DialogProps {
   message: string;
   confirmText?: string;
   cancelText?: string;
-  variant?: "info" | "warning" | "danger";
-  size?: "sm" | "md" | "lg";
+  variant?: 'info' | 'warning' | 'danger';
+  size?: 'sm' | 'md' | 'lg';
   closeOnOverlay?: boolean;
 }
 
@@ -20,12 +19,12 @@ export function Dialog({
   isOpen,
   onClose,
   onConfirm,
-  title = "Confirm",
+  title = 'Confirm',
   message,
-  confirmText = "Confirm",
-  cancelText = "Cancel",
-  variant = "info",
-  size = "md",
+  confirmText = 'Confirm',
+  cancelText = 'Cancel',
+  variant = 'info',
+  size = 'md',
   closeOnOverlay = true,
 }: DialogProps) {
   const [isConfirming, setIsConfirming] = useState(false);
@@ -42,16 +41,16 @@ export function Dialog({
 
   const variantStyles = {
     info: {
-      title: "text-blue-900",
-      confirmButton: "bg-blue-600 hover:bg-blue-700 text-white",
+      title: 'text-blue-900',
+      confirmButton: 'bg-blue-600 hover:bg-blue-700 text-white',
     },
     warning: {
-      title: "text-yellow-900",
-      confirmButton: "bg-yellow-600 hover:bg-yellow-700 text-white",
+      title: 'text-yellow-900',
+      confirmButton: 'bg-yellow-600 hover:bg-yellow-700 text-white',
     },
     danger: {
-      title: "text-red-900",
-      confirmButton: "bg-red-600 hover:bg-red-700 text-white",
+      title: 'text-red-900',
+      confirmButton: 'bg-red-600 hover:bg-red-700 text-white',
     },
   };
 
@@ -95,7 +94,7 @@ export function useDialog() {
   const [config, setConfig] = useState<DialogProps | null>(null);
 
   const open = (
-    props: Omit<DialogProps, "isOpen" | "onClose" | "onConfirm">
+    props: Omit<DialogProps, 'isOpen' | 'onClose' | 'onConfirm'>
   ) => {
     setConfig({
       ...props,

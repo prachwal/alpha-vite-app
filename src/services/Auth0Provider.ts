@@ -2,16 +2,16 @@
  * @fileoverview Auth0 authentication service for Preact application
  */
 
-import { createAuth0Client, Auth0Client } from "@auth0/auth0-spa-js";
-import { signal, computed } from "@preact/signals";
+import { createAuth0Client, Auth0Client } from '@auth0/auth0-spa-js';
+import { signal, computed } from '@preact/signals';
 
 // Get configuration from environment variables
 const AUTH0_DOMAIN =
-  import.meta.env.VITE_AUTH0_DOMAIN || "dev-4xxb1z18b3z4hc6s.us.auth0.com";
+  import.meta.env.VITE_AUTH0_DOMAIN || 'dev-4xxb1z18b3z4hc6s.us.auth0.com';
 const AUTH0_CLIENT_ID =
-  import.meta.env.VITE_AUTH0_CLIENT_ID || "MjnBOrUzjRZdOUoEvMfChtQhoeZ5VNvi";
-const AUTH0_AUDIENCE = import.meta.env.VITE_AUTH0_AUDIENCE || "";
-const AUTH0_SCOPE = import.meta.env.VITE_AUTH0_SCOPE || "openid profile email";
+  import.meta.env.VITE_AUTH0_CLIENT_ID || 'MjnBOrUzjRZdOUoEvMfChtQhoeZ5VNvi';
+const AUTH0_AUDIENCE = import.meta.env.VITE_AUTH0_AUDIENCE || '';
+const AUTH0_SCOPE = import.meta.env.VITE_AUTH0_SCOPE || 'openid profile email';
 
 export interface Auth0User {
   email?: string;
@@ -43,7 +43,7 @@ export const isLoading = computed(() => auth0State.value.isLoading);
 
 export async function initializeAuth0(): Promise<void> {
   try {
-    console.log("Auth0 Config:", {
+    console.log('Auth0 Config:', {
       domain: AUTH0_DOMAIN,
       clientId: AUTH0_CLIENT_ID,
       audience: AUTH0_AUDIENCE,
@@ -57,25 +57,25 @@ export async function initializeAuth0(): Promise<void> {
         scope: AUTH0_SCOPE,
         ...(AUTH0_AUDIENCE?.trim() && { audience: AUTH0_AUDIENCE }),
       },
-      cacheLocation: "localstorage",
+      cacheLocation: 'localstorage',
       useRefreshTokens: true,
     });
 
     await checkAuthState();
 
     if (
-      window.location.search.includes("code=") ||
-      window.location.search.includes("error=")
+      window.location.search.includes('code=') ||
+      window.location.search.includes('error=')
     ) {
       await handleRedirectCallback();
     }
   } catch (error) {
-    console.error("Auth0 init failed:", error);
+    console.error('Auth0 init failed:', error);
     auth0State.value = {
       ...auth0State.value,
       isLoading: false,
       error:
-        error instanceof Error ? error.message : "Failed to initialize Auth0",
+        error instanceof Error ? error.message : 'Failed to initialize Auth0',
     };
   }
 }
@@ -103,13 +103,13 @@ export async function checkAuthState(): Promise<void> {
       };
     }
   } catch (error) {
-    console.error("Auth state check failed:", error);
+    console.error('Auth state check failed:', error);
     auth0State.value = {
       isLoading: false,
       isAuthenticated: false,
       user: null,
       error:
-        error instanceof Error ? error.message : "Authentication check failed",
+        error instanceof Error ? error.message : 'Authentication check failed',
     };
   }
 }
@@ -120,14 +120,14 @@ export async function handleRedirectCallback(): Promise<void> {
   try {
     const result = await auth0Client.handleRedirectCallback();
     await checkAuthState();
-    const targetUrl = result.appState?.targetUrl || "/";
+    const targetUrl = result.appState?.targetUrl || '/';
     window.history.replaceState({}, document.title, targetUrl);
   } catch (error) {
-    console.error("Redirect callback failed:", error);
+    console.error('Redirect callback failed:', error);
     auth0State.value = {
       ...auth0State.value,
       isLoading: false,
-      error: error instanceof Error ? error.message : "Login callback failed",
+      error: error instanceof Error ? error.message : 'Login callback failed',
     };
     window.history.replaceState({}, document.title, window.location.pathname);
   }
@@ -136,7 +136,7 @@ export async function handleRedirectCallback(): Promise<void> {
 export async function loginWithRedirect(options?: {
   targetUrl?: string;
 }): Promise<void> {
-  if (!auth0Client) throw new Error("Auth0 not initialized");
+  if (!auth0Client) throw new Error('Auth0 not initialized');
 
   try {
     await auth0Client.loginWithRedirect({
@@ -148,16 +148,16 @@ export async function loginWithRedirect(options?: {
       },
     });
   } catch (error) {
-    console.error("Login failed:", error);
+    console.error('Login failed:', error);
     auth0State.value = {
       ...auth0State.value,
-      error: error instanceof Error ? error.message : "Login failed",
+      error: error instanceof Error ? error.message : 'Login failed',
     };
   }
 }
 
 export async function loginWithPopup(): Promise<void> {
-  if (!auth0Client) throw new Error("Auth0 not initialized");
+  if (!auth0Client) throw new Error('Auth0 not initialized');
 
   try {
     auth0State.value = { ...auth0State.value, isLoading: true };
@@ -171,11 +171,11 @@ export async function loginWithPopup(): Promise<void> {
 
     await checkAuthState();
   } catch (error) {
-    console.error("Popup login failed:", error);
+    console.error('Popup login failed:', error);
     auth0State.value = {
       ...auth0State.value,
       isLoading: false,
-      error: error instanceof Error ? error.message : "Popup login failed",
+      error: error instanceof Error ? error.message : 'Popup login failed',
     };
   }
 }
@@ -196,7 +196,7 @@ export async function getAccessToken(): Promise<string | null> {
   try {
     return await auth0Client.getTokenSilently();
   } catch (error) {
-    console.error("Token retrieval failed:", error);
+    console.error('Token retrieval failed:', error);
     return null;
   }
 }

@@ -1,5 +1,5 @@
-import { JSX } from "preact";
-import { cn } from "../../../utils/cn";
+import { JSX } from 'preact';
+import { cn } from '../../../utils/cn';
 
 export interface MenuItemProps {
   id: string;
@@ -33,12 +33,12 @@ export function MenuItem({
   };
 
   const itemClasses = cn(
-    "flex items-center w-full px-3 py-2 text-sm rounded-md transition-colors duration-200",
-    "hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1",
-    selected && "bg-primary text-white",
-    !selected && "text-gray-700",
-    disabled && "text-gray-400 cursor-not-allowed",
-    level > 0 && "ml-4"
+    'flex items-center w-full px-3 py-2 text-sm rounded-md transition-colors duration-200',
+    'hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1',
+    selected && 'bg-primary text-white',
+    !selected && 'text-gray-700',
+    disabled && 'text-gray-400 cursor-not-allowed',
+    level > 0 && 'ml-4'
   );
 
   const content = (

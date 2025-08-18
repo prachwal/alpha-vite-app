@@ -1,5 +1,5 @@
-import { JSX } from "preact";
-import { cn } from "../../../utils/cn";
+import { JSX } from 'preact';
+import { cn } from '../../../utils/cn';
 
 export interface MenuGroupProps {
   title: string;
@@ -13,7 +13,7 @@ export function MenuGroup({
   className,
 }: Readonly<MenuGroupProps>): JSX.Element {
   return (
-    <div className={cn("menu-group", className)}>
+    <div className={cn('menu-group', className)}>
       <h3 className="px-3 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
         {title}
       </h3>

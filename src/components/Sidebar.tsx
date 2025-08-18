@@ -5,9 +5,9 @@ import {
   isHydrated,
   currentPath,
   updateCurrentPath,
-} from "./SidebarState";
-import { t } from "@services/i18n";
-import { AuthButton } from "./AuthProvider";
+} from './SidebarState';
+import { t } from '@services/i18n';
+import { AuthButton } from './AuthProvider';
 
 export function Sidebar() {
   const isActiveRoute = (path: string) => {
@@ -18,27 +18,27 @@ export function Sidebar() {
   const isCollapsed = () => {
     return (
       isHydrated.value &&
-      (currentBreakpoint.value === "tablet" ||
-        currentBreakpoint.value === "desktop") &&
+      (currentBreakpoint.value === 'tablet' ||
+        currentBreakpoint.value === 'desktop') &&
       !sidebarOpen.value
     );
   };
 
   // Dynamic classes for icons based on sidebar state
   const getIconClasses = () => {
-    if (typeof window === "undefined" || !isHydrated.value) {
-      return "w-6 h-6 mr-3";
+    if (typeof window === 'undefined' || !isHydrated.value) {
+      return 'w-6 h-6 mr-3';
     }
 
-    return isCollapsed() ? "w-8 h-8" : "w-6 h-6 mr-3";
+    return isCollapsed() ? 'w-8 h-8' : 'w-6 h-6 mr-3';
   };
 
   // Dynamic classes for nav links based on sidebar state
   const getNavLinkClasses = (path: string) => {
     const baseClasses =
-      "flex items-center rounded-md transition-all duration-300";
-    const activeClasses = "bg-bg-accent-soft text-text-accent";
-    const inactiveClasses = "hover:bg-bg-surface text-text-muted";
+      'flex items-center rounded-md transition-all duration-300';
+    const activeClasses = 'bg-bg-accent-soft text-text-accent';
+    const inactiveClasses = 'hover:bg-bg-surface text-text-muted';
 
     const stateClasses = isActiveRoute(path) ? activeClasses : inactiveClasses;
 
@@ -49,22 +49,22 @@ export function Sidebar() {
 
   const handleNavigation = (e: Event, href: string) => {
     e.preventDefault();
-    window.history.pushState({}, "", href);
-    window.dispatchEvent(new PopStateEvent("popstate"));
+    window.history.pushState({}, '', href);
+    window.dispatchEvent(new PopStateEvent('popstate'));
     // Update current path signal immediately
     updateCurrentPath();
     // Close sidebar on mobile after navigation
-    if (currentBreakpoint.value === "mobile") {
+    if (currentBreakpoint.value === 'mobile') {
       sidebarOpen.value = false;
     }
   };
 
   const getSidebarClasses = () => {
     const baseClasses =
-      "fixed top-0 left-0 h-screen bg-bg-surface shadow-lg border-r border-border-primary z-50 transition-all duration-300 ease-in-out";
+      'fixed top-0 left-0 h-screen bg-bg-surface shadow-lg border-r border-border-primary z-50 transition-all duration-300 ease-in-out';
 
     // SSR - always render as desktop with sidebar open for consistency
-    if (typeof window === "undefined") {
+    if (typeof window === 'undefined') {
       return `${baseClasses} w-64 transform translate-x-0`;
     }
 
@@ -74,14 +74,14 @@ export function Sidebar() {
     }
 
     // Fully hydrated - use responsive behavior
-    if (currentBreakpoint.value === "mobile") {
+    if (currentBreakpoint.value === 'mobile') {
       return `${baseClasses} w-64 transform ${
-        sidebarOpen.value ? "translate-x-0" : "-translate-x-full"
+        sidebarOpen.value ? 'translate-x-0' : '-translate-x-full'
       }`;
     } else {
       // Tablet and Desktop - allow collapsing
       return `${baseClasses} ${
-        sidebarOpen.value ? "w-64" : "w-16"
+        sidebarOpen.value ? 'w-64' : 'w-16'
       } transform translate-x-0`;
     }
   };
@@ -89,15 +89,15 @@ export function Sidebar() {
   return (
     <>
       {/* Overlay for mobile - only render after hydration to avoid SSR mismatch */}
-      {typeof window !== "undefined" &&
+      {typeof window !== 'undefined' &&
         isHydrated.value &&
-        currentBreakpoint.value === "mobile" &&
+        currentBreakpoint.value === 'mobile' &&
         sidebarOpen.value && (
           <button
             type="button"
             className="fixed inset-0 bg-black bg-opacity-50 z-40 lg:hidden cursor-pointer border-0 p-0"
             onClick={toggleSidebar}
-            onKeyDown={(e) => e.key === "Escape" && toggleSidebar()}
+            onKeyDown={(e) => e.key === 'Escape' && toggleSidebar()}
             aria-label="Close sidebar"
           />
         )}
@@ -110,7 +110,7 @@ export function Sidebar() {
             <button
               onClick={toggleSidebar}
               className="p-2 rounded-md hover:bg-bg-primary flex-shrink-0"
-              aria-label={t("toggleSidebar")}
+              aria-label={t('toggleSidebar')}
             >
               {/* Icon changes based on sidebar state */}
               {sidebarOpen.value ? (
@@ -145,8 +145,8 @@ export function Sidebar() {
           <nav className="flex-1 px-4 py-4 space-y-2">
             <a
               href="/"
-              onClick={(e) => handleNavigation(e, "/")}
-              className={getNavLinkClasses("/")}
+              onClick={(e) => handleNavigation(e, '/')}
+              className={getNavLinkClasses('/')}
             >
               <svg
                 className={getIconClasses()}
@@ -157,16 +157,16 @@ export function Sidebar() {
               </svg>
               <span
                 className={`nav-text transition-all duration-300 ease-in-out ${
-                  isCollapsed() ? "opacity-0 w-0" : "opacity-100 w-auto"
+                  isCollapsed() ? 'opacity-0 w-0' : 'opacity-100 w-auto'
                 }`}
               >
-                {t("homePage")}
+                {t('homePage')}
               </span>
             </a>
             <a
               href="/about"
-              onClick={(e) => handleNavigation(e, "/about")}
-              className={getNavLinkClasses("/about")}
+              onClick={(e) => handleNavigation(e, '/about')}
+              className={getNavLinkClasses('/about')}
             >
               <svg
                 className={getIconClasses()}
@@ -181,16 +181,16 @@ export function Sidebar() {
               </svg>
               <span
                 className={`nav-text transition-all duration-300 ease-in-out ${
-                  isCollapsed() ? "opacity-0 w-0" : "opacity-100 w-auto"
+                  isCollapsed() ? 'opacity-0 w-0' : 'opacity-100 w-auto'
                 }`}
               >
-                {t("aboutPage")}
+                {t('aboutPage')}
               </span>
             </a>
             <a
               href="/settings"
-              onClick={(e) => handleNavigation(e, "/settings")}
-              className={getNavLinkClasses("/settings")}
+              onClick={(e) => handleNavigation(e, '/settings')}
+              className={getNavLinkClasses('/settings')}
             >
               <svg
                 className={getIconClasses()}
@@ -205,16 +205,16 @@ export function Sidebar() {
               </svg>
               <span
                 className={`nav-text transition-all duration-300 ease-in-out ${
-                  isCollapsed() ? "opacity-0 w-0" : "opacity-100 w-auto"
+                  isCollapsed() ? 'opacity-0 w-0' : 'opacity-100 w-auto'
                 }`}
               >
-                {t("settingsPage")}
+                {t('settingsPage')}
               </span>
             </a>
             <a
               href="/demo"
-              onClick={(e) => handleNavigation(e, "/demo")}
-              className={getNavLinkClasses("/demo")}
+              onClick={(e) => handleNavigation(e, '/demo')}
+              className={getNavLinkClasses('/demo')}
             >
               <svg
                 className={getIconClasses()}
@@ -225,10 +225,10 @@ export function Sidebar() {
               </svg>
               <span
                 className={`nav-text transition-all duration-300 ease-in-out ${
-                  isCollapsed() ? "opacity-0 w-0" : "opacity-100 w-auto"
+                  isCollapsed() ? 'opacity-0 w-0' : 'opacity-100 w-auto'
                 }`}
               >
-                {t("demoPage")}
+                {t('demoPage')}
               </span>
             </a>
           </nav>

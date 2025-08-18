@@ -1,22 +1,22 @@
-import { useMemo } from "preact/hooks";
-import type { ComponentType } from "preact";
+import { useMemo } from 'preact/hooks';
+import type { ComponentType } from 'preact';
 
 export type InputType =
-  | "text"
-  | "email"
-  | "password"
-  | "number"
-  | "tel"
-  | "url"
-  | "search";
+  | 'text'
+  | 'email'
+  | 'password'
+  | 'number'
+  | 'tel'
+  | 'url'
+  | 'search';
 
 export interface InputProps {
   type?: InputType;
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
-  size?: "sm" | "md" | "lg";
-  variant?: "default" | "filled" | "outlined";
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'default' | 'filled' | 'outlined';
   disabled?: boolean;
   readOnly?: boolean;
   error?: boolean;
@@ -33,12 +33,12 @@ export interface InputProps {
 }
 
 export function Input({
-  type = "text",
+  type = 'text',
   value,
   onChange,
   placeholder,
-  size = "md",
-  variant = "default",
+  size = 'md',
+  variant = 'default',
   disabled = false,
   readOnly = false,
   error = false,
@@ -51,7 +51,7 @@ export function Input({
   maxLength,
   pattern,
   autoComplete,
-  className = "",
+  className = '',
 }: Readonly<InputProps>) {
   const baseClasses = `
     block w-full rounded-md
@@ -66,17 +66,17 @@ export function Input({
       default: `
         bg-bg-surface border border-border
         focus:border-primary focus:ring-primary
-        ${error ? "border-danger focus:border-danger focus:ring-danger" : ""}
+        ${error ? 'border-danger focus:border-danger focus:ring-danger' : ''}
       `,
       filled: `
         bg-bg-muted border-2 border-transparent
         focus:bg-bg-surface focus:border-primary focus:ring-primary
-        ${error ? "bg-danger/10 focus:border-danger focus:ring-danger" : ""}
+        ${error ? 'bg-danger/10 focus:border-danger focus:ring-danger' : ''}
       `,
       outlined: `
         bg-transparent border-2 border-border
         focus:border-primary focus:ring-primary
-        ${error ? "border-danger focus:border-danger focus:ring-danger" : ""}
+        ${error ? 'border-danger focus:border-danger focus:ring-danger' : ''}
       `,
     };
     return variants[variant];
@@ -84,9 +84,9 @@ export function Input({
 
   const sizeClasses = useMemo(() => {
     const sizes = {
-      sm: "px-3 py-2 text-sm",
-      md: "px-4 py-2.5 text-base",
-      lg: "px-5 py-3 text-lg",
+      sm: 'px-3 py-2 text-sm',
+      md: 'px-4 py-2.5 text-base',
+      lg: 'px-5 py-3 text-lg',
     };
     return sizes[size];
   }, [size]);
@@ -102,7 +102,7 @@ export function Input({
   );
 
   return (
-    <div className={`${fullWidth ? "w-full" : ""} ${className}`}>
+    <div className={`${fullWidth ? 'w-full' : ''} ${className}`}>
       {label && (
         <label
           htmlFor={inputId}
@@ -139,8 +139,8 @@ export function Input({
             ${baseClasses}
             ${variantClasses}
             ${sizeClasses}
-            ${LeftIcon ? "pl-10" : ""}
-            ${RightIcon ? "pr-10" : ""}
+            ${LeftIcon ? 'pl-10' : ''}
+            ${RightIcon ? 'pr-10' : ''}
           `}
         />
 
@@ -155,7 +155,7 @@ export function Input({
         <p
           id={`${inputId}-helper`}
           className={`mt-1 text-sm ${
-            error ? "text-danger" : "text-text-muted"
+            error ? 'text-danger' : 'text-text-muted'
           }`}
         >
           {helperText}

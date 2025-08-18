@@ -1,24 +1,23 @@
-// Main components barrel export
-export * from "./form";
-export * from "./layout";
-export * from "./navigation";
-export * from "./feedback";
-export * from "./display";
-export * from "./form-advanced";
-export * from "./utility";
+// Form components
+export * from './form';
 
-// Existing components (keep until migration is complete)
-export { AppTitle } from "./AppTitle";
-export { count, appName } from "./Counter";
-export { CounterButton } from "./CounterButton";
-export { ApiTester } from "./ApiTester";
-export { Auth0Button } from "./Auth0Button";
-export { AuthProvider } from "./AuthProvider";
-export { Sidebar } from "./Sidebar";
-export {
-  sidebarOpen,
-  currentBreakpoint,
-  isHydrated,
-  currentPath,
-  initializeSidebar,
-} from "./SidebarState";
+// Layout components
+export * from './layout';
+
+// Navigation components
+export * from './navigation';
+
+// Feedback components
+export * from './feedback';
+
+// Display components
+export * from './display';
+
+// Form advanced components
+export * from './form-advanced';
+
+// Utility components
+export * from './utility';
+
+// Legacy components (deprecated)
+export * from './legacy';

@@ -1,4 +1,4 @@
-import { useState } from "preact/hooks";
+import { useState } from 'preact/hooks';
 import {
   List,
   Badge,
@@ -9,7 +9,7 @@ import {
   CardHeader,
   CardBody,
   Table,
-} from "../../../components/display";
+} from '../../../components/display';
 
 export function DataDisplayComponents() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -18,137 +18,137 @@ export function DataDisplayComponents() {
   const allTableData = [
     {
       id: 1,
-      name: "Jan Kowalski",
+      name: 'Jan Kowalski',
       age: 28,
-      city: "Warszawa",
-      status: "Aktywny",
+      city: 'Warszawa',
+      status: 'Aktywny',
     },
     {
       id: 2,
-      name: "Anna Nowak",
+      name: 'Anna Nowak',
       age: 32,
-      city: "Kraków",
-      status: "Nieaktywny",
+      city: 'Kraków',
+      status: 'Nieaktywny',
     },
     {
       id: 3,
-      name: "Piotr Wiśniewski",
+      name: 'Piotr Wiśniewski',
       age: 25,
-      city: "Gdańsk",
-      status: "Aktywny",
+      city: 'Gdańsk',
+      status: 'Aktywny',
     },
     {
       id: 4,
-      name: "Maria Lewandowska",
+      name: 'Maria Lewandowska',
       age: 29,
-      city: "Poznań",
-      status: "Aktywny",
+      city: 'Poznań',
+      status: 'Aktywny',
     },
     {
       id: 5,
-      name: "Tomasz Nowicki",
+      name: 'Tomasz Nowicki',
       age: 35,
-      city: "Wrocław",
-      status: "Aktywny",
+      city: 'Wrocław',
+      status: 'Aktywny',
     },
     {
       id: 6,
-      name: "Katarzyna Kowalczyk",
+      name: 'Katarzyna Kowalczyk',
       age: 27,
-      city: "Łódź",
-      status: "Nieaktywny",
+      city: 'Łódź',
+      status: 'Nieaktywny',
     },
     {
       id: 7,
-      name: "Michał Zieliński",
+      name: 'Michał Zieliński',
       age: 31,
-      city: "Szczecin",
-      status: "Aktywny",
+      city: 'Szczecin',
+      status: 'Aktywny',
     },
     {
       id: 8,
-      name: "Magdalena Szymańska",
+      name: 'Magdalena Szymańska',
       age: 26,
-      city: "Bydgoszcz",
-      status: "Aktywny",
+      city: 'Bydgoszcz',
+      status: 'Aktywny',
     },
     {
       id: 9,
-      name: "Paweł Woźniak",
+      name: 'Paweł Woźniak',
       age: 33,
-      city: "Lublin",
-      status: "Nieaktywny",
+      city: 'Lublin',
+      status: 'Nieaktywny',
     },
     {
       id: 10,
-      name: "Agnieszka Dąbrowska",
+      name: 'Agnieszka Dąbrowska',
       age: 30,
-      city: "Katowice",
-      status: "Aktywny",
+      city: 'Katowice',
+      status: 'Aktywny',
     },
     {
       id: 11,
-      name: "Rafał Kozłowski",
+      name: 'Rafał Kozłowski',
       age: 24,
-      city: "Białystok",
-      status: "Aktywny",
+      city: 'Białystok',
+      status: 'Aktywny',
     },
     {
       id: 12,
-      name: "Joanna Jankowska",
+      name: 'Joanna Jankowska',
       age: 37,
-      city: "Toruń",
-      status: "Nieaktywny",
+      city: 'Toruń',
+      status: 'Nieaktywny',
     },
     {
       id: 13,
-      name: "Krzysztof Mazur",
+      name: 'Krzysztof Mazur',
       age: 29,
-      city: "Rzeszów",
-      status: "Aktywny",
+      city: 'Rzeszów',
+      status: 'Aktywny',
     },
     {
       id: 14,
-      name: "Beata Krawczyk",
+      name: 'Beata Krawczyk',
       age: 34,
-      city: "Opole",
-      status: "Aktywny",
+      city: 'Opole',
+      status: 'Aktywny',
     },
     {
       id: 15,
-      name: "Marcin Piotrowski",
+      name: 'Marcin Piotrowski',
       age: 28,
-      city: "Kielce",
-      status: "Nieaktywny",
+      city: 'Kielce',
+      status: 'Nieaktywny',
     },
   ];
 
   const tableColumns = [
-    { title: "ID", dataIndex: "id" as const, key: "id" },
-    { title: "Imię i nazwisko", dataIndex: "name" as const, key: "name" },
-    { title: "Wiek", dataIndex: "age" as const, key: "age" },
-    { title: "Miasto", dataIndex: "city" as const, key: "city" },
-    { title: "Status", dataIndex: "status" as const, key: "status" },
+    { title: 'ID', dataIndex: 'id' as const, key: 'id' },
+    { title: 'Imię i nazwisko', dataIndex: 'name' as const, key: 'name' },
+    { title: 'Wiek', dataIndex: 'age' as const, key: 'age' },
+    { title: 'Miasto', dataIndex: 'city' as const, key: 'city' },
+    { title: 'Status', dataIndex: 'status' as const, key: 'status' },
   ];
 
   const listItems = [
     {
       id: 1,
-      title: "Projekt Alpha",
-      description: "Nowoczesna aplikacja webowa",
-      avatar: "A",
+      title: 'Projekt Alpha',
+      description: 'Nowoczesna aplikacja webowa',
+      avatar: 'A',
     },
     {
       id: 2,
-      title: "Projekt Beta",
-      description: "System zarządzania danymi",
-      avatar: "B",
+      title: 'Projekt Beta',
+      description: 'System zarządzania danymi',
+      avatar: 'B',
     },
     {
       id: 3,
-      title: "Projekt Gamma",
-      description: "Platforma analityczna",
-      avatar: "G",
+      title: 'Projekt Gamma',
+      description: 'Platforma analityczna',
+      avatar: 'G',
     },
   ];
 
@@ -291,7 +291,7 @@ export function DataDisplayComponents() {
           <Tag variant="error">Błąd</Tag>
           <Tag size="sm">Mały</Tag>
           <Tag size="lg">Duży</Tag>
-          <Tag closable onClose={() => alert("Tag zamknięty")}>
+          <Tag closable onClose={() => alert('Tag zamknięty')}>
             Zamykalny
           </Tag>
         </div>

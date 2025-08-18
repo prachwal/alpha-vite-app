@@ -1,12 +1,12 @@
-import { JSX } from "preact";
-import { useState } from "preact/hooks";
-import { cn } from "../../../utils/cn";
+import { JSX } from 'preact';
+import { useState } from 'preact/hooks';
+import { cn } from '../../../utils/cn';
 
 export interface AvatarProps {
   src?: string;
   alt?: string;
-  size?: number | "sm" | "md" | "lg" | "xl";
-  shape?: "circle" | "square";
+  size?: number | 'sm' | 'md' | 'lg' | 'xl';
+  shape?: 'circle' | 'square';
   icon?: preact.ComponentType<{ className?: string }>;
   children?: preact.ComponentChildren;
   className?: string;
@@ -23,24 +23,24 @@ const sizeMap = {
 export function Avatar({
   src,
   alt,
-  size = "md",
-  shape = "circle",
+  size = 'md',
+  shape = 'circle',
   icon: Icon,
   children,
   className,
   onClick,
 }: Readonly<AvatarProps>): JSX.Element {
   const [error, setError] = useState(false);
-  const [loaded, setLoaded] = useState(false);
+  const [, setLoaded] = useState(false);
 
-  const actualSize = typeof size === "string" ? sizeMap[size] : size;
+  const actualSize = typeof size === 'string' ? sizeMap[size] : size;
   const sizeClasses = `w-${actualSize / 4} h-${actualSize / 4}`;
 
   const baseClasses = cn(
-    "inline-flex items-center justify-center overflow-hidden",
-    shape === "circle" ? "rounded-full" : "rounded-md",
+    'inline-flex items-center justify-center overflow-hidden',
+    shape === 'circle' ? 'rounded-full' : 'rounded-md',
     sizeClasses,
-    onClick && "cursor-pointer hover:opacity-80 transition-opacity",
+    onClick && 'cursor-pointer hover:opacity-80 transition-opacity',
     className
   );
 
@@ -57,7 +57,7 @@ export function Avatar({
       return (
         <img
           src={src}
-          alt={alt || "Avatar"}
+          alt={alt || 'Avatar'}
           className="w-full h-full object-cover"
           onError={handleError}
           onLoad={handleLoad}
@@ -72,7 +72,7 @@ export function Avatar({
     if (children) {
       return (
         <span className="text-sm font-medium">
-          {typeof children === "string"
+          {typeof children === 'string'
             ? children.slice(0, 2).toUpperCase()
             : children}
         </span>

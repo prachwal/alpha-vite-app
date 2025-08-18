@@ -3,15 +3,15 @@
  * Provides login/logout functionality using Auth0
  */
 
-import { useEffect, useState } from "preact/hooks";
+import { useEffect, useState } from 'preact/hooks';
 import {
   auth0State,
   loginWithRedirect,
   loginWithPopup,
   logout,
   clearError,
-} from "@services/Auth0Provider";
-import { usePageTranslations } from "@services/i18n";
+} from '@services/Auth0Provider';
+import { usePageTranslations } from '@services/i18n';
 
 interface Auth0ButtonProps {
   /** Use popup instead of redirect for login */
@@ -28,9 +28,9 @@ interface Auth0ButtonProps {
 export function Auth0Button({
   usePopup = false,
   showUserInfo = true,
-  className = "",
+  className = '',
 }: Auth0ButtonProps) {
-  const t = usePageTranslations("settings");
+  const t = usePageTranslations('settings');
   const [localLoading, setLocalLoading] = useState(false);
 
   // Subscribe to auth state changes
@@ -38,7 +38,7 @@ export function Auth0Button({
 
   useEffect(() => {
     if (error) {
-      console.error("Auth0 error:", error);
+      console.error('Auth0 error:', error);
       // Auto-clear error after 5 seconds
       const timeout = setTimeout(() => {
         clearError();
@@ -56,7 +56,7 @@ export function Auth0Button({
         await loginWithRedirect();
       }
     } catch (err) {
-      console.error("Login error:", err);
+      console.error('Login error:', err);
     } finally {
       setLocalLoading(false);
     }
@@ -67,7 +67,7 @@ export function Auth0Button({
       setLocalLoading(true);
       await logout();
     } catch (err) {
-      console.error("Logout error:", err);
+      console.error('Logout error:', err);
     } finally {
       setLocalLoading(false);
     }
@@ -80,13 +80,13 @@ export function Auth0Button({
     return (
       <div className={`text-sm ${className}`}>
         <div className="text-red-500 mb-2">
-          {t("authError") || "Błąd uwierzytelniania"}: {error}
+          {t('authError') || 'Błąd uwierzytelniania'}: {error}
         </div>
         <button
           onClick={() => clearError()}
           className="text-xs text-blue-500 hover:text-blue-400"
         >
-          {t("dismiss") || "Zamknij"}
+          {t('dismiss') || 'Zamknij'}
         </button>
       </div>
     );
@@ -98,7 +98,7 @@ export function Auth0Button({
       <div className={`text-sm text-text-muted ${className}`}>
         <div className="flex items-center space-x-2">
           <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-blue-500"></div>
-          <span>{t("loading") || "Ładowanie..."}</span>
+          <span>{t('loading') || 'Ładowanie...'}</span>
         </div>
       </div>
     );
@@ -113,7 +113,7 @@ export function Auth0Button({
             {user.picture && (
               <img
                 src={user.picture}
-                alt={user.name || user.email || "User"}
+                alt={user.name || user.email || 'User'}
                 className="w-8 h-8 rounded-full object-cover"
               />
             )}
@@ -131,7 +131,7 @@ export function Auth0Button({
           onClick={handleLogout}
           className="text-sm text-red-500 hover:text-red-400 transition-colors"
         >
-          {t("logout") || "Wyloguj"}
+          {t('logout') || 'Wyloguj'}
         </button>
       </div>
     );
@@ -143,7 +143,7 @@ export function Auth0Button({
       onClick={handleLogin}
       className={`text-sm text-blue-500 hover:text-blue-400 transition-colors ${className}`}
     >
-      {t("loginAuth0") || "Zaloguj przez Auth0"}
+      {t('loginAuth0') || 'Zaloguj przez Auth0'}
     </button>
   );
 }
@@ -152,25 +152,25 @@ export function Auth0Button({
  * Simple Auth0 login status indicator
  */
 export function Auth0Status() {
-  const t = usePageTranslations("settings");
+  const t = usePageTranslations('settings');
   const { isAuthenticated, user, isLoading } = auth0State.value;
 
   if (isLoading) {
     return (
       <div className="text-xs text-text-muted">
-        {t("checkingAuth") || "Sprawdzanie uwierzytelniania..."}
+        {t('checkingAuth') || 'Sprawdzanie uwierzytelniania...'}
       </div>
     );
   }
 
   return (
     <div className="text-xs text-text-muted">
-      Status:{" "}
+      Status:{' '}
       {isAuthenticated
-        ? `${t("authenticated") || "Uwierzytelniony"} (${
-            user?.email || user?.name || "Użytkownik"
+        ? `${t('authenticated') || 'Uwierzytelniony'} (${
+            user?.email || user?.name || 'Użytkownik'
           })`
-        : t("notAuthenticated") || "Nieuwierzytelniony"}
+        : t('notAuthenticated') || 'Nieuwierzytelniony'}
     </div>
   );
 }

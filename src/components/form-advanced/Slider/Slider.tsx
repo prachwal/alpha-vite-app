@@ -1,5 +1,5 @@
-import { useRef, useState, useCallback } from "preact/hooks";
-import { cn } from "../../../utils/cn";
+import { useRef, useState, useCallback } from 'preact/hooks';
+import { cn } from '../../../utils/cn';
 
 export interface SliderProps {
   /** Current value */
@@ -96,10 +96,10 @@ export function Slider({
       const rect = sliderRef.current.getBoundingClientRect();
       let clientX: number;
       let clientY: number;
-      if ("touches" in event && event.touches && event.touches[0]) {
+      if ('touches' in event && event.touches && event.touches[0]) {
         clientX = event.touches[0].clientX;
         clientY = event.touches[0].clientY;
-      } else if ("clientX" in event && "clientY" in event) {
+      } else if ('clientX' in event && 'clientY' in event) {
         clientX = (event as MouseEvent).clientX;
         clientY = (event as MouseEvent).clientY;
       } else {
@@ -143,12 +143,12 @@ export function Slider({
     const handleMouseUp = () => {
       setIsDragging(false);
       setShowTooltip(false);
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
     };
 
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", handleMouseUp);
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
   };
 
   const percentage = getPercentage(value);
@@ -156,8 +156,8 @@ export function Slider({
   return (
     <div
       className={cn(
-        "relative flex items-center",
-        vertical ? "flex-col h-48 w-6" : "flex-row w-full h-6",
+        'relative flex items-center',
+        vertical ? 'flex-col h-48 w-6' : 'flex-row w-full h-6',
         className
       )}
     >
@@ -165,9 +165,9 @@ export function Slider({
       <div
         ref={sliderRef}
         className={cn(
-          "relative bg-gray-200 dark:bg-gray-700 rounded-full cursor-pointer",
-          vertical ? "w-2 h-full" : "h-2 w-full",
-          disabled && "cursor-not-allowed opacity-50"
+          'relative bg-gray-200 dark:bg-gray-700 rounded-full cursor-pointer',
+          vertical ? 'w-2 h-full' : 'h-2 w-full',
+          disabled && 'cursor-not-allowed opacity-50'
         )}
         onMouseDown={handleMouseDown}
         onMouseEnter={() => setShowTooltip(true)}
@@ -190,8 +190,8 @@ export function Slider({
         {included && (
           <div
             className={cn(
-              "absolute bg-blue-500 rounded-full transition-all duration-150",
-              vertical ? "w-full bottom-0" : "h-full left-0"
+              'absolute bg-blue-500 rounded-full transition-all duration-150',
+              vertical ? 'w-full bottom-0' : 'h-full left-0'
             )}
             style={
               vertical
@@ -204,20 +204,20 @@ export function Slider({
         {/* Handle */}
         <div
           className={cn(
-            "absolute w-4 h-4 bg-white border-2 border-blue-500 rounded-full transform -translate-x-1/2 -translate-y-1/2 transition-all duration-150 shadow-sm",
-            "hover:scale-110 focus:scale-110",
-            isDragging && "scale-125 shadow-lg",
-            disabled && "border-gray-400 bg-gray-100"
+            'absolute w-4 h-4 bg-white border-2 border-blue-500 rounded-full transform -translate-x-1/2 -translate-y-1/2 transition-all duration-150 shadow-sm',
+            'hover:scale-110 focus:scale-110',
+            isDragging && 'scale-125 shadow-lg',
+            disabled && 'border-gray-400 bg-gray-100'
           )}
           style={
             vertical
               ? {
                   bottom: `calc(${percentage}% - 8px)`,
-                  left: "50%",
+                  left: '50%',
                 }
               : {
                   left: `calc(${percentage}% - 8px)`,
-                  top: "50%",
+                  top: '50%',
                 }
           }
         />
@@ -226,10 +226,10 @@ export function Slider({
         {tooltip && (showTooltip || isDragging) && (
           <div
             className={cn(
-              "absolute bg-gray-900 text-white text-xs px-2 py-1 rounded whitespace-nowrap z-10 pointer-events-none",
+              'absolute bg-gray-900 text-white text-xs px-2 py-1 rounded whitespace-nowrap z-10 pointer-events-none',
               vertical
-                ? "left-full ml-2"
-                : "bottom-full mb-2 left-1/2 transform -translate-x-1/2"
+                ? 'left-full ml-2'
+                : 'bottom-full mb-2 left-1/2 transform -translate-x-1/2'
             )}
             style={
               vertical
@@ -240,10 +240,10 @@ export function Slider({
             {tooltipFormatter(value)}
             <div
               className={cn(
-                "absolute w-0 h-0",
+                'absolute w-0 h-0',
                 vertical
-                  ? "right-full top-1/2 transform -translate-y-1/2 border-r-4 border-r-gray-900 border-t-2 border-b-2 border-t-transparent border-b-transparent"
-                  : "top-full left-1/2 transform -translate-x-1/2 border-l-2 border-r-2 border-t-4 border-l-transparent border-r-transparent border-t-gray-900"
+                  ? 'right-full top-1/2 transform -translate-y-1/2 border-r-4 border-r-gray-900 border-t-2 border-b-2 border-t-transparent border-b-transparent'
+                  : 'top-full left-1/2 transform -translate-x-1/2 border-l-2 border-r-2 border-t-4 border-l-transparent border-r-transparent border-t-gray-900'
               )}
             />
           </div>
@@ -259,22 +259,22 @@ export function Slider({
                 className="absolute"
                 style={
                   vertical
-                    ? { bottom: `calc(${markPercentage}% - 1px)`, left: "100%" }
-                    : { left: `calc(${markPercentage}% - 1px)`, top: "100%" }
+                    ? { bottom: `calc(${markPercentage}% - 1px)`, left: '100%' }
+                    : { left: `calc(${markPercentage}% - 1px)`, top: '100%' }
                 }
               >
                 <div
                   className={cn(
-                    "w-1 h-1 bg-gray-400 rounded-full",
-                    vertical ? "ml-1" : "mt-1"
+                    'w-1 h-1 bg-gray-400 rounded-full',
+                    vertical ? 'ml-1' : 'mt-1'
                   )}
                 />
                 <div
                   className={cn(
-                    "text-xs text-gray-600 dark:text-gray-400 whitespace-nowrap",
-                    vertical ? "ml-3 -translate-y-1/2" : "mt-2 -translate-x-1/2"
+                    'text-xs text-gray-600 dark:text-gray-400 whitespace-nowrap',
+                    vertical ? 'ml-3 -translate-y-1/2' : 'mt-2 -translate-x-1/2'
                   )}
-                  style={vertical ? {} : { transform: "translateX(-50%)" }}
+                  style={vertical ? {} : { transform: 'translateX(-50%)' }}
                 >
                   {label}
                 </div>
@@ -328,11 +328,11 @@ export function RangeSlider({
       const rect = sliderRef.current.getBoundingClientRect();
       let clientX: number;
       let clientY: number;
-      if ("touches" in event) {
+      if ('touches' in event) {
         // TouchEvent branch
         clientX = event.touches?.[0]?.clientX ?? 0;
         clientY = event.touches?.[0]?.clientY ?? 0;
-      } else if ("clientX" in event && "clientY" in event) {
+      } else if ('clientX' in event && 'clientY' in event) {
         // MouseEvent branch
         clientX = event.clientX;
         clientY = event.clientY;
@@ -381,12 +381,12 @@ export function RangeSlider({
     const handleMouseUp = () => {
       setIsDragging(null);
       setShowTooltip(null);
-      document.removeEventListener("mousemove", handleMouseMove);
-      document.removeEventListener("mouseup", handleMouseUp);
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
     };
 
-    document.addEventListener("mousemove", handleMouseMove);
-    document.addEventListener("mouseup", handleMouseUp);
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
   };
 
   const [leftPercentage, rightPercentage] = value.map(getPercentage);
@@ -394,8 +394,8 @@ export function RangeSlider({
   return (
     <div
       className={cn(
-        "relative flex items-center",
-        vertical ? "flex-col h-48 w-6" : "flex-row w-full h-6",
+        'relative flex items-center',
+        vertical ? 'flex-col h-48 w-6' : 'flex-row w-full h-6',
         className
       )}
     >
@@ -403,9 +403,9 @@ export function RangeSlider({
       <div
         ref={sliderRef}
         className={cn(
-          "relative bg-gray-200 dark:bg-gray-700 rounded-full",
-          vertical ? "w-2 h-full" : "h-2 w-full",
-          disabled && "opacity-50"
+          'relative bg-gray-200 dark:bg-gray-700 rounded-full',
+          vertical ? 'w-2 h-full' : 'h-2 w-full',
+          disabled && 'opacity-50'
         )}
         role="slider"
         aria-valuenow={value[0]}
@@ -416,8 +416,8 @@ export function RangeSlider({
         {/* Fill between handles */}
         <div
           className={cn(
-            "absolute bg-blue-500 rounded-full",
-            vertical ? "w-full" : "h-full"
+            'absolute bg-blue-500 rounded-full',
+            vertical ? 'w-full' : 'h-full'
           )}
           style={
             vertical
@@ -435,20 +435,20 @@ export function RangeSlider({
         {/* Left/Bottom Handle */}
         <div
           className={cn(
-            "absolute w-4 h-4 bg-white border-2 border-blue-500 rounded-full transform -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all duration-150 shadow-sm",
-            "hover:scale-110 focus:scale-110",
-            isDragging === 0 && "scale-125 shadow-lg",
-            disabled && "border-gray-400 bg-gray-100 cursor-not-allowed"
+            'absolute w-4 h-4 bg-white border-2 border-blue-500 rounded-full transform -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all duration-150 shadow-sm',
+            'hover:scale-110 focus:scale-110',
+            isDragging === 0 && 'scale-125 shadow-lg',
+            disabled && 'border-gray-400 bg-gray-100 cursor-not-allowed'
           )}
           style={
             vertical
               ? {
                   bottom: `calc(${leftPercentage}% - 8px)`,
-                  left: "50%",
+                  left: '50%',
                 }
               : {
                   left: `calc(${leftPercentage}% - 8px)`,
-                  top: "50%",
+                  top: '50%',
                 }
           }
           onMouseDown={(event) => handleMouseDown(event, 0)}
@@ -460,20 +460,20 @@ export function RangeSlider({
         {/* Right/Top Handle */}
         <div
           className={cn(
-            "absolute w-4 h-4 bg-white border-2 border-blue-500 rounded-full transform -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all duration-150 shadow-sm",
-            "hover:scale-110 focus:scale-110",
-            isDragging === 1 && "scale-125 shadow-lg",
-            disabled && "border-gray-400 bg-gray-100 cursor-not-allowed"
+            'absolute w-4 h-4 bg-white border-2 border-blue-500 rounded-full transform -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-all duration-150 shadow-sm',
+            'hover:scale-110 focus:scale-110',
+            isDragging === 1 && 'scale-125 shadow-lg',
+            disabled && 'border-gray-400 bg-gray-100 cursor-not-allowed'
           )}
           style={
             vertical
               ? {
                   bottom: `calc(${rightPercentage}% - 8px)`,
-                  left: "50%",
+                  left: '50%',
                 }
               : {
                   left: `calc(${rightPercentage}% - 8px)`,
-                  top: "50%",
+                  top: '50%',
                 }
           }
           onMouseDown={(event) => handleMouseDown(event, 1)}
@@ -486,10 +486,10 @@ export function RangeSlider({
         {tooltip && showTooltip !== null && showTooltip !== undefined && (
           <div
             className={cn(
-              "absolute bg-gray-900 text-white text-xs px-2 py-1 rounded whitespace-nowrap z-10 pointer-events-none",
+              'absolute bg-gray-900 text-white text-xs px-2 py-1 rounded whitespace-nowrap z-10 pointer-events-none',
               vertical
-                ? "left-full ml-2"
-                : "bottom-full mb-2 transform -translate-x-1/2"
+                ? 'left-full ml-2'
+                : 'bottom-full mb-2 transform -translate-x-1/2'
             )}
             style={
               vertical
@@ -512,10 +512,10 @@ export function RangeSlider({
             {tooltipFormatter(value[showTooltip as number] || 0)}
             <div
               className={cn(
-                "absolute w-0 h-0",
+                'absolute w-0 h-0',
                 vertical
-                  ? "right-full top-1/2 transform -translate-y-1/2 border-r-4 border-r-gray-900 border-t-2 border-b-2 border-t-transparent border-b-transparent"
-                  : "top-full left-1/2 transform -translate-x-1/2 border-l-2 border-r-2 border-t-4 border-l-transparent border-r-transparent border-t-gray-900"
+                  ? 'right-full top-1/2 transform -translate-y-1/2 border-r-4 border-r-gray-900 border-t-2 border-b-2 border-t-transparent border-b-transparent'
+                  : 'top-full left-1/2 transform -translate-x-1/2 border-l-2 border-r-2 border-t-4 border-l-transparent border-r-transparent border-t-gray-900'
               )}
             />
           </div>
@@ -531,22 +531,22 @@ export function RangeSlider({
                 className="absolute"
                 style={
                   vertical
-                    ? { bottom: `calc(${markPercentage}% - 1px)`, left: "100%" }
-                    : { left: `calc(${markPercentage}% - 1px)`, top: "100%" }
+                    ? { bottom: `calc(${markPercentage}% - 1px)`, left: '100%' }
+                    : { left: `calc(${markPercentage}% - 1px)`, top: '100%' }
                 }
               >
                 <div
                   className={cn(
-                    "w-1 h-1 bg-gray-400 rounded-full",
-                    vertical ? "ml-1" : "mt-1"
+                    'w-1 h-1 bg-gray-400 rounded-full',
+                    vertical ? 'ml-1' : 'mt-1'
                   )}
                 />
                 <div
                   className={cn(
-                    "text-xs text-gray-600 dark:text-gray-400 whitespace-nowrap",
-                    vertical ? "ml-3 -translate-y-1/2" : "mt-2 -translate-x-1/2"
+                    'text-xs text-gray-600 dark:text-gray-400 whitespace-nowrap',
+                    vertical ? 'ml-3 -translate-y-1/2' : 'mt-2 -translate-x-1/2'
                   )}
-                  style={vertical ? {} : { transform: "translateX(-50%)" }}
+                  style={vertical ? {} : { transform: 'translateX(-50%)' }}
                 >
                   {label}
                 </div>

@@ -1,18 +1,18 @@
-import "./app.css";
-import { Router, Route } from "preact-iso";
-import { Sidebar } from "./components/Sidebar";
+import './app.css';
+import { Router, Route } from 'preact-iso';
+import { Sidebar } from './components/Sidebar';
 import {
   sidebarOpen,
   currentBreakpoint,
   isHydrated,
-} from "./components/SidebarState";
-import { HomePage } from "./pages/HomePage";
-import { AboutPage } from "./pages/AboutPage";
-import { SettingsPage } from "./pages/SettingsPage";
-import { PageDemo } from "./pages/PageDemo";
-import { toggleDarkMode, themeConfig } from "@services/ThemeProvider";
-import { t } from "@services/i18n";
-import { useEffect, useState } from "preact/hooks";
+} from './components/SidebarState';
+import { HomePage } from './pages/HomePage';
+import { AboutPage } from './pages/AboutPage';
+import { SettingsPage } from './pages/SettingsPage';
+import { PageDemo } from './pages/PageDemo';
+import { toggleDarkMode, themeConfig } from '@services/ThemeProvider';
+import { t } from '@services/i18n';
+import { useEffect, useState } from 'preact/hooks';
 
 export function App() {
   // Dodaj stan do śledzenia czy jesteśmy po stronie klienta
@@ -25,27 +25,27 @@ export function App() {
 
   const getMainContentMargin = () => {
     // Podczas SSR i pierwszego renderowania po hydratacji - zawsze używaj desktop layout
-    if (typeof window === "undefined" || !isClientSide || !isHydrated.value) {
-      return "lg:ml-64";
+    if (typeof window === 'undefined' || !isClientSide || !isHydrated.value) {
+      return 'lg:ml-64';
     }
 
     // Dopiero po pełnej hydratacji używaj responsywnego zachowania
-    if (currentBreakpoint.value === "mobile") {
-      return "lg:ml-0";
+    if (currentBreakpoint.value === 'mobile') {
+      return 'lg:ml-0';
     }
-    if (currentBreakpoint.value === "tablet") {
-      return sidebarOpen.value ? "ml-64" : "ml-16";
+    if (currentBreakpoint.value === 'tablet') {
+      return sidebarOpen.value ? 'ml-64' : 'ml-16';
     }
     // Desktop - obsługa zwijania
-    if (currentBreakpoint.value === "desktop") {
-      return sidebarOpen.value ? "ml-64" : "ml-16";
+    if (currentBreakpoint.value === 'desktop') {
+      return sidebarOpen.value ? 'ml-64' : 'ml-16';
     }
-    return "lg:ml-64";
+    return 'lg:ml-64';
   };
 
   const handleThemeToggle = () => {
     console.log(
-      "[App] Theme toggle clicked, current mode:",
+      '[App] Theme toggle clicked, current mode:',
       themeConfig.value.mode
     );
     toggleDarkMode();
@@ -74,7 +74,7 @@ export function App() {
             <button
               onClick={toggleMobileSidebar}
               className="lg:hidden p-2 rounded-lg hover:bg-bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
-              aria-label={t("toggleSidebar")}
+              aria-label={t('toggleSidebar')}
             >
               <svg
                 className="w-6 h-6 text-text-primary"
@@ -91,17 +91,17 @@ export function App() {
 
             {/* Centered title for mobile, left-aligned for desktop */}
             <h1 className="text-2xl font-semibold text-text-primary flex-1 text-center lg:text-left">
-              {import.meta.env.VITE_APP_NAME || t("appName")}
+              {import.meta.env.VITE_APP_NAME || t('appName')}
             </h1>
 
             {/* Theme toggle button */}
             <button
               onClick={handleThemeToggle}
               className="p-2 rounded-lg hover:bg-bg-primary transition-colors focus:outline-none focus:ring-2 focus:ring-primary"
-              aria-label={t("toggleTheme")}
+              aria-label={t('toggleTheme')}
             >
               {/* Sun icon for light mode, Moon icon for dark mode */}
-              {themeConfig.value.mode === "light" ? (
+              {themeConfig.value.mode === 'light' ? (
                 // Sun icon
                 <svg
                   className="w-5 h-5 text-text-muted transition-colors"

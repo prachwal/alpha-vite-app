@@ -1,14 +1,14 @@
-import { JSX } from "preact";
-import { useState } from "preact/hooks";
-import { cn } from "../../../utils/cn";
-import { Tag } from "./Tag";
+import { JSX } from 'preact';
+import { useState } from 'preact/hooks';
+import { cn } from '../../../utils/cn';
+import { Tag } from './Tag';
 
 export interface TagGroupProps {
   tags?: readonly string[];
   closable?: boolean;
   onTagClose?: (tag: string) => void;
   max?: number;
-  size?: "sm" | "md" | "lg";
+  size?: 'sm' | 'md' | 'lg';
   className?: string;
   children?: preact.ComponentChildren;
 }
@@ -18,13 +18,13 @@ export function TagGroup({
   closable = false,
   onTagClose,
   max = 5,
-  size = "md",
+  size = 'md',
   className,
   children,
 }: Readonly<TagGroupProps>): JSX.Element {
   if (children) {
     return (
-      <div className={cn("flex flex-wrap gap-2", className)}>{children}</div>
+      <div className={cn('flex flex-wrap gap-2', className)}>{children}</div>
     );
   }
 
@@ -44,7 +44,7 @@ export function TagGroup({
   };
 
   return (
-    <div className={cn("flex flex-wrap gap-2", className)}>
+    <div className={cn('flex flex-wrap gap-2', className)}>
       {visibleTags.map((tag) => (
         <Tag
           key={tag}

@@ -1,11 +1,11 @@
-import { Divider } from "./Divider";
+import { Divider } from './Divider';
 
 export default {
-  title: "Layout/Divider",
+  title: 'Layout/Divider',
   component: Divider,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    className: { control: "text" },
+    className: { control: 'text' },
   },
 };
 

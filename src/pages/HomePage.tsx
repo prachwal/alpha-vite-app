@@ -1,10 +1,10 @@
-import { AppTitle } from "@components/AppTitle";
-import { ApiTester } from "@components/ApiTester";
-import { usePageTranslations } from "@services/i18n";
-import { CheckIcon, Card, CardHeader, CardBody } from "@components/display";
+import { AppTitle } from '@components/AppTitle';
+import { ApiTester } from '@components/ApiTester';
+import { usePageTranslations } from '@services/i18n';
+import { CheckIcon, Card, CardHeader, CardBody } from '@components/display';
 
 export function HomePage() {
-  const t = usePageTranslations("home");
+  const t = usePageTranslations('home');
 
   return (
     <div className="space-y-8">
@@ -14,7 +14,7 @@ export function HomePage() {
           className="text-lg text-text-muted"
           style="margin-bottom: var(--spacing-xl)"
         >
-          {t("welcome")}
+          {t('welcome')}
         </p>
       </div>
 
@@ -22,30 +22,30 @@ export function HomePage() {
         <Card>
           <CardHeader>
             <h3 className="text-lg font-semibold text-text-primary">
-              {typeof t("features") === "string" ? t("features") : ""}
+              {typeof t('features') === 'string' ? t('features') : ''}
             </h3>
           </CardHeader>
           <CardBody>
             <ul className="space-y-3 text-text-muted">
               <li className="flex items-center">
                 <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
-                {t("featureSSR")}
+                {t('featureSSR')}
               </li>
               <li className="flex items-center">
                 <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
-                {t("featureSignals")}
+                {t('featureSignals')}
               </li>
               <li className="flex items-center">
                 <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
-                {t("featureTailwind")}
+                {t('featureTailwind')}
               </li>
               <li className="flex items-center">
                 <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
-                {t("featureResponsive")}
+                {t('featureResponsive')}
               </li>
               <li className="flex items-center">
                 <CheckIcon className="w-5 h-5 text-green-500 mr-3" />
-                {t("featureTheme")}
+                {t('featureTheme')}
               </li>
             </ul>
           </CardBody>
@@ -54,7 +54,7 @@ export function HomePage() {
         <Card>
           <CardHeader>
             <h3 className="text-lg font-semibold text-text-primary">
-              {typeof t("apiTesting") === "string" ? t("apiTesting") : ""}
+              {typeof t('apiTesting') === 'string' ? t('apiTesting') : ''}
             </h3>
           </CardHeader>
           <CardBody>
@@ -62,7 +62,7 @@ export function HomePage() {
               className="text-text-muted"
               style="margin-bottom: var(--spacing-xl)"
             >
-              {t("apiDescription")}
+              {t('apiDescription')}
             </p>
             <ApiTester />
           </CardBody>

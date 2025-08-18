@@ -1,6 +1,6 @@
-import { JSX } from "preact";
-import { useState, useRef, useEffect } from "preact/hooks";
-import { cn } from "../../../utils/cn";
+import { JSX } from 'preact';
+import { useState, useRef, useEffect } from 'preact/hooks';
+import { cn } from '../../../utils/cn';
 
 export interface MenuItemData {
   id: string;
@@ -13,16 +13,16 @@ export interface MenuItemData {
 export interface MenuProps {
   trigger: JSX.Element;
   items: readonly MenuItemData[];
-  position?: "bottom-left" | "bottom-right" | "top-left" | "top-right";
-  size?: "sm" | "md" | "lg";
+  position?: 'bottom-left' | 'bottom-right' | 'top-left' | 'top-right';
+  size?: 'sm' | 'md' | 'lg';
   className?: string;
 }
 
 export function Menu({
   trigger,
   items,
-  position = "bottom-left",
-  size = "md",
+  position = 'bottom-left',
+  size = 'md',
   className,
 }: Readonly<MenuProps>): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
@@ -42,19 +42,19 @@ export function Menu({
     };
 
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
+      if (event.key === 'Escape') {
         setIsOpen(false);
       }
     };
 
     if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-      document.addEventListener("keydown", handleEscape);
+      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleEscape);
     }
 
     return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscape);
     };
   }, [isOpen]);
 
@@ -70,26 +70,26 @@ export function Menu({
   };
 
   const positionClasses = {
-    "bottom-left": "top-full left-0 mt-1",
-    "bottom-right": "top-full right-0 mt-1",
-    "top-left": "bottom-full left-0 mb-1",
-    "top-right": "bottom-full right-0 mb-1",
+    'bottom-left': 'top-full left-0 mt-1',
+    'bottom-right': 'top-full right-0 mt-1',
+    'top-left': 'bottom-full left-0 mb-1',
+    'top-right': 'bottom-full right-0 mb-1',
   };
 
   const sizeClasses = {
-    sm: "text-sm py-1",
-    md: "text-base py-2",
-    lg: "text-lg py-3",
+    sm: 'text-sm py-1',
+    md: 'text-base py-2',
+    lg: 'text-lg py-3',
   };
 
   return (
-    <div className={cn("relative inline-block", className)}>
+    <div className={cn('relative inline-block', className)}>
       <button
         ref={triggerRef as any}
         type="button"
         onClick={handleTriggerClick}
         onKeyDown={(e) => {
-          if (e.key === "Enter" || e.key === " ") {
+          if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
             handleTriggerClick();
           }
@@ -106,7 +106,7 @@ export function Menu({
         <div
           ref={menuRef}
           className={cn(
-            "absolute z-50 min-w-[180px] bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg",
+            'absolute z-50 min-w-[180px] bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-md shadow-lg',
             positionClasses[position]
           )}
           role="menu"
@@ -115,14 +115,14 @@ export function Menu({
             <button
               key={item.id}
               className={cn(
-                "w-full px-4 text-left hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-700",
+                'w-full px-4 text-left hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:bg-gray-100 dark:focus:bg-gray-700',
                 sizeClasses[size],
                 item.disabled &&
-                  "text-gray-400 dark:text-gray-500 cursor-not-allowed"
+                  'text-gray-400 dark:text-gray-500 cursor-not-allowed'
               )}
               onClick={() => handleItemClick(item)}
               onKeyDown={(e) => {
-                if (e.key === "Enter" || e.key === " ") {
+                if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
                   handleItemClick(item);
                 }

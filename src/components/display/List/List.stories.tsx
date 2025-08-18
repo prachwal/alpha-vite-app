@@ -1,15 +1,15 @@
-import type { Meta, StoryObj } from "@storybook/preact";
-import { List, type ListProps } from "./List";
-import { Avatar } from "../Avatar/Avatar";
-import { Badge } from "../Badge/Badge";
+import type { Meta, StoryObj } from '@storybook/preact';
+import { List, type ListProps } from './List';
+import { Avatar } from '../Avatar/Avatar';
+import { Badge } from '../Badge/Badge';
 
 const meta: Meta<ListProps> = {
-  title: "Components/Display/List",
+  title: 'Components/Display/List',
   component: List,
   parameters: {
     docs: {
       description: {
-        component: "List component for displaying data in a structured format.",
+        component: 'List component for displaying data in a structured format.',
       },
     },
   },
@@ -22,27 +22,27 @@ type Story = StoryObj<ListProps>;
 const sampleData = [
   {
     id: 1,
-    title: "John Doe",
-    description: "Software Engineer at Tech Corp",
-    avatar: "https://i.pravatar.cc/150?img=1",
-    email: "john@example.com",
-    status: "active",
+    title: 'John Doe',
+    description: 'Software Engineer at Tech Corp',
+    avatar: 'https://i.pravatar.cc/150?img=1',
+    email: 'john@example.com',
+    status: 'active',
   },
   {
     id: 2,
-    title: "Jane Smith",
-    description: "Product Manager at Startup Inc",
-    avatar: "https://i.pravatar.cc/150?img=2",
-    email: "jane@example.com",
-    status: "inactive",
+    title: 'Jane Smith',
+    description: 'Product Manager at Startup Inc',
+    avatar: 'https://i.pravatar.cc/150?img=2',
+    email: 'jane@example.com',
+    status: 'inactive',
   },
   {
     id: 3,
-    title: "Bob Johnson",
-    description: "Designer at Creative Studio",
-    avatar: "https://i.pravatar.cc/150?img=3",
-    email: "bob@example.com",
-    status: "active",
+    title: 'Bob Johnson',
+    description: 'Designer at Creative Studio',
+    avatar: 'https://i.pravatar.cc/150?img=3',
+    email: 'bob@example.com',
+    status: 'active',
   },
 ];
 
@@ -57,7 +57,7 @@ export const Default: Story = {
         avatar={<Avatar src={item.avatar} size={40} />}
         extra={
           <Badge
-            status={item.status === "active" ? "success" : "default"}
+            status={item.status === 'active' ? 'success' : 'default'}
             text={item.status}
           />
         }
@@ -92,14 +92,14 @@ export const Loading: Story = {
 export const SmallSize: Story = {
   args: {
     ...Default.args,
-    size: "sm",
+    size: 'sm',
   },
 };
 
 export const LargeSize: Story = {
   args: {
     ...Default.args,
-    size: "lg",
+    size: 'lg',
   },
 };
 

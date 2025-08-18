@@ -1,5 +1,5 @@
-import { JSX } from "preact";
-import { useRef } from "preact/hooks";
+import { JSX } from 'preact';
+import { useRef } from 'preact/hooks';
 
 export interface TabItem {
   id: string;
@@ -12,9 +12,9 @@ export interface TabsProps {
   tabs: readonly TabItem[];
   activeTab: string;
   onChange: (tabId: string) => void;
-  variant?: "default" | "pills" | "underline";
-  size?: "sm" | "md" | "lg";
-  orientation?: "horizontal" | "vertical";
+  variant?: 'default' | 'pills' | 'underline';
+  size?: 'sm' | 'md' | 'lg';
+  orientation?: 'horizontal' | 'vertical';
   scrollable?: boolean;
   centered?: boolean;
   fullWidth?: boolean;
@@ -25,58 +25,58 @@ export function Tabs({
   tabs,
   activeTab,
   onChange,
-  variant = "default",
-  size = "md",
-  orientation = "horizontal",
+  variant = 'default',
+  size = 'md',
+  orientation = 'horizontal',
   scrollable = false,
   centered = false,
   fullWidth = false,
-  className = "",
+  className = '',
 }: Readonly<TabsProps>) {
   const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
 
   const sizeClasses = {
-    sm: "px-2 py-1 text-sm",
-    md: "px-4 py-2 text-base",
-    lg: "px-6 py-3 text-lg",
+    sm: 'px-2 py-1 text-sm',
+    md: 'px-4 py-2 text-base',
+    lg: 'px-6 py-3 text-lg',
   };
 
   const variantClasses = {
-    default: "border-b-2 border-transparent hover:border-border-light",
-    pills: "rounded-md hover:bg-bg-muted",
-    underline: "border-b-2 border-transparent hover:border-primary",
+    default: 'border-b-2 border-transparent hover:border-border-light',
+    pills: 'rounded-md hover:bg-bg-muted',
+    underline: 'border-b-2 border-transparent hover:border-primary',
   };
 
   const activeVariantClasses = {
-    default: "border-primary text-primary",
-    pills: "bg-primary text-white",
-    underline: "border-primary text-primary",
+    default: 'border-primary text-primary',
+    pills: 'bg-primary text-white',
+    underline: 'border-primary text-primary',
   };
 
   const handleKeyDown = (event: KeyboardEvent, index: number) => {
     let newIndex = index;
 
     switch (event.key) {
-      case "ArrowLeft":
-      case "ArrowUp":
+      case 'ArrowLeft':
+      case 'ArrowUp':
         event.preventDefault();
         newIndex = index > 0 ? index - 1 : tabs.length - 1;
         break;
-      case "ArrowRight":
-      case "ArrowDown":
+      case 'ArrowRight':
+      case 'ArrowDown':
         event.preventDefault();
         newIndex = index < tabs.length - 1 ? index + 1 : 0;
         break;
-      case "Home":
+      case 'Home':
         event.preventDefault();
         newIndex = 0;
         break;
-      case "End":
+      case 'End':
         event.preventDefault();
         newIndex = tabs.length - 1;
         break;
-      case "Enter":
-      case " ": {
+      case 'Enter':
+      case ' ': {
         event.preventDefault();
         const tab = tabs[index];
         if (tab && !tab.disabled) {
@@ -92,23 +92,23 @@ export function Tabs({
   };
 
   const containerClasses = [
-    "flex",
-    orientation === "horizontal" ? "flex-row" : "flex-col",
-    centered ? "justify-center" : "justify-start",
-    scrollable ? "overflow-x-auto" : "",
-    fullWidth ? "w-full" : "",
+    'flex',
+    orientation === 'horizontal' ? 'flex-row' : 'flex-col',
+    centered ? 'justify-center' : 'justify-start',
+    scrollable ? 'overflow-x-auto' : '',
+    fullWidth ? 'w-full' : '',
     className,
   ]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 
   const tabContainerClasses = [
-    "inline-flex",
-    orientation === "horizontal" ? "flex-row" : "flex-col",
-    fullWidth ? "w-full" : "",
+    'inline-flex',
+    orientation === 'horizontal' ? 'flex-row' : 'flex-col',
+    fullWidth ? 'w-full' : '',
   ]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 
   return (
     <div
@@ -122,16 +122,16 @@ export function Tabs({
           const isDisabled = tab.disabled;
 
           const tabClasses = [
-            "flex items-center gap-2 cursor-pointer transition-colors duration-200",
-            "focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
+            'flex items-center gap-2 cursor-pointer transition-colors duration-200',
+            'focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2',
             sizeClasses[size],
             variantClasses[variant],
-            isActive ? activeVariantClasses[variant] : "",
-            isDisabled ? "opacity-50 cursor-not-allowed" : "",
-            fullWidth ? "flex-1" : "",
+            isActive ? activeVariantClasses[variant] : '',
+            isDisabled ? 'opacity-50 cursor-not-allowed' : '',
+            fullWidth ? 'flex-1' : '',
           ]
             .filter(Boolean)
-            .join(" ");
+            .join(' ');
 
           const getTabIndex = () => {
             if (isDisabled) return -1;

@@ -1,4 +1,4 @@
-import { useMemo } from "preact/hooks";
+import { useMemo } from 'preact/hooks';
 
 export interface PaginationProps {
   currentPage: number;
@@ -8,8 +8,8 @@ export interface PaginationProps {
   showPrevNext?: boolean;
   showEllipsis?: boolean;
   maxPages?: number;
-  size?: "sm" | "md" | "lg";
-  variant?: "default" | "outline" | "ghost";
+  size?: 'sm' | 'md' | 'lg';
+  variant?: 'default' | 'outline' | 'ghost';
   className?: string;
 }
 
@@ -21,29 +21,29 @@ export function Pagination({
   showPrevNext = true,
   showEllipsis = true,
   maxPages = 5,
-  size = "md",
-  variant = "default",
-  className = "",
+  size = 'md',
+  variant = 'default',
+  className = '',
 }: Readonly<PaginationProps>) {
   const sizeClasses = {
-    sm: "px-2 py-1 text-sm",
-    md: "px-3 py-2 text-base",
-    lg: "px-4 py-3 text-lg",
+    sm: 'px-2 py-1 text-sm',
+    md: 'px-3 py-2 text-base',
+    lg: 'px-4 py-3 text-lg',
   };
 
   const variantClasses = {
-    default: "bg-bg-surface border border-border-light hover:bg-bg-muted",
-    outline: "border border-border-light hover:bg-bg-muted",
-    ghost: "hover:bg-bg-muted",
+    default: 'bg-bg-surface border border-border-light hover:bg-bg-muted',
+    outline: 'border border-border-light hover:bg-bg-muted',
+    ghost: 'hover:bg-bg-muted',
   };
 
   const activeClasses = {
-    default: "bg-primary text-white border-primary",
-    outline: "bg-primary text-white border-primary",
-    ghost: "bg-primary text-white",
+    default: 'bg-primary text-white border-primary',
+    outline: 'bg-primary text-white border-primary',
+    ghost: 'bg-primary text-white',
   };
 
-  const disabledClasses = "opacity-50 cursor-not-allowed";
+  const disabledClasses = 'opacity-50 cursor-not-allowed';
 
   const pageNumbers = useMemo(() => {
     if (totalPages <= maxPages) {
@@ -67,11 +67,11 @@ export function Pagination({
 
     if (showEllipsis) {
       if (start > 1) {
-        pages.unshift("...");
+        pages.unshift('...');
         pages.unshift(1);
       }
       if (end < totalPages) {
-        pages.push("...");
+        pages.push('...');
         pages.push(totalPages);
       }
     }
@@ -80,19 +80,19 @@ export function Pagination({
   }, [currentPage, totalPages, maxPages, showEllipsis]);
 
   const handlePageClick = (page: number | string) => {
-    if (typeof page === "number" && page !== currentPage) {
+    if (typeof page === 'number' && page !== currentPage) {
       onPageChange(page);
     }
   };
 
   const baseButtonClasses = [
-    "inline-flex items-center justify-center rounded-md transition-colors duration-200",
-    "focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2",
+    'inline-flex items-center justify-center rounded-md transition-colors duration-200',
+    'focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2',
     sizeClasses[size],
-  ].join(" ");
+  ].join(' ');
 
   const renderPageButton = (page: number | string, index: number) => {
-    if (page === "...") {
+    if (page === '...') {
       return (
         <span
           key={`ellipsis-${index}`}
@@ -107,15 +107,15 @@ export function Pagination({
     const classes = [
       baseButtonClasses,
       isActive ? activeClasses[variant] : variantClasses[variant],
-      "min-w-[2.5rem]",
-    ].join(" ");
+      'min-w-[2.5rem]',
+    ].join(' ');
 
     return (
       <button
         key={page}
         className={classes}
         onClick={() => handlePageClick(page)}
-        aria-current={isActive ? "page" : undefined}
+        aria-current={isActive ? 'page' : undefined}
         aria-label={`Go to page ${page}`}
       >
         {page}
@@ -124,7 +124,7 @@ export function Pagination({
   };
 
   const renderNavigationButton = (
-    type: "first" | "prev" | "next" | "last",
+    type: 'first' | 'prev' | 'next' | 'last',
     disabled: boolean,
     label: string,
     icon?: string
@@ -132,16 +132,16 @@ export function Pagination({
     const classes = [
       baseButtonClasses,
       variantClasses[variant],
-      disabled ? disabledClasses : "",
-      "min-w-[2.5rem]",
-    ].join(" ");
+      disabled ? disabledClasses : '',
+      'min-w-[2.5rem]',
+    ].join(' ');
 
     return (
       <button
         className={classes}
         onClick={() =>
           !disabled &&
-          onPageChange(type === "first" || type === "prev" ? 1 : totalPages)
+          onPageChange(type === 'first' || type === 'prev' ? 1 : totalPages)
         }
         disabled={disabled}
         aria-label={label}
@@ -158,36 +158,36 @@ export function Pagination({
     >
       {showFirstLast &&
         renderNavigationButton(
-          "first",
+          'first',
           currentPage === 1,
-          "Go to first page",
-          "«"
+          'Go to first page',
+          '«'
         )}
 
       {showPrevNext &&
         renderNavigationButton(
-          "prev",
+          'prev',
           currentPage === 1,
-          "Go to previous page",
-          "‹"
+          'Go to previous page',
+          '‹'
         )}
 
       {pageNumbers.map(renderPageButton)}
 
       {showPrevNext &&
         renderNavigationButton(
-          "next",
+          'next',
           currentPage === totalPages,
-          "Go to next page",
-          "›"
+          'Go to next page',
+          '›'
         )}
 
       {showFirstLast &&
         renderNavigationButton(
-          "last",
+          'last',
           currentPage === totalPages,
-          "Go to last page",
-          "»"
+          'Go to last page',
+          '»'
         )}
     </nav>
   );

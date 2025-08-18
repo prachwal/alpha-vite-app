@@ -1,5 +1,5 @@
-import { JSX } from "preact";
-import { cn } from "../../../utils/cn";
+import { JSX } from 'preact';
+import { cn } from '../../../utils/cn';
 
 export interface TabPanelProps {
   readonly tabId: string;
@@ -22,7 +22,7 @@ export function TabPanel({
       id={`tabpanel-${tabId}`}
       aria-labelledby={`tab-${tabId}`}
       aria-hidden={!isActive}
-      className={cn("focus:outline-none", !isActive && "hidden", className)}
+      className={cn('focus:outline-none', !isActive && 'hidden', className)}
     >
       {children}
     </div>

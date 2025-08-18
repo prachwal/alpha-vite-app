@@ -1,15 +1,15 @@
-import { Grid, GridItem } from "../index";
+import { Grid, GridItem } from '../index';
 
 export default {
-  title: "Layout/Grid",
+  title: 'Layout/Grid',
   component: Grid,
   argTypes: {
     columns: {
-      control: { type: "number", min: 1, max: 12 },
+      control: { type: 'number', min: 1, max: 12 },
     },
     gap: {
-      control: { type: "select" },
-      options: ["none", "sm", "md", "lg", "xl"],
+      control: { type: 'select' },
+      options: ['none', 'sm', 'md', 'lg', 'xl'],
     },
   },
 };
@@ -17,7 +17,7 @@ export default {
 export const Default = {
   args: {
     columns: 12,
-    gap: "md",
+    gap: 'md',
   },
   render: (args: any) => (
     <Grid {...args}>

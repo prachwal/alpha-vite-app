@@ -1,4 +1,4 @@
-import { count } from "./Counter";
+import { count } from './Counter';
 
 export function CounterButton() {
   return (

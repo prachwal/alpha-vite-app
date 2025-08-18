@@ -1,9 +1,9 @@
-import { PageDemo } from "../pages/PageDemo";
+import { PageDemo } from '../pages/PageDemo';
 
 export default {
-  title: "Demo/PageDemo",
+  title: 'Demo/PageDemo',
   component: PageDemo,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
 };
 
 export const Default = {};

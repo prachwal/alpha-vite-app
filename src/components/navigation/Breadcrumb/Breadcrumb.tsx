@@ -1,6 +1,6 @@
-import { JSX } from "preact";
-import { useMemo } from "preact/hooks";
-import { BreadcrumbItem } from "./BreadcrumbItem";
+import { JSX } from 'preact';
+import { useMemo } from 'preact/hooks';
+import { BreadcrumbItem } from './BreadcrumbItem';
 
 export interface BreadcrumbProps {
   items: readonly BreadcrumbItem[];
@@ -11,16 +11,16 @@ export interface BreadcrumbProps {
 
 export function Breadcrumb({
   items,
-  separator = "/",
+  separator = '/',
   maxItems = 8,
-  className = "",
+  className = '',
 }: Readonly<BreadcrumbProps>) {
   const displayItems = useMemo(() => {
     if (items.length <= maxItems) {
       return items;
     }
 
-    const ellipsis: BreadcrumbItem = { label: "...", href: undefined };
+    const ellipsis: BreadcrumbItem = { label: '...', href: undefined };
     const half = Math.floor((maxItems - 1) / 2);
 
     return [
@@ -31,29 +31,29 @@ export function Breadcrumb({
   }, [items, maxItems]);
 
   const containerClasses = [
-    "flex items-center gap-2 text-sm",
-    "text-text-secondary",
+    'flex items-center gap-2 text-sm',
+    'text-text-secondary',
     className,
   ]
     .filter(Boolean)
-    .join(" ");
+    .join(' ');
 
   const linkClasses = [
-    "hover:text-primary transition-colors",
-    "focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1",
-    "rounded-sm",
-  ].join(" ");
+    'hover:text-primary transition-colors',
+    'focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1',
+    'rounded-sm',
+  ].join(' ');
 
-  const currentClasses = "text-text-primary font-medium";
+  const currentClasses = 'text-text-primary font-medium';
 
   return (
     <nav aria-label="Breadcrumb" className={containerClasses}>
       <ol className="flex items-center gap-2">
         {displayItems.map((item, index) => {
           const isLast = index === displayItems.length - 1;
-          const isEllipsis = item.label === "...";
+          const isEllipsis = item.label === '...';
           const key =
-            item.label + (item.href ?? "") + (item.icon ? "-icon" : "");
+            item.label + (item.href ?? '') + (item.icon ? '-icon' : '');
 
           return (
             <li key={key} className="flex items-center gap-2">
@@ -65,8 +65,8 @@ export function Breadcrumb({
 
               {isLast || isEllipsis ? (
                 <span
-                  className={isEllipsis ? "" : currentClasses}
-                  aria-current={isLast && !isEllipsis ? "page" : undefined}
+                  className={isEllipsis ? '' : currentClasses}
+                  aria-current={isLast && !isEllipsis ? 'page' : undefined}
                 >
                   {item.icon && <span className="mr-1">{item.icon}</span>}
                   {item.label}

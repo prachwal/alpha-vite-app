@@ -1,6 +1,6 @@
-import { type ComponentChildren } from "preact";
-import { useState } from "preact/hooks";
-import { cn } from "../../../utils/cn";
+import { type ComponentChildren } from 'preact';
+import { useState } from 'preact/hooks';
+import { cn } from '../../../utils/cn';
 
 export interface RateProps {
   /** Current rating value */
@@ -43,7 +43,7 @@ export function Rate({
   allowHalf = false,
   allowClear = true,
   disabled = false,
-  character = "★",
+  character = '★',
   tooltips,
   className,
 }: Readonly<RateProps>) {
@@ -77,11 +77,11 @@ export function Rate({
     const starValue = index + 1;
 
     if (currentValue >= starValue) {
-      return "full";
+      return 'full';
     } else if (allowHalf && currentValue >= starValue - 0.5) {
-      return "half";
+      return 'half';
     } else {
-      return "empty";
+      return 'empty';
     }
   };
 
@@ -94,17 +94,17 @@ export function Rate({
         key={index}
         type="button"
         className={cn(
-          "relative inline-block text-2xl leading-none bg-transparent border-none p-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 rounded-sm",
+          'relative inline-block text-2xl leading-none bg-transparent border-none p-1 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 rounded-sm',
           disabled
-            ? "cursor-not-allowed opacity-50"
-            : "cursor-pointer hover:scale-110 transition-transform duration-200"
+            ? 'cursor-not-allowed opacity-50'
+            : 'cursor-pointer hover:scale-110 transition-transform duration-200'
         )}
         onMouseLeave={handleMouseLeave}
         title={tooltip}
         disabled={disabled}
         onClick={() => handleStarClick(index)}
         onMouseEnter={() => handleStarHover(index)}
-        aria-label={`Rate ${index + 1} star${index > 0 ? "s" : ""}`}
+        aria-label={`Rate ${index + 1} star${index > 0 ? 's' : ''}`}
       >
         {/* Background star (empty) */}
         <span className="text-gray-300 dark:text-gray-600 transition-colors duration-200">
@@ -115,8 +115,8 @@ export function Rate({
         {allowHalf && (
           <span
             className={cn(
-              "absolute top-1 left-1 w-1/2 overflow-hidden transition-colors duration-200 pointer-events-none",
-              starState === "half" ? "text-yellow-400" : "text-transparent"
+              'absolute top-1 left-1 w-1/2 overflow-hidden transition-colors duration-200 pointer-events-none',
+              starState === 'half' ? 'text-yellow-400' : 'text-transparent'
             )}
           >
             {character}
@@ -126,8 +126,8 @@ export function Rate({
         {/* Full star overlay */}
         <span
           className={cn(
-            "absolute top-1 left-1 transition-colors duration-200 pointer-events-none",
-            starState === "full" ? "text-yellow-400" : "text-transparent"
+            'absolute top-1 left-1 transition-colors duration-200 pointer-events-none',
+            starState === 'full' ? 'text-yellow-400' : 'text-transparent'
           )}
         >
           {character}
@@ -138,7 +138,7 @@ export function Rate({
 
   return (
     <div
-      className={cn("inline-flex items-center gap-1", className)}
+      className={cn('inline-flex items-center gap-1', className)}
       role="radiogroup"
       aria-label={`Rate ${count} stars`}
     >

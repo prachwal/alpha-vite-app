@@ -1,4 +1,4 @@
-import { appName } from "./Counter";
+import { appName } from './Counter';
 
 export function AppTitle() {
   return (

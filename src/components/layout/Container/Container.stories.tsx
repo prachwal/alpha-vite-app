@@ -1,22 +1,22 @@
-import { Container, ContainerProps } from "./Container";
+import { Container, ContainerProps } from './Container';
 
 export default {
-  title: "Layout/Container",
+  title: 'Layout/Container',
   component: Container,
   argTypes: {
     maxWidth: {
-      control: { type: "select" },
-      options: ["sm", "md", "lg", "xl", "2xl", "full"],
+      control: { type: 'select' },
+      options: ['sm', 'md', 'lg', 'xl', '2xl', 'full'],
     },
     padding: {
-      control: { type: "select" },
-      options: ["none", "sm", "md", "lg", "xl"],
+      control: { type: 'select' },
+      options: ['none', 'sm', 'md', 'lg', 'xl'],
     },
     centered: {
-      control: { type: "boolean" },
+      control: { type: 'boolean' },
     },
     fluid: {
-      control: { type: "boolean" },
+      control: { type: 'boolean' },
     },
   },
 };
@@ -35,33 +35,33 @@ const Template = (args: ContainerProps) => (
 
 export const Default = Template.bind({});
 (Default as any).args = {
-  maxWidth: "lg",
-  padding: "md",
+  maxWidth: 'lg',
+  padding: 'md',
   centered: true,
   fluid: false,
 };
 
 export const Small = Template.bind({});
 (Small as any).args = {
-  maxWidth: "sm",
-  padding: "sm",
+  maxWidth: 'sm',
+  padding: 'sm',
 };
 
 export const Large = Template.bind({});
 (Large as any).args = {
-  maxWidth: "xl",
-  padding: "lg",
+  maxWidth: 'xl',
+  padding: 'lg',
 };
 
 export const Fluid = Template.bind({});
 (Fluid as any).args = {
   fluid: true,
-  padding: "md",
+  padding: 'md',
 };
 
 export const NoPadding = Template.bind({});
 (NoPadding as any).args = {
-  padding: "none",
+  padding: 'none',
 };
 
 export const NotCentered = Template.bind({});

@@ -1,9 +1,9 @@
-import { h } from "preact";
-import { render, screen, fireEvent, act } from "@testing-library/preact";
-import { Toast } from "./Toast";
+// No need to import h - it's handled by JSX transform
+import { render, screen, fireEvent, act } from '@testing-library/preact';
+import { Toast } from './Toast';
 
-describe("Toast", () => {
-  it("renders with title and description", () => {
+describe('Toast', () => {
+  it('renders with title and description', () => {
     render(
       <Toast
         id="test-toast"
@@ -14,11 +14,11 @@ describe("Toast", () => {
       />
     );
 
-    expect(screen.getByText("Test Title")).toBeInTheDocument();
-    expect(screen.getByText("Test description")).toBeInTheDocument();
+    expect(screen.getByText('Test Title')).toBeInTheDocument();
+    expect(screen.getByText('Test description')).toBeInTheDocument();
   });
 
-  it("renders with only title", () => {
+  it('renders with only title', () => {
     render(
       <Toast
         id="test-toast"
@@ -28,10 +28,10 @@ describe("Toast", () => {
       />
     );
 
-    expect(screen.getByText("Success Title")).toBeInTheDocument();
+    expect(screen.getByText('Success Title')).toBeInTheDocument();
   });
 
-  it("renders with only description", () => {
+  it('renders with only description', () => {
     render(
       <Toast
         id="test-toast"
@@ -41,14 +41,14 @@ describe("Toast", () => {
       />
     );
 
-    expect(screen.getByText("Warning description")).toBeInTheDocument();
+    expect(screen.getByText('Warning description')).toBeInTheDocument();
   });
 
-  it("applies correct variant classes", () => {
+  it('applies correct variant classes', () => {
     const { container, rerender } = render(
       <Toast id="test-toast" title="Info" variant="info" onClose={jest.fn()} />
     );
-    expect(container.firstChild).toHaveClass("bg-blue-50");
+    expect(container.firstChild).toHaveClass('bg-blue-50');
 
     rerender(
       <Toast
@@ -58,7 +58,7 @@ describe("Toast", () => {
         onClose={jest.fn()}
       />
     );
-    expect(container.firstChild).toHaveClass("bg-green-50");
+    expect(container.firstChild).toHaveClass('bg-green-50');
 
     rerender(
       <Toast
@@ -68,7 +68,7 @@ describe("Toast", () => {
         onClose={jest.fn()}
       />
     );
-    expect(container.firstChild).toHaveClass("bg-yellow-50");
+    expect(container.firstChild).toHaveClass('bg-yellow-50');
 
     rerender(
       <Toast
@@ -78,24 +78,24 @@ describe("Toast", () => {
         onClose={jest.fn()}
       />
     );
-    expect(container.firstChild).toHaveClass("bg-red-50");
+    expect(container.firstChild).toHaveClass('bg-red-50');
   });
 
-  it("calls onClose when close button is clicked", () => {
+  it('calls onClose when close button is clicked', () => {
     const onClose = jest.fn();
     render(
       <Toast id="test-toast" title="Test" variant="info" onClose={onClose} />
     );
 
-    const closeButton = screen.getByLabelText("Close toast");
+    const closeButton = screen.getByLabelText('Close toast');
     fireEvent.click(closeButton);
 
-    expect(onClose).toHaveBeenCalledWith("test-toast");
+    expect(onClose).toHaveBeenCalledWith('test-toast');
   });
 
-  it("renders action button when action is provided", () => {
+  it('renders action button when action is provided', () => {
     const action = {
-      label: "Action",
+      label: 'Action',
       onClick: jest.fn(),
     };
 
@@ -109,14 +109,14 @@ describe("Toast", () => {
       />
     );
 
-    const actionButton = screen.getByText("Action");
+    const actionButton = screen.getByText('Action');
     expect(actionButton).toBeInTheDocument();
 
     fireEvent.click(actionButton);
     expect(action.onClick).toHaveBeenCalledTimes(1);
   });
 
-  it("has correct ARIA attributes", () => {
+  it('has correct ARIA attributes', () => {
     render(
       <Toast
         id="test-toast"
@@ -127,11 +127,11 @@ describe("Toast", () => {
       />
     );
 
-    const alert = screen.getByRole("alert");
+    const alert = screen.getByRole('alert');
     expect(alert).toBeInTheDocument();
   });
 
-  it("auto-closes after duration when not persistent", () => {
+  it('auto-closes after duration when not persistent', () => {
     jest.useFakeTimers();
     const onClose = jest.fn();
 
@@ -151,12 +151,12 @@ describe("Toast", () => {
       jest.advanceTimersByTime(1000);
     });
 
-    expect(onClose).toHaveBeenCalledWith("test-toast");
+    expect(onClose).toHaveBeenCalledWith('test-toast');
 
     jest.useRealTimers();
   });
 
-  it("does not auto-close when persistent is true", () => {
+  it('does not auto-close when persistent is true', () => {
     jest.useFakeTimers();
     const onClose = jest.fn();
 
@@ -179,7 +179,7 @@ describe("Toast", () => {
     jest.useRealTimers();
   });
 
-  it("uses default duration of 5000ms", () => {
+  it('uses default duration of 5000ms', () => {
     jest.useFakeTimers();
     const onClose = jest.fn();
 
@@ -191,7 +191,7 @@ describe("Toast", () => {
       jest.advanceTimersByTime(5000);
     });
 
-    expect(onClose).toHaveBeenCalledWith("test-toast");
+    expect(onClose).toHaveBeenCalledWith('test-toast');
 
     jest.useRealTimers();
   });

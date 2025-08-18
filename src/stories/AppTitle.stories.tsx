@@ -1,13 +1,13 @@
-import { AppTitle } from "../components/AppTitle";
+import { AppTitle } from '../components/AppTitle';
 
 export default {
-  title: "Design System/AppTitle",
+  title: 'Design System/AppTitle',
   component: AppTitle,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    className: { control: "text" },
+    className: { control: 'text' },
   },
 };
 
 export const Default = {};
-export const CustomClass = { args: { className: "text-red-500" } };
+export const CustomClass = { args: { className: 'text-red-500' } };

@@ -1,5 +1,5 @@
-import { useState, useRef, useEffect } from "preact/hooks";
-import { cn } from "../../../utils/cn";
+import { useState, useRef, useEffect } from 'preact/hooks';
+import { cn } from '../../../utils/cn';
 
 export interface ColorPickerProps {
   /** Current color value */
@@ -7,17 +7,17 @@ export interface ColorPickerProps {
   /** Callback when color changes */
   onChange: (color: string) => void;
   /** Color format (hex, rgb, hsl) */
-  format?: "hex" | "rgb" | "hsl";
+  format?: 'hex' | 'rgb' | 'hsl';
   /** Preset colors */
   presets?: readonly string[];
   /** Show input field */
   showInput?: boolean;
   /** Show alpha channel */
-  showAlpha?: boolean;
+
   /** Disable interaction */
   disabled?: boolean;
   /** Size variant */
-  size?: "sm" | "md" | "lg";
+  size?: 'sm' | 'md' | 'lg';
   /** Additional CSS class */
   className?: string;
 }
@@ -40,7 +40,7 @@ const colorUtils = {
 
   // Convert RGB to hex
   rgbToHex(r: number, g: number, b: number): string {
-    return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+    return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
   },
 
   // Convert HSL to RGB
@@ -123,30 +123,29 @@ const colorUtils = {
 export function ColorPicker({
   value,
   onChange,
-  format = "hex",
+  format = 'hex',
   presets = [
-    "#ff0000",
-    "#ff8000",
-    "#ffff00",
-    "#80ff00",
-    "#00ff00",
-    "#00ff80",
-    "#00ffff",
-    "#0080ff",
-    "#0000ff",
-    "#8000ff",
-    "#ff00ff",
-    "#ff0080",
-    "#000000",
-    "#404040",
-    "#808080",
-    "#c0c0c0",
-    "#ffffff",
+    '#ff0000',
+    '#ff8000',
+    '#ffff00',
+    '#80ff00',
+    '#00ff00',
+    '#00ff80',
+    '#00ffff',
+    '#0080ff',
+    '#0000ff',
+    '#8000ff',
+    '#ff00ff',
+    '#ff0080',
+    '#000000',
+    '#404040',
+    '#808080',
+    '#c0c0c0',
+    '#ffffff',
   ],
   showInput = true,
-  showAlpha = false,
   disabled = false,
-  size = "md",
+  size = 'md',
   className,
 }: Readonly<ColorPickerProps>) {
   const [isOpen, setIsOpen] = useState(false);
@@ -155,9 +154,9 @@ export function ColorPicker({
   const pickerRef = useRef<HTMLDivElement>(null);
 
   const sizeClasses = {
-    sm: "w-6 h-6",
-    md: "w-8 h-8",
-    lg: "w-10 h-10",
+    sm: 'w-6 h-6',
+    md: 'w-8 h-8',
+    lg: 'w-10 h-10',
   };
 
   // Close picker when clicking outside
@@ -172,9 +171,9 @@ export function ColorPicker({
     };
 
     if (isOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside);
       return () =>
-        document.removeEventListener("mousedown", handleClickOutside);
+        document.removeEventListener('mousedown', handleClickOutside);
     }
   }, [isOpen]);
 
@@ -213,11 +212,11 @@ export function ColorPicker({
   };
 
   const formatColor = (color: string): string => {
-    if (format === "rgb") {
+    if (format === 'rgb') {
       const rgb = colorUtils.hexToRgb(color);
       return rgb ? `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})` : color;
     }
-    if (format === "hsl") {
+    if (format === 'hsl') {
       const rgb = colorUtils.hexToRgb(color);
       if (rgb) {
         const hsl = colorUtils.rgbToHsl(rgb.r, rgb.g, rgb.b);
@@ -228,14 +227,14 @@ export function ColorPicker({
   };
 
   return (
-    <div className={cn("relative inline-block", className)} ref={pickerRef}>
+    <div className={cn('relative inline-block', className)} ref={pickerRef}>
       {/* Color Preview Button */}
       <button
         type="button"
         className={cn(
-          "border-2 border-gray-300 dark:border-gray-600 rounded cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition-all",
+          'border-2 border-gray-300 dark:border-gray-600 rounded cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1 transition-all',
           sizeClasses[size],
-          disabled && "cursor-not-allowed opacity-50"
+          disabled && 'cursor-not-allowed opacity-50'
         )}
         style={{ backgroundColor: value }}
         onClick={() => !disabled && setIsOpen(!isOpen)}
@@ -274,8 +273,8 @@ export function ColorPicker({
                     key={color}
                     type="button"
                     className={cn(
-                      "w-6 h-6 rounded border border-gray-300 dark:border-gray-600 cursor-pointer hover:scale-110 transition-transform focus:outline-none focus:ring-2 focus:ring-blue-500",
-                      value === color && "ring-2 ring-blue-500"
+                      'w-6 h-6 rounded border border-gray-300 dark:border-gray-600 cursor-pointer hover:scale-110 transition-transform focus:outline-none focus:ring-2 focus:ring-blue-500',
+                      value === color && 'ring-2 ring-blue-500'
                     )}
                     style={{ backgroundColor: color }}
                     onClick={() => handleColorSelect(color)}
@@ -298,8 +297,8 @@ export function ColorPicker({
                     key={`recent-${color}`}
                     type="button"
                     className={cn(
-                      "w-6 h-6 rounded border border-gray-300 dark:border-gray-600 cursor-pointer hover:scale-110 transition-transform focus:outline-none focus:ring-2 focus:ring-blue-500",
-                      value === color && "ring-2 ring-blue-500"
+                      'w-6 h-6 rounded border border-gray-300 dark:border-gray-600 cursor-pointer hover:scale-110 transition-transform focus:outline-none focus:ring-2 focus:ring-blue-500',
+                      value === color && 'ring-2 ring-blue-500'
                     )}
                     style={{ backgroundColor: color }}
                     onClick={() => handleColorSelect(color)}
@@ -329,8 +328,8 @@ export function ColorPicker({
                     key={i}
                     type="button"
                     className={cn(
-                      "w-4 h-4 rounded border border-gray-300 dark:border-gray-600 cursor-pointer hover:scale-125 transition-transform focus:outline-none focus:ring-1 focus:ring-blue-500",
-                      value === color && "ring-2 ring-blue-500"
+                      'w-4 h-4 rounded border border-gray-300 dark:border-gray-600 cursor-pointer hover:scale-125 transition-transform focus:outline-none focus:ring-1 focus:ring-blue-500',
+                      value === color && 'ring-2 ring-blue-500'
                     )}
                     style={{ backgroundColor: color }}
                     onClick={() => handleColorSelect(color)}

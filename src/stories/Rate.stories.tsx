@@ -1,19 +1,19 @@
-import { Rate } from "../components/form-advanced";
+import { Rate } from '../components/form-advanced';
 
 export default {
-  title: "Design System/Advanced Form/Rate",
+  title: 'Design System/Advanced Form/Rate',
   component: Rate,
-  tags: ["autodocs"],
+  tags: ['autodocs'],
   argTypes: {
-    value: { control: "number" },
-    onChange: { action: "onChange" },
-    count: { control: "number" },
-    allowHalf: { control: "boolean" },
-    allowClear: { control: "boolean" },
-    disabled: { control: "boolean" },
-    character: { control: "text" },
-    tooltips: { control: "object" },
-    className: { control: "text" },
+    value: { control: 'number' },
+    onChange: { action: 'onChange' },
+    count: { control: 'number' },
+    allowHalf: { control: 'boolean' },
+    allowClear: { control: 'boolean' },
+    disabled: { control: 'boolean' },
+    character: { control: 'text' },
+    tooltips: { control: 'object' },
+    className: { control: 'text' },
   },
 };
 
@@ -36,7 +36,7 @@ export const CustomCharacter = {
   args: {
     value: 3,
     onChange: () => {},
-    character: "♥",
+    character: '♥',
   },
 };
 

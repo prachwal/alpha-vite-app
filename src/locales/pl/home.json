@@ -1,11 +1,11 @@
 {
-    "welcome": "Witaj w Twojej nowoczesnej aplikacji SSR Preact",
-    "features": "Funkcje",
-    "featureSSR": "Renderowanie po stronie serwera (SSR)",
-    "featureSignals": "Preact Signals do zarządzania stanem",
-    "featureTailwind": "Tailwind CSS 4 do stylizacji",
-    "featureResponsive": "Responsywny design",
-    "featureTheme": "Obsługa motywów jasny/ciemny",
-    "apiTesting": "Testowanie API",
-    "apiDescription": "Testuj endpointy API i zobacz odpowiedzi w czasie rzeczywistym:"
+  "welcome": "Witaj w Twojej nowoczesnej aplikacji SSR Preact",
+  "features": "Funkcje",
+  "featureSSR": "Renderowanie po stronie serwera (SSR)",
+  "featureSignals": "Preact Signals do zarządzania stanem",
+  "featureTailwind": "Tailwind CSS 4 do stylizacji",
+  "featureResponsive": "Responsywny design",
+  "featureTheme": "Obsługa motywów jasny/ciemny",
+  "apiTesting": "Testowanie API",
+  "apiDescription": "Testuj endpointy API i zobacz odpowiedzi w czasie rzeczywistym:"
 }

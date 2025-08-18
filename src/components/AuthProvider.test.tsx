@@ -1,13 +1,13 @@
 /**
  * @fileoverview Tests for AuthProvider component
  */
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
-import { render, screen, fireEvent, waitFor } from "@testing-library/preact";
-import { useAuth, AuthButton } from "./AuthProvider";
-import { auth0State } from "@services/Auth0Provider";
+import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { render, screen, fireEvent, waitFor } from '@testing-library/preact';
+import { useAuth, AuthButton } from './AuthProvider';
+import { auth0State } from '@services/Auth0Provider';
 
 // Mock the Auth0Provider service
-vi.mock("@services/Auth0Provider", () => ({
+vi.mock('@services/Auth0Provider', () => ({
   auth0State: {
     value: {
       isLoading: false,
@@ -22,20 +22,20 @@ vi.mock("@services/Auth0Provider", () => ({
 }));
 
 // Mock the i18n service
-vi.mock("@services/i18n", () => ({
+vi.mock('@services/i18n', () => ({
   usePageTranslations: (_key: string) => (key: string) => {
     const translations: Record<string, string> = {
-      loading: "Ładowanie...",
-      login: "Zaloguj się",
-      logout: "Wyloguj",
-      authError: "Błąd uwierzytelniania",
-      dismiss: "Zamknij",
+      loading: 'Ładowanie...',
+      login: 'Zaloguj się',
+      logout: 'Wyloguj',
+      authError: 'Błąd uwierzytelniania',
+      dismiss: 'Zamknij',
     };
     return translations[key] || key;
   },
 }));
 
-describe("AuthProvider - useAuth hook", () => {
+describe('AuthProvider - useAuth hook', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     auth0State.value = {
@@ -50,7 +50,7 @@ describe("AuthProvider - useAuth hook", () => {
     vi.clearAllTimers();
   });
 
-  it("should return initial auth state", () => {
+  it('should return initial auth state', () => {
     const TestComponent = () => {
       const auth = useAuth();
       return (
@@ -59,19 +59,19 @@ describe("AuthProvider - useAuth hook", () => {
           <span data-testid="authenticated">
             {auth.isAuthenticated.toString()}
           </span>
-          <span data-testid="user">{auth.user?.email || "null"}</span>
+          <span data-testid="user">{auth.user?.email || 'null'}</span>
         </div>
       );
     };
 
     render(<TestComponent />);
 
-    expect(screen.getByTestId("loading")).toHaveTextContent("false");
-    expect(screen.getByTestId("authenticated")).toHaveTextContent("false");
-    expect(screen.getByTestId("user")).toHaveTextContent("null");
+    expect(screen.getByTestId('loading')).toHaveTextContent('false');
+    expect(screen.getByTestId('authenticated')).toHaveTextContent('false');
+    expect(screen.getByTestId('user')).toHaveTextContent('null');
   });
 
-  it("should handle loading state", () => {
+  it('should handle loading state', () => {
     auth0State.value = {
       ...auth0State.value,
       isLoading: true,
@@ -83,18 +83,18 @@ describe("AuthProvider - useAuth hook", () => {
     };
 
     render(<TestComponent />);
-    expect(screen.getByTestId("loading")).toHaveTextContent("true");
+    expect(screen.getByTestId('loading')).toHaveTextContent('true');
   });
 
-  it("should handle authenticated state with user", () => {
+  it('should handle authenticated state with user', () => {
     auth0State.value = {
       ...auth0State.value,
       isAuthenticated: true,
       user: {
-        name: "Test User",
-        email: "test@example.com",
-        picture: "https://example.com/avatar.jpg",
-        sub: "auth0|123",
+        name: 'Test User',
+        email: 'test@example.com',
+        picture: 'https://example.com/avatar.jpg',
+        sub: 'auth0|123',
       },
     };
 
@@ -113,19 +113,19 @@ describe("AuthProvider - useAuth hook", () => {
 
     render(<TestComponent />);
 
-    expect(screen.getByTestId("authenticated")).toHaveTextContent("true");
-    expect(screen.getByTestId("user-email")).toHaveTextContent(
-      "test@example.com"
+    expect(screen.getByTestId('authenticated')).toHaveTextContent('true');
+    expect(screen.getByTestId('user-email')).toHaveTextContent(
+      'test@example.com'
     );
-    expect(screen.getByTestId("user-name")).toHaveTextContent("Test User");
+    expect(screen.getByTestId('user-name')).toHaveTextContent('Test User');
   });
 
-  it("should handle error state and auto-clear after 5 seconds", async () => {
+  it('should handle error state and auto-clear after 5 seconds', async () => {
     vi.useFakeTimers();
-    const { clearError } = await import("@services/Auth0Provider");
+    const { clearError } = await import('@services/Auth0Provider');
     auth0State.value = {
       ...auth0State.value,
-      error: "Authentication failed",
+      error: 'Authentication failed',
     };
 
     const TestComponent = () => {
@@ -135,8 +135,8 @@ describe("AuthProvider - useAuth hook", () => {
 
     render(<TestComponent />);
 
-    expect(screen.getByTestId("error")).toHaveTextContent(
-      "Authentication failed"
+    expect(screen.getByTestId('error')).toHaveTextContent(
+      'Authentication failed'
     );
 
     // Fast-forward time by 5 seconds
@@ -148,8 +148,8 @@ describe("AuthProvider - useAuth hook", () => {
     vi.useRealTimers();
   });
 
-  it("should handle login action", async () => {
-    const { loginWithRedirect } = await import("@services/Auth0Provider");
+  it('should handle login action', async () => {
+    const { loginWithRedirect } = await import('@services/Auth0Provider');
     const TestComponent = () => {
       const auth = useAuth();
       return (
@@ -161,7 +161,7 @@ describe("AuthProvider - useAuth hook", () => {
 
     render(<TestComponent />);
 
-    const loginBtn = screen.getByTestId("login-btn");
+    const loginBtn = screen.getByTestId('login-btn');
     fireEvent.click(loginBtn);
 
     await waitFor(() => {
@@ -169,12 +169,12 @@ describe("AuthProvider - useAuth hook", () => {
     });
   });
 
-  it("should handle logout action", async () => {
-    const { logout } = await import("@services/Auth0Provider");
+  it('should handle logout action', async () => {
+    const { logout } = await import('@services/Auth0Provider');
     auth0State.value = {
       ...auth0State.value,
       isAuthenticated: true,
-      user: { email: "test@example.com" },
+      user: { email: 'test@example.com' },
     };
 
     const TestComponent = () => {
@@ -188,7 +188,7 @@ describe("AuthProvider - useAuth hook", () => {
 
     render(<TestComponent />);
 
-    const logoutBtn = screen.getByTestId("logout-btn");
+    const logoutBtn = screen.getByTestId('logout-btn');
     fireEvent.click(logoutBtn);
 
     await waitFor(() => {
@@ -197,7 +197,7 @@ describe("AuthProvider - useAuth hook", () => {
   });
 });
 
-describe("AuthButton component", () => {
+describe('AuthButton component', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     auth0State.value = {
@@ -208,7 +208,7 @@ describe("AuthButton component", () => {
     };
   });
 
-  it("should render loading state", () => {
+  it('should render loading state', () => {
     auth0State.value = {
       ...auth0State.value,
       isLoading: true,
@@ -216,75 +216,75 @@ describe("AuthButton component", () => {
 
     render(<AuthButton isCollapsed={false} />);
 
-    expect(screen.getByText("Ładowanie...")).toBeInTheDocument();
+    expect(screen.getByText('Ładowanie...')).toBeInTheDocument();
   });
 
-  it("should render login button when not authenticated", () => {
+  it('should render login button when not authenticated', () => {
     render(<AuthButton isCollapsed={false} />);
 
-    expect(screen.getByText("Zaloguj się")).toBeInTheDocument();
-    expect(screen.getByRole("button")).toBeInTheDocument();
+    expect(screen.getByText('Zaloguj się')).toBeInTheDocument();
+    expect(screen.getByRole('button')).toBeInTheDocument();
   });
 
-  it("should render user info when authenticated", () => {
+  it('should render user info when authenticated', () => {
     auth0State.value = {
       ...auth0State.value,
       isAuthenticated: true,
       user: {
-        name: "Test User",
-        email: "test@example.com",
-        picture: "https://example.com/avatar.jpg",
+        name: 'Test User',
+        email: 'test@example.com',
+        picture: 'https://example.com/avatar.jpg',
       },
     };
 
     render(<AuthButton isCollapsed={false} />);
 
-    expect(screen.getByText("Test User")).toBeInTheDocument();
-    expect(screen.getByText("Wyloguj")).toBeInTheDocument();
-    expect(screen.getByRole("img")).toHaveAttribute(
-      "src",
-      "https://example.com/avatar.jpg"
+    expect(screen.getByText('Test User')).toBeInTheDocument();
+    expect(screen.getByText('Wyloguj')).toBeInTheDocument();
+    expect(screen.getByRole('img')).toHaveAttribute(
+      'src',
+      'https://example.com/avatar.jpg'
     );
   });
 
-  it("should render user initials when no picture available", () => {
+  it('should render user initials when no picture available', () => {
     auth0State.value = {
       ...auth0State.value,
       isAuthenticated: true,
       user: {
-        name: "Test User",
-        email: "test@example.com",
+        name: 'Test User',
+        email: 'test@example.com',
       },
     };
 
     render(<AuthButton isCollapsed={false} />);
 
-    expect(screen.getByText("T")).toBeInTheDocument(); // First letter of "Test User"
+    expect(screen.getByText('T')).toBeInTheDocument(); // First letter of "Test User"
   });
 
-  it("should render collapsed state", () => {
+  it('should render collapsed state', () => {
     auth0State.value = {
       ...auth0State.value,
       isAuthenticated: true,
       user: {
-        name: "Test User",
-        email: "test@example.com",
-        picture: "https://example.com/avatar.jpg",
+        name: 'Test User',
+        email: 'test@example.com',
+        picture: 'https://example.com/avatar.jpg',
       },
     };
 
     render(<AuthButton isCollapsed={true} />);
 
-    expect(screen.queryByText("Test User")).not.toBeInTheDocument();
-    expect(screen.queryByText("Wyloguj")).not.toBeInTheDocument();
-    expect(screen.getByRole("img")).toBeInTheDocument();
+    expect(screen.queryByText('Test User')).not.toBeInTheDocument();
+    expect(screen.queryByText('Wyloguj')).not.toBeInTheDocument();
+    expect(screen.getByRole('img')).toBeInTheDocument();
   });
 
-  it("should handle login click", async () => {
-    const { loginWithRedirect } = await import("@services/Auth0Provider");
+  it('should handle login click', async () => {
+    const { loginWithRedirect } = await import('@services/Auth0Provider');
     render(<AuthButton isCollapsed={false} />);
 
-    const loginBtn = screen.getByText("Zaloguj się");
+    const loginBtn = screen.getByText('Zaloguj się');
     fireEvent.click(loginBtn);
 
     await waitFor(() => {
@@ -292,17 +292,17 @@ describe("AuthButton component", () => {
     });
   });
 
-  it("should handle logout click", async () => {
-    const { logout } = await import("@services/Auth0Provider");
+  it('should handle logout click', async () => {
+    const { logout } = await import('@services/Auth0Provider');
     auth0State.value = {
       ...auth0State.value,
       isAuthenticated: true,
-      user: { email: "test@example.com" },
+      user: { email: 'test@example.com' },
     };
 
     render(<AuthButton isCollapsed={false} />);
 
-    const logoutBtn = screen.getByText("Wyloguj");
+    const logoutBtn = screen.getByText('Wyloguj');
     fireEvent.click(logoutBtn);
 
     await waitFor(() => {
@@ -311,9 +311,9 @@ describe("AuthButton component", () => {
   });
 });
 
-describe("AuthProvider backward compatibility", () => {
-  it("should provide AuthButton component", () => {
-    expect(typeof AuthButton).toBe("function");
+describe('AuthProvider backward compatibility', () => {
+  it('should provide AuthButton component', () => {
+    expect(typeof AuthButton).toBe('function');
     const { container } = render(<AuthButton isCollapsed={false} />);
     expect(container).toBeInTheDocument();
   });

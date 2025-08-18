@@ -5,6 +5,7 @@ This directory contains navigation components for building user interfaces.
 ## Components
 
 ### Tabs
+
 A tab navigation component with keyboard support and accessibility features.
 
 ```tsx
@@ -20,10 +21,11 @@ const tabs = [
   activeTab="tab1"
   onChange={(tabId) => console.log(tabId)}
   variant="default"
-/>
+/>;
 ```
 
 ### Breadcrumb
+
 A breadcrumb navigation component for hierarchical navigation.
 
 ```tsx
@@ -35,10 +37,11 @@ const items = [
   { label: 'Product Name' },
 ];
 
-<Breadcrumb items={items} separator="/" />
+<Breadcrumb items={items} separator="/" />;
 ```
 
 ### Pagination
+
 A pagination component for navigating through large datasets.
 
 ```tsx
@@ -50,10 +53,11 @@ import { Pagination } from '@components/navigation';
   onPageChange={(page) => console.log(page)}
   showFirstLast
   showPrevNext
-/>
+/>;
 ```
 
 ### Menu
+
 A dropdown menu component with support for submenus and keyboard navigation.
 
 ```tsx
@@ -69,12 +73,13 @@ const menuItems = [
   trigger={<button>Menu</button>}
   items={menuItems}
   position="bottom-right"
-/>
+/>;
 ```
 
 ## Usage Examples
 
 ### Tab Navigation
+
 ```tsx
 const [activeTab, setActiveTab] = useState('profile');
 
@@ -89,10 +94,11 @@ const tabs = [
   activeTab={activeTab}
   onChange={setActiveTab}
   variant="underline"
-/>
+/>;
 ```
 
 ### Breadcrumb with Icons
+
 ```tsx
 const items = [
   { label: 'Home', href: '/', icon: <HomeIcon /> },
@@ -100,4 +106,5 @@ const items = [
   { label: 'Settings', icon: <SettingsIcon /> },
 ];
 
-<Breadcrumb items={items} maxItems={5} />
+<Breadcrumb items={items} maxItems={5} />;
+```
