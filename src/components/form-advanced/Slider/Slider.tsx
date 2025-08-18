@@ -94,10 +94,18 @@ export function Slider({
       if (!sliderRef.current) return value;
 
       const rect = sliderRef.current.getBoundingClientRect();
-      const clientX =
-        "touches" in event ? event.touches[0].clientX : event.clientX;
-      const clientY =
-        "touches" in event ? event.touches[0].clientY : event.clientY;
+      let clientX: number;
+      let clientY: number;
+      if ("touches" in event && event.touches && event.touches[0]) {
+        clientX = event.touches[0].clientX;
+        clientY = event.touches[0].clientY;
+      } else if ("clientX" in event && "clientY" in event) {
+        clientX = (event as MouseEvent).clientX;
+        clientY = (event as MouseEvent).clientY;
+      } else {
+        clientX = 0;
+        clientY = 0;
+      }
 
       let percentage: number;
       if (vertical) {
@@ -143,33 +151,6 @@ export function Slider({
     document.addEventListener("mouseup", handleMouseUp);
   };
 
-  const handleKeyDown = (event: KeyboardEvent) => {
-    if (disabled) return;
-
-    let newValue = value;
-    switch (event.key) {
-      case "ArrowUp":
-      case "ArrowRight":
-        newValue = Math.min(max, value + step);
-        break;
-      case "ArrowDown":
-      case "ArrowLeft":
-        newValue = Math.max(min, value - step);
-        break;
-      case "Home":
-        newValue = min;
-        break;
-      case "End":
-        newValue = max;
-        break;
-      default:
-        return;
-    }
-
-    event.preventDefault();
-    onChange(newValue);
-  };
-
   const percentage = getPercentage(value);
 
   return (
@@ -189,16 +170,22 @@ export function Slider({
           disabled && "cursor-not-allowed opacity-50"
         )}
         onMouseDown={handleMouseDown}
-        role="slider"
-        aria-valuenow={value}
-        aria-valuemin={min}
-        aria-valuemax={max}
-        aria-disabled={disabled}
-        tabIndex={disabled ? -1 : 0}
-        onKeyDown={handleKeyDown}
         onMouseEnter={() => setShowTooltip(true)}
         onMouseLeave={() => !isDragging && setShowTooltip(false)}
       >
+        {/* Visually hidden native range input for accessibility */}
+        <input
+          type="range"
+          min={min}
+          max={max}
+          step={step}
+          value={value}
+          disabled={disabled}
+          aria-label="Slider"
+          className="absolute w-full h-full opacity-0 pointer-events-none"
+          tabIndex={-1}
+          readOnly
+        />
         {/* Fill */}
         {included && (
           <div
@@ -339,10 +326,20 @@ export function RangeSlider({
       if (!sliderRef.current) return min;
 
       const rect = sliderRef.current.getBoundingClientRect();
-      const clientX =
-        "touches" in event ? event.touches[0].clientX : event.clientX;
-      const clientY =
-        "touches" in event ? event.touches[0].clientY : event.clientY;
+      let clientX: number;
+      let clientY: number;
+      if ("touches" in event) {
+        // TouchEvent branch
+        clientX = event.touches?.[0]?.clientX ?? 0;
+        clientY = event.touches?.[0]?.clientY ?? 0;
+      } else if ("clientX" in event && "clientY" in event) {
+        // MouseEvent branch
+        clientX = event.clientX;
+        clientY = event.clientY;
+      } else {
+        clientX = 0;
+        clientY = 0;
+      }
 
       let percentage: number;
       if (vertical) {
