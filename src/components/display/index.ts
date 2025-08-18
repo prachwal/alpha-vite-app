@@ -1,12 +1,28 @@
-// Display components exports (to be implemented)
-// export { Table, TableHeader, TableBody, TableRow, TableCell, useTable } from './Table';
-// export { List, ListItem, ListGroup } from './List';
-// export { Card, CardHeader, CardBody, CardFooter } from './Card';
-// export { Badge } from './Badge';
-// export { Avatar, AvatarGroup } from './Avatar';
-// export { Tag, TagGroup } from './Tag';
-// export { Statistic, StatisticGroup } from './Statistic';
+// Data Display Components
+export { List, ListItem } from "./List";
+export type { ListProps, ListItemProps } from "./List";
 
-// Placeholder exports - remove when components are implemented
-export const DISPLAY_COMPONENTS_TODO =
-  "Implement display components according to 04_data_display_medium.md";
+export { Badge } from "./Badge";
+export type { BadgeProps } from "./Badge";
+
+export { Avatar } from "./Avatar";
+export type { AvatarProps } from "./Avatar";
+
+export { Tag } from "./Tag/Tag";
+export type { TagProps } from "./Tag/Tag";
+
+export { Statistic } from "./Statistic/Statistic";
+export type { StatisticProps } from "./Statistic/Statistic";
+
+export { Table } from "./Table";
+export type { TableProps, Column } from "./Table";
+
+export { Card, CardHeader, CardBody, CardFooter } from "./Card";
+export type {
+  CardProps,
+  CardHeaderProps,
+  CardBodyProps,
+  CardFooterProps,
+} from "./Card";
+
+export { CheckIcon } from "./CheckIcon";

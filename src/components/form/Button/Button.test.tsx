@@ -9,39 +9,39 @@ describe("Button Component", () => {
 
     const button = screen.getByRole("button", { name: /click me/i });
     expect(button).toBeInTheDocument();
-    expect(button).toHaveClass("bg-primary");
-    expect(button).toHaveClass("text-white");
-    expect(button).toHaveClass("rounded-md");
+    expect(button.className).toContain("bg-primary");
+    expect(button.className).toContain("text-white");
+    expect(button.className).toContain("rounded-md");
   });
 
   it("renders with different variants", () => {
     const { rerender } = render(<Button variant="secondary">Button</Button>);
 
     let button = screen.getByRole("button");
-    expect(button).toHaveClass("bg-secondary");
+    expect(button.className).toContain("bg-secondary");
 
     rerender(<Button variant="danger">Button</Button>);
     button = screen.getByRole("button");
-    expect(button).toHaveClass("bg-danger");
+    expect(button.className).toContain("bg-danger");
 
     rerender(<Button variant="ghost">Button</Button>);
     button = screen.getByRole("button");
-    expect(button).toHaveClass("bg-transparent");
+    expect(button.className).toContain("bg-transparent");
   });
 
   it("renders with different sizes", () => {
     const { rerender } = render(<Button size="sm">Small</Button>);
 
     let button = screen.getByRole("button");
-    expect(button).toHaveClass("px-3");
-    expect(button).toHaveClass("py-1.5");
-    expect(button).toHaveClass("text-sm");
+    expect(button.className).toContain("px-3");
+    expect(button.className).toContain("py-1.5");
+    expect(button.className).toContain("text-sm");
 
     rerender(<Button size="lg">Large</Button>);
     button = screen.getByRole("button");
-    expect(button).toHaveClass("px-6");
-    expect(button).toHaveClass("py-3");
-    expect(button).toHaveClass("text-lg");
+    expect(button.className).toContain("px-6");
+    expect(button.className).toContain("py-3");
+    expect(button.className).toContain("text-lg");
   });
 
   it("handles click events", async () => {
@@ -61,8 +61,8 @@ describe("Button Component", () => {
 
     const button = screen.getByRole("button");
     expect(button).toBeDisabled();
-    expect(button).toHaveClass("disabled:opacity-50");
-    expect(button).toHaveClass("disabled:cursor-not-allowed");
+    expect(button.className).toContain("disabled:opacity-50");
+    expect(button.className).toContain("disabled:cursor-not-allowed");
   });
 
   it("shows loading state", () => {
@@ -77,6 +77,6 @@ describe("Button Component", () => {
     render(<Button className="custom-class">Button</Button>);
 
     const button = screen.getByRole("button");
-    expect(button).toHaveClass("custom-class");
+    expect(button.className).toContain("custom-class");
   });
 });

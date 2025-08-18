@@ -6,7 +6,6 @@ export * from "./feedback";
 export * from "./display";
 export * from "./form-advanced";
 export * from "./utility";
-export * from "./legacy";
 
 // Existing components (keep until migration is complete)
 export { AppTitle } from "./AppTitle";

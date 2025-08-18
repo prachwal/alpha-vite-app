@@ -62,8 +62,8 @@ describe("Checkbox Component", () => {
       />
     );
 
-    const checkbox = screen.getByRole("checkbox") as HTMLInputElement;
-    expect(checkbox.indeterminate).toBe(true);
+    const checkbox = screen.getByRole("checkbox");
+    expect((checkbox as HTMLInputElement).indeterminate).toBe(true);
   });
 
   it("renders error state", () => {

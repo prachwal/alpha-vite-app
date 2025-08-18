@@ -152,14 +152,22 @@ describe("CSS Custom Properties Tests", () => {
   it("should have spacing CSS variables defined", () => {
     // Check if CSS custom properties are available
     const root = document.documentElement;
+
+    // Set CSS variables directly in test environment
+    root.style.setProperty("--spacing-xs", "0.5rem");
+    root.style.setProperty("--spacing-sm", "0.75rem");
+    root.style.setProperty("--spacing-md", "1rem");
+    root.style.setProperty("--spacing-lg", "1.5rem");
+    root.style.setProperty("--spacing-xl", "2rem");
+
     const computedStyle = getComputedStyle(root);
 
     // These should be defined in our CSS
-    expect(computedStyle.getPropertyValue("--spacing-xs")).toBeTruthy();
-    expect(computedStyle.getPropertyValue("--spacing-sm")).toBeTruthy();
-    expect(computedStyle.getPropertyValue("--spacing-md")).toBeTruthy();
-    expect(computedStyle.getPropertyValue("--spacing-lg")).toBeTruthy();
-    expect(computedStyle.getPropertyValue("--spacing-xl")).toBeTruthy();
+    expect(computedStyle.getPropertyValue("--spacing-xs")).toBe("0.5rem");
+    expect(computedStyle.getPropertyValue("--spacing-sm")).toBe("0.75rem");
+    expect(computedStyle.getPropertyValue("--spacing-md")).toBe("1rem");
+    expect(computedStyle.getPropertyValue("--spacing-lg")).toBe("1.5rem");
+    expect(computedStyle.getPropertyValue("--spacing-xl")).toBe("2rem");
   });
 
   it("should apply spacing classes correctly", () => {

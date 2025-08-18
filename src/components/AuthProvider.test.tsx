@@ -3,7 +3,7 @@
  */
 import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
 import { render, screen, fireEvent, waitFor } from "@testing-library/preact";
-import { AuthProvider, useAuth, AuthButton } from "./AuthProvider";
+import { useAuth, AuthButton } from "./AuthProvider";
 import { auth0State } from "@services/Auth0Provider";
 
 // Mock the Auth0Provider service

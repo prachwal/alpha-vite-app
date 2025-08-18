@@ -9,7 +9,7 @@ import {
   changeLanguage,
   usePageTranslations,
 } from "@services/i18n";
-import { ButtonGroup } from "@components/legacy/ButtonGroup";
+import { Button, RadioGroup } from "@components/form";
 
 export function SettingsPage() {
   const t = usePageTranslations("settings");
@@ -31,9 +31,6 @@ export function SettingsPage() {
 
     // Aktualizuj natychmiast
     updateDebugInfo();
-
-    // Użyj efektów do nasłuchiwania na zmiany
-    // Preact Signals automatycznie re-renderuje komponenty przy zmianie sygnałów
   }, [themeConfig.value, currentLanguage.value]);
 
   const handleThemeToggle = () => {
@@ -46,43 +43,25 @@ export function SettingsPage() {
     changeLanguage(newLang);
   };
 
-  const handleSpacingChange = (spacing: "compact" | "normal" | "spacious") => {
-    updateTheme({ spacing });
-    const debug = [
-      `Theme mode: ${themeConfig.value.mode}`,
-      `Font size: ${themeConfig.value.fontSize}`,
-      `Font family: ${themeConfig.value.fontFamily}`,
-      `Spacing: ${themeConfig.value.spacing}`,
-      `Language: ${currentLanguage.value}`,
-      `Timestamp: ${new Date().toLocaleString()}`,
-    ];
-    setDebugInfo(debug);
+  const handleSpacingChange = (spacing: string) => {
+    const validSpacings = ["compact", "normal", "spacious"] as const;
+    if (validSpacings.includes(spacing as any)) {
+      updateTheme({ spacing: spacing as "compact" | "normal" | "spacious" });
+    }
   };
 
-  const handleFontSizeChange = (fontSize: "sm" | "base" | "lg" | "xl") => {
-    updateTheme({ fontSize });
-    const debug = [
-      `Theme mode: ${themeConfig.value.mode}`,
-      `Font size: ${fontSize}`,
-      `Font family: ${themeConfig.value.fontFamily}`,
-      `Spacing: ${themeConfig.value.spacing}`,
-      `Language: ${currentLanguage.value}`,
-      `Timestamp: ${new Date().toLocaleString()}`,
-    ];
-    setDebugInfo(debug);
+  const handleFontSizeChange = (fontSize: string) => {
+    const validFontSizes = ["sm", "base", "lg", "xl"] as const;
+    if (validFontSizes.includes(fontSize as any)) {
+      updateTheme({ fontSize: fontSize as "sm" | "base" | "lg" | "xl" });
+    }
   };
 
-  const handleFontFamilyChange = (fontFamily: "sans" | "mono") => {
-    updateTheme({ fontFamily });
-    const debug = [
-      `Theme mode: ${themeConfig.value.mode}`,
-      `Font size: ${themeConfig.value.fontSize}`,
-      `Font family: ${fontFamily}`,
-      `Spacing: ${themeConfig.value.spacing}`,
-      `Language: ${currentLanguage.value}`,
-      `Timestamp: ${new Date().toLocaleString()}`,
-    ];
-    setDebugInfo(debug);
+  const handleFontFamilyChange = (fontFamily: string) => {
+    const validFontFamilies = ["sans", "mono"] as const;
+    if (validFontFamilies.includes(fontFamily as any)) {
+      updateTheme({ fontFamily: fontFamily as "sans" | "mono" });
+    }
   };
 
   return (
@@ -109,20 +88,14 @@ export function SettingsPage() {
         <div className="space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             <span className="text-text-muted break-words">
-              {t("currentTheme")}: {String(t(String(themeConfig.value.mode)))}
+              {t("currentTheme")}:{" "}
+              {t(String(themeConfig.value.mode)) ||
+                String(themeConfig.value.mode)}
             </span>
-            <button
-              onClick={handleThemeToggle}
-              className="bg-primary text-white rounded hover:bg-primary-hover transition-colors flex items-center self-start sm:self-center"
-              style="padding: var(--spacing-sm) var(--spacing-md); gap: var(--spacing-xs)"
-            >
-              {themeConfig.value.mode === "dark" ? (
-                <span>☀️</span>
-              ) : (
-                <span>🌙</span>
-              )}
+            <Button onClick={handleThemeToggle} variant="primary" size="md">
+              {themeConfig.value.mode === "dark" ? "☀️" : "🌙"}{" "}
               {t("toggleTheme")}
-            </button>
+            </Button>
           </div>
 
           {/* Font Family Controls */}
@@ -133,17 +106,15 @@ export function SettingsPage() {
             >
               {t("fontFamily")}
             </h3>
-            <ButtonGroup
-              options={["sans", "mono"] as const}
-              currentValue={themeConfig.value.fontFamily}
+            <RadioGroup
+              name="fontFamily"
+              value={themeConfig.value.fontFamily}
               onChange={handleFontFamilyChange}
-              getLabel={(value) =>
-                String(t(value === "sans" ? "sansSerif" : "monospace"))
-              }
-              layout="grid"
-              size="md"
-              gridColumns={2}
-              className="w-full sm:w-auto"
+              options={[
+                { value: "sans", label: t("sansSerif") || "Sans Serif" },
+                { value: "mono", label: t("monospace") || "Monospace" },
+              ]}
+              layout="horizontal"
             />
           </div>
 
@@ -155,15 +126,17 @@ export function SettingsPage() {
             >
               {t("fontSize")}
             </h3>
-            <ButtonGroup
-              options={["sm", "base", "lg", "xl"] as const}
-              currentValue={themeConfig.value.fontSize}
+            <RadioGroup
+              name="fontSize"
+              value={themeConfig.value.fontSize}
               onChange={handleFontSizeChange}
-              getLabel={(value) => String(t(String(value)))}
-              layout="grid"
-              size="md"
-              gridColumns={4}
-              className="w-full sm:w-auto"
+              options={[
+                { value: "sm", label: t("sm") || "Small" },
+                { value: "base", label: t("base") || "Base" },
+                { value: "lg", label: t("lg") || "Large" },
+                { value: "xl", label: t("xl") || "Extra Large" },
+              ]}
+              layout="horizontal"
             />
           </div>
 
@@ -175,15 +148,16 @@ export function SettingsPage() {
             >
               {t("spacing")}
             </h3>
-            <ButtonGroup
-              options={["compact", "normal", "spacious"] as const}
-              currentValue={themeConfig.value.spacing}
+            <RadioGroup
+              name="spacing"
+              value={themeConfig.value.spacing}
               onChange={handleSpacingChange}
-              getLabel={(value) => String(t(String(value)))}
-              layout="grid"
-              size="md"
-              gridColumns={3}
-              className="w-full sm:w-auto"
+              options={[
+                { value: "compact", label: t("compact") || "Compact" },
+                { value: "normal", label: t("normal") || "Normal" },
+                { value: "spacious", label: t("spacious") || "Spacious" },
+              ]}
+              layout="horizontal"
             />
           </div>
         </div>
@@ -205,19 +179,15 @@ export function SettingsPage() {
           <span className="text-text-muted">
             {t("currentLanguage")}:{" "}
             {currentLanguage.value === "en"
-              ? String(t("english"))
-              : String(t("polish"))}
+              ? t("english") || "English"
+              : t("polish") || "Polish"}
           </span>
-          <button
-            onClick={handleLanguageToggle}
-            className="bg-secondary text-white rounded hover:bg-secondary-hover transition-colors flex items-center"
-            style="padding: var(--spacing-sm) var(--spacing-md); gap: var(--spacing-xs)"
-          >
-            {currentLanguage.value === "en" ? <span>🇵🇱</span> : <span>🇺🇸</span>}
+          <Button onClick={handleLanguageToggle} variant="secondary" size="md">
+            {currentLanguage.value === "en" ? "🇵🇱" : "🇺🇸"}{" "}
             {currentLanguage.value === "en"
-              ? String(t("switchToPolish"))
-              : String(t("switchToEnglish"))}
-          </button>
+              ? t("switchToPolish") || "Switch to Polish"
+              : t("switchToEnglish") || "Switch to English"}
+          </Button>
         </div>
       </div>
 
@@ -244,7 +214,7 @@ export function SettingsPage() {
           ))}
         </div>
 
-        <button
+        <Button
           onClick={() => {
             // Force refresh
             const debug = [
@@ -257,11 +227,12 @@ export function SettingsPage() {
             ];
             setDebugInfo(debug);
           }}
-          className="bg-bg-subtle text-white rounded hover:bg-bg-subtle-hover transition-colors"
-          style="margin-top: var(--spacing-md); padding: var(--spacing-sm) var(--spacing-md)"
+          variant="secondary"
+          size="sm"
+          className="mt-4"
         >
           {t("refreshDebugInfo")}
-        </button>
+        </Button>
       </div>
     </div>
   );

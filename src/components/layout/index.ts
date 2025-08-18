@@ -1,10 +1,17 @@
-// Layout components exports (to be implemented)
-// export { Container } from './Container';
-// export { Grid, GridItem } from './Grid';
-// export { Stack } from './Stack';
-// export { Divider } from './Divider';
-// export { Spacer } from './Spacer';
+export { Container } from "./Container/Container";
+export type { ContainerProps } from "./Container/Container";
 
-// Placeholder exports - remove when components are implemented
-export const LAYOUT_COMPONENTS_TODO =
-  "Implement layout components according to 02_layout_components_high.md";
+export { Grid } from "./Grid/Grid";
+export type { GridProps } from "./Grid/Grid";
+
+export { GridItem } from "./Grid/GridItem";
+export type { GridItemProps } from "./Grid/GridItem";
+
+export { Stack } from "./Stack/Stack";
+export type { StackProps } from "./Stack/Stack";
+
+export { Divider } from "./Divider/Divider";
+export type { DividerProps } from "./Divider/Divider";
+
+export { Spacer } from "./Spacer/Spacer";
+export type { SpacerProps } from "./Spacer/Spacer";

@@ -1,11 +1,35 @@
-// Feedback components exports (to be implemented)
-// export { Alert } from './Alert';
-// export { Toast, ToastContainer, useToast } from './Toast';
-// export { Spinner, Skeleton, LoadingOverlay } from './Loading';
-// export { Modal, ModalHeader, ModalBody, ModalFooter, useModal } from './Modal';
-// export { Dialog, ConfirmDialog, useDialog } from './Dialog';
-// export { Tooltip, useTooltip } from './Tooltip';
+// Alert
+export { Alert } from "./Alert";
+export type { AlertProps } from "./Alert";
 
-// Placeholder exports - remove when components are implemented
-export const FEEDBACK_COMPONENTS_TODO =
-  "Implement feedback components according to 03_feedback_components_high.md";
+// Toast
+export {
+  Toast,
+  ToastProvider,
+  useToast,
+  ToastContainer,
+  useToastHooks,
+} from "./Toast";
+export type { ToastData } from "./Toast";
+
+// Loading
+export {
+  Loading,
+  LoadingSpinner,
+  LoadingDots,
+  LoadingBars,
+  LoadingPulse,
+} from "./Loading";
+export type { LoadingProps } from "./Loading";
+
+// Modal
+export { Modal, ModalHeader, ModalBody, ModalFooter } from "./Modal";
+export type { ModalProps } from "./Modal";
+
+// Dialog
+export { Dialog, useDialog } from "./Dialog";
+export type { DialogProps } from "./Dialog";
+
+// Tooltip
+export { Tooltip } from "./Tooltip";
+export type { TooltipProps } from "./Tooltip";

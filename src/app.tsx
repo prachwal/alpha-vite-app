@@ -9,6 +9,7 @@ import {
 import { HomePage } from "./pages/HomePage";
 import { AboutPage } from "./pages/AboutPage";
 import { SettingsPage } from "./pages/SettingsPage";
+import { PageDemo } from "./pages/PageDemo";
 import { toggleDarkMode, themeConfig } from "@services/ThemeProvider";
 import { t } from "@services/i18n";
 import { useEffect, useState } from "preact/hooks";
@@ -134,6 +135,7 @@ export function App() {
               <Route path="/" component={HomePage} />
               <Route path="/about" component={AboutPage} />
               <Route path="/settings" component={SettingsPage} />
+              <Route path="/demo" component={PageDemo} />
             </Router>
           </div>
         </div>

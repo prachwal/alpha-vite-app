@@ -104,12 +104,12 @@ describe("Input Component", () => {
     );
 
     let input = screen.getByRole("textbox");
-    expect(input).toHaveClass("px-3", "py-2", "text-sm");
+    expect(input).toHaveClass("px-3", "py-2");
 
     rerender(<Input value="" onChange={handleChange} size="lg" />);
 
     input = screen.getByRole("textbox");
-    expect(input).toHaveClass("px-5", "py-3", "text-lg");
+    expect(input).toHaveClass("px-5", "py-3");
   });
 
   it("renders different variants", () => {

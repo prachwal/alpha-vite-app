@@ -1,7 +1,6 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/preact";
 import { HomePage } from "../pages/HomePage";
-import { vi } from "vitest";
 
 vi.mock("@services/i18n", () => ({
   usePageTranslations: () => (key: string) => key,

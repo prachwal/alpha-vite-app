@@ -363,13 +363,10 @@ interface StatisticGroupProps {
 8. ✅ Memory usage jest optimized
 
 ### Timeline
-- Table: 8h
-- List: 4h
-- Card: 3h
-- Badge: 2h
-- Avatar: 3h
-- Tag: 2h
-- Statistic: 2h
-- Testy wszystkich: 8h
-- Stories wszystkich: 4h
-- **Total: ~36h**
++ Table: zakończone (pełna implementacja, testy, stories)
++ Card: zakończone (podstawowa implementacja, testy, stories)
++ List, Badge, Avatar, Tag, Statistic: do zrobienia
++ Testy: Table/Card ✅, reszta ❌
++ Stories: Table/Card ✅, reszta ❌
++ Accessibility: Table/Card ✅, reszta ❌
++ Ostatnia aktualizacja: 2025-08-18

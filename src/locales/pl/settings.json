@@ -45,5 +45,6 @@
   "loading": "Ładowanie...",
   "authenticated": "Uwierzytelniony",
   "notAuthenticated": "Nieuwierzytelniony",
-  "checkingAuth": "Sprawdzanie uwierzytelniania..."
+  "checkingAuth": "Sprawdzanie uwierzytelniania...",
+  "demoPage": "Strona demonstracyjna"
 }

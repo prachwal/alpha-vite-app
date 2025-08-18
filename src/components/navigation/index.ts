@@ -1,9 +1,12 @@
-// Navigation components exports (to be implemented)
-// export { Breadcrumb, BreadcrumbItem } from './Breadcrumb';
-// export { Tabs, Tab, TabPanel } from './Tabs';
-// export { Pagination } from './Pagination';
-// export { Menu, MenuItem, MenuGroup } from './Menu';
-
-// Placeholder exports - remove when components are implemented
-export const NAVIGATION_COMPONENTS_TODO =
-  "Implement navigation components according to 02_layout_components_high.md";
+export { Tabs } from "./Tabs/Tabs";
+export { Tab } from "./Tabs/Tab";
+export { TabPanel } from "./Tabs/TabPanel";
+export { Menu } from "./Menu/Menu";
+export { MenuItem } from "./Menu/MenuItem";
+export { MenuGroup } from "./Menu/MenuGroup";
+export type { TabsProps } from "./Tabs/Tabs";
+export type { TabProps } from "./Tabs/Tab";
+export type { TabPanelProps } from "./Tabs/TabPanel";
+export type { MenuProps, MenuItemData } from "./Menu/Menu";
+export type { MenuItemProps } from "./Menu/MenuItem";
+export type { MenuGroupProps } from "./Menu/MenuGroup";

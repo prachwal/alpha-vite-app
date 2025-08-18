@@ -45,5 +45,6 @@
   "loading": "Loading...",
   "authenticated": "Authenticated",
   "notAuthenticated": "Not Authenticated",
-  "checkingAuth": "Checking authentication..."
+  "checkingAuth": "Checking authentication...",
+  "demoPage": "Demo Page"
 }

@@ -23,6 +23,7 @@
     "@auth0/auth0-spa-js": "^2.3.0",
     "@preact/signals": "^2.2.1",
     "@tailwindcss/vite": "^4.1.12",
+    "clsx": "^2.1.1",
     "compression": "^1.8.1",
     "express": "^5.1.0",
     "i18next": "^25.3.6",
@@ -31,6 +32,7 @@
     "preact-iso": "^2.9.2",
     "preact-render-to-string": "^6.5.13",
     "sirv": "^3.0.1",
+    "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.12"
   },
   "devDependencies": {
@@ -43,9 +45,10 @@
     "@testing-library/jest-dom": "^6.7.0",
     "@testing-library/preact": "^3.2.4",
     "@types/express": "^5.0.3",
+    "@types/jest": "^30.0.0",
     "@types/node": "^24.3.0",
-    "@vitest/ui": "^3.2.4",
     "@vitest/coverage-v8": "^3.2.4",
+    "@vitest/ui": "^3.2.4",
     "cross-env": "^10.0.0",
     "jsdom": "^26.1.0",
     "storybook": "^9.1.2",
