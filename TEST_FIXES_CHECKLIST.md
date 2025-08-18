@@ -24,9 +24,13 @@
 
 ## 🎯 Historia naprawy
 - **2025-08-18:** Wszystkie testy zostały pomyślnie naprawione
+- **Weryfikacja:** ✅ Wszystkie 206 testów przechodzi pomyślnie (potwierdzone 2025-08-18 12:56:49)
+- **Aktualizacja konfiguracji:** Dodano wsparcie dla coverage i ulepszono skrypty testowe
 - **Główne naprawy:**
   - Dodano brakujące mocki (usePageTranslations)
   - Naprawiono selektory/role w testach
   - Ujednolicono klasy CSS
   - Dodano vi.useFakeTimers() gdzie potrzebne
   - Naprawiono błędy importu
+  - Zaktualizowano konfigurację Vitest z dodaniem coverage
+  - Ulepszono skrypty testowe (test:watch, test:coverage)
