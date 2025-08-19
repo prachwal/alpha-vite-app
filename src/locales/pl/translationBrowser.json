@@ -1,0 +1,14 @@
+{
+    "title": "Przeglądarka Tłumaczeń",
+    "description": "Przeglądaj i zarządzaj wszystkimi tłumaczeniami aplikacji",
+    "searchPlaceholder": "Szukaj tłumaczeń...",
+    "allCategories": "Wszystkie Kategorie",
+    "export": "Eksportuj",
+    "clearFilters": "Wyczyść Filtry",
+    "results": "Znaleziono {{count}} tłumaczeń",
+    "loading": "Ładowanie tłumaczeń...",
+    "noResultsTitle": "Nie znaleziono tłumaczeń",
+    "noResultsDescription": "Spróbuj dostosować kryteria wyszukiwania lub filtry",
+    "key": "Klucz",
+    "value": "Wartość"
+}

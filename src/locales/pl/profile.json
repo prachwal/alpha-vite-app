@@ -1,0 +1,23 @@
+{
+    "title": "Profil",
+    "notLoggedIn": "Nie jesteś zalogowany",
+    "loginToViewProfile": "Zaloguj się, aby zobaczyć swój profil",
+    "login": "Zaloguj się",
+    "logout": "Wyloguj się",
+    "loading": "Ładowanie profilu...",
+    "error": "Błąd podczas ładowania profilu",
+    "retry": "Spróbuj ponownie",
+    "userInfo": "Informacje o użytkowniku",
+    "email": "Email",
+    "name": "Imię i nazwisko",
+    "nickname": "Pseudonim",
+    "picture": "Zdjęcie profilowe",
+    "sub": "ID użytkownika",
+    "updatedAt": "Ostatnia aktualizacja",
+    "emailVerified": "Email zweryfikowany",
+    "yes": "Tak",
+    "no": "Nie",
+    "noUserInfo": "Brak informacji o użytkowniku",
+    "profilePage": "Strona Profilu",
+    "demoPage": "Strona Demo"
+}

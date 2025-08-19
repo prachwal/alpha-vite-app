@@ -5,6 +5,8 @@
 - [Status implementacji komponentów UI](./tasks/README.md) - Szczegółowa czeklista postępu prac nad komponentami UI
 - [Podstawowa konfiguracja projektu](./PROJECT_SETUP_COMPLETE.md) - Instrukcje konfiguracji i uruchomienia projektu
 - [Implementacja tabeli](./TABLE_IMPLEMENTATION_COMPLETE.md) - Dokumentacja implementacji komponentu Table
+- [System tłumaczeń i18n](../src/locales/README.md) - Dokumentacja systemu tłumaczeń i struktura plików
+- [Proces logowania Auth0](./AUTH0_LOGIN_PROCESS.md) - Kompletna dokumentacja procesu logowania Auth0 z localStorage
 
 ## 🚀 Szybki start
 
@@ -42,7 +44,9 @@ docs/
 ├── tasks/             # Dokumentacja statusu komponentów
 ├── README.md          # Ten plik
 ├── PROJECT_SETUP_COMPLETE.md
-└── TABLE_IMPLEMENTATION_COMPLETE.md
+├── TABLE_IMPLEMENTATION_COMPLETE.md
+├── AUTH0_LOGIN_PROCESS.md
+└── ../src/locales/README.md
 ```
 
 ## 🎯 Status projektu

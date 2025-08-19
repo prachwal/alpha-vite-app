@@ -1,0 +1,14 @@
+{
+    "title": "Translation Browser",
+    "description": "Browse and manage all application translations",
+    "searchPlaceholder": "Search translations...",
+    "allCategories": "All Categories",
+    "export": "Export",
+    "clearFilters": "Clear Filters",
+    "results": "{{count}} translations found",
+    "loading": "Loading translations...",
+    "noResultsTitle": "No translations found",
+    "noResultsDescription": "Try adjusting your search criteria or filters",
+    "key": "Key",
+    "value": "Value"
+}

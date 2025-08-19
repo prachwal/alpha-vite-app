@@ -149,7 +149,7 @@ export function SettingsPage() {
         </Card>
 
         {/* Language Settings */}
-        <Card>
+        <Card className="bg-bg-surface border-border-subtle">
           <h2 className="text-xl font-semibold text-text-primary mb-4">
             {t('languageSettings')}
           </h2>

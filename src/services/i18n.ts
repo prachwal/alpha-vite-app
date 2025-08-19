@@ -9,6 +9,12 @@ import aboutEN from '../locales/en/about.json';
 import aboutPL from '../locales/pl/about.json';
 import settingsEN from '../locales/en/settings.json';
 import settingsPL from '../locales/pl/settings.json';
+import profileEN from '../locales/en/profile.json';
+import profilePL from '../locales/pl/profile.json';
+import commonEN from '../locales/en/common.json';
+import commonPL from '../locales/pl/common.json';
+import translationBrowserEN from '../locales/en/translationBrowser.json';
+import translationBrowserPL from '../locales/pl/translationBrowser.json';
 
 // Language signal for reactive updates
 export const currentLanguage = signal('en');
@@ -17,67 +23,29 @@ export const currentLanguage = signal('en');
 const resources = {
   en: {
     translation: {
-      // Navigation
-      navigation: 'Navigation',
-      home: 'Home',
-      about: 'About',
-      settings: 'Settings',
-      toggleSidebar: 'Toggle sidebar',
-      homePage: 'Home',
-      aboutPage: 'About',
-      settingsPage: 'Settings',
-
-      // Header
-      appName: 'Alpha Vite App',
-      toggleTheme: 'Toggle theme',
-
-      // API Tester
-      apiTester: 'API Tester',
-      selectEndpoint: 'Select Endpoint:',
-      testAPI: 'Test API',
-      response: 'Response:',
-
-      // Counter
-      count: 'Count: {{count}}',
-
+      ...commonEN,
       // Page-specific translations
       pages: {
+        common: commonEN,
         home: homeEN,
         about: aboutEN,
         settings: settingsEN,
+        profile: profileEN,
+        translationBrowser: translationBrowserEN,
       },
     },
   },
   pl: {
     translation: {
-      // Navigation
-      navigation: 'Nawigacja',
-      home: 'Strona główna',
-      about: 'O aplikacji',
-      settings: 'Ustawienia',
-      toggleSidebar: 'Przełącz panel boczny',
-      homePage: 'Strona główna',
-      aboutPage: 'O aplikacji',
-      settingsPage: 'Ustawienia',
-
-      // Header
-      appName: 'Alpha Vite App',
-      toggleTheme: 'Przełącz motyw',
-
-      // API Tester
-      apiTester: 'Tester API',
-      selectEndpoint: 'Wybierz endpoint:',
-      testAPI: 'Testuj API',
-      response: 'Odpowiedź:',
-
-      // Counter
-      count: 'Licznik: {{count}}',
-
+      ...commonPL,
       // Page-specific translations
       pages: {
+        common: commonPL,
         home: homePL,
         about: aboutPL,
         settings: settingsPL,
+        profile: profilePL,
+        translationBrowser: translationBrowserPL,
       },
     },
   },

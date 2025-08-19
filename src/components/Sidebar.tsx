@@ -212,6 +212,30 @@ export function Sidebar() {
               </span>
             </a>
             <a
+              href="/profile"
+              onClick={(e) => handleNavigation(e, '/profile')}
+              className={getNavLinkClasses('/profile')}
+            >
+              <svg
+                className={getIconClasses()}
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
+              <span
+                className={`nav-text transition-all duration-300 ease-in-out ${
+                  isCollapsed() ? 'opacity-0 w-0' : 'opacity-100 w-auto'
+                }`}
+              >
+                {t('profilePage')}
+              </span>
+            </a>
+            <a
               href="/demo"
               onClick={(e) => handleNavigation(e, '/demo')}
               className={getNavLinkClasses('/demo')}
@@ -229,6 +253,30 @@ export function Sidebar() {
                 }`}
               >
                 {t('demoPage')}
+              </span>
+            </a>
+            <a
+              href="/translations"
+              onClick={(e) => handleNavigation(e, '/translations')}
+              className={getNavLinkClasses('/translations')}
+            >
+              <svg
+                className={getIconClasses()}
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
+              <span
+                className={`nav-text transition-all duration-300 ease-in-out ${
+                  isCollapsed() ? 'opacity-0 w-0' : 'opacity-100 w-auto'
+                }`}
+              >
+                {t('translationBrowserPage')}
               </span>
             </a>
           </nav>

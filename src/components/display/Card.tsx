@@ -22,9 +22,7 @@ export interface CardFooterProps {
 
 export function Card({ children, className = '' }: CardProps) {
   return (
-    <div
-      className={`bg-surface-primary border border-border-subtle rounded-lg shadow-sm ${className}`}
-    >
+    <div className={`bg-bg-surface rounded-lg shadow-sm p-4 ${className}`}>
       {children}
     </div>
   );
